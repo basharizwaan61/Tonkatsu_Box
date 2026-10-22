@@ -1,7 +1,7 @@
 import 'package:core/models/movie.dart';
 import 'package:core/models/tv_show.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/features/search/utils/genre_utils.dart';
+import 'package:mediabox/features/search/utils/genre_utils.dart';
 
 void main() {
   group('isAnimationGenre', () {

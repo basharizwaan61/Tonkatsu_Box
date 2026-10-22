@@ -2,8 +2,8 @@ import 'dart:convert';
 
 import 'package:core/api/credential_names.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/core/selfhost/server_credentials.dart';
-import 'package:tonkatsu_box/features/settings/providers/settings_provider.dart';
+import 'package:mediabox/core/selfhost/server_credentials.dart';
+import 'package:mediabox/features/settings/providers/settings_provider.dart';
 
 List<int> config(Map<String, Object?> body) => utf8.encode(jsonEncode(body));
 

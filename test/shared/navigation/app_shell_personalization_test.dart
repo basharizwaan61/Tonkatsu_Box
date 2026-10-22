@@ -6,25 +6,25 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:tonkatsu_box/app.dart';
-import 'package:tonkatsu_box/core/database/database_service.dart';
-import 'package:tonkatsu_box/core/services/update_service.dart';
-import 'package:tonkatsu_box/data/repositories/collection_repository.dart';
-import 'package:tonkatsu_box/features/genre_cloud/providers/genre_cloud_provider.dart';
-import 'package:tonkatsu_box/features/home/screens/all_items_screen.dart';
-import 'package:tonkatsu_box/features/collections/providers/item_tags_provider.dart';
-import 'package:tonkatsu_box/features/likes/providers/marked_units_provider.dart';
-import 'package:tonkatsu_box/features/personalization/screens/personalization_hub_screen.dart';
-import 'package:tonkatsu_box/features/personalization/screens/personalization_screen.dart';
-import 'package:tonkatsu_box/features/personalization/widgets/hub_section_card.dart';
-import 'package:tonkatsu_box/features/recommendations/providers/recommendations_provider.dart';
-import 'package:tonkatsu_box/features/settings/providers/settings_provider.dart';
-import 'package:tonkatsu_box/features/statistics/providers/statistics_provider.dart';
-import 'package:tonkatsu_box/features/statistics/screens/statistics_screen.dart';
-import 'package:tonkatsu_box/features/welcome/screens/welcome_screen.dart';
-import 'package:tonkatsu_box/shared/navigation/app_top_bar.dart';
-import 'package:tonkatsu_box/shared/navigation/nav_center_button.dart';
-import 'package:tonkatsu_box/shared/navigation/nav_icon_button.dart';
+import 'package:mediabox/app.dart';
+import 'package:mediabox/core/database/database_service.dart';
+import 'package:mediabox/core/services/update_service.dart';
+import 'package:mediabox/data/repositories/collection_repository.dart';
+import 'package:mediabox/features/genre_cloud/providers/genre_cloud_provider.dart';
+import 'package:mediabox/features/home/screens/all_items_screen.dart';
+import 'package:mediabox/features/collections/providers/item_tags_provider.dart';
+import 'package:mediabox/features/likes/providers/marked_units_provider.dart';
+import 'package:mediabox/features/personalization/screens/personalization_hub_screen.dart';
+import 'package:mediabox/features/personalization/screens/personalization_screen.dart';
+import 'package:mediabox/features/personalization/widgets/hub_section_card.dart';
+import 'package:mediabox/features/recommendations/providers/recommendations_provider.dart';
+import 'package:mediabox/features/settings/providers/settings_provider.dart';
+import 'package:mediabox/features/statistics/providers/statistics_provider.dart';
+import 'package:mediabox/features/statistics/screens/statistics_screen.dart';
+import 'package:mediabox/features/welcome/screens/welcome_screen.dart';
+import 'package:mediabox/shared/navigation/app_top_bar.dart';
+import 'package:mediabox/shared/navigation/nav_center_button.dart';
+import 'package:mediabox/shared/navigation/nav_icon_button.dart';
 
 import '../../helpers/test_helpers.dart';
 
@@ -99,7 +99,7 @@ void main() {
             markedUnitsProvider.overrideWith(_EmptyMarkedUnits.new),
             itemTagsProvider.overrideWith(_NoItemTags.new),
           ],
-          child: const TonkatsuBoxApp(),
+          child: const MediaboxApp(),
         ),
       );
 

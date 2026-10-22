@@ -2,7 +2,7 @@
 
 # 🤝 Contributing
 
-Thanks for your interest in contributing to Tonkatsu Box!
+Thanks for your interest in contributing to Mediabox!
 
 ## Ways to Contribute
 
@@ -53,19 +53,19 @@ Flutter 3.38+ / Dart 3.10+ · Riverpod · SQLite · Dio · Material Design 3
 > **Flutter SDK is installed on Windows only, not in WSL.** All Flutter commands must be executed through PowerShell:
 >
 > ```bash
-> powershell.exe -Command "cd path\to\tonkatsu_box; flutter pub get"
-> powershell.exe -Command "cd path\to\tonkatsu_box; flutter run -d windows"
+> powershell.exe -Command "cd path\to\mediabox; flutter pub get"
+> powershell.exe -Command "cd path\to\mediabox; flutter run -d windows"
 > ```
 
 ```bash
-git clone https://github.com/your-username/tonkatsu_box.git
-cd tonkatsu_box
+git clone https://github.com/basharizwaan61/Tonkatsu_Box.git
+cd Tonkatsu_Box
 ```
 
 Then in PowerShell (or via `powershell.exe`):
 
 ```powershell
-cd path\to\tonkatsu_box
+cd path\to\mediabox
 flutter pub get
 flutter run -d windows
 ```
@@ -123,8 +123,8 @@ To build a **release** APK (`flutter build apk --release`), you need a signing k
 > **Before every commit, ensure the following checks pass:**
 >
 > ```bash
-> powershell.exe -Command "cd path\to\tonkatsu_box; flutter analyze"
-> powershell.exe -Command "cd path\to\tonkatsu_box; flutter test"
+> powershell.exe -Command "cd path\to\mediabox; flutter analyze"
+> powershell.exe -Command "cd path\to\mediabox; flutter test"
 > ```
 >
 > - `flutter analyze` must report **no issues** (warnings from third-party packages like `file_picker` are ignored)

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/shared/extensions/snackbar_extension.dart';
-import 'package:tonkatsu_box/shared/widgets/error_details_dialog.dart';
+import 'package:mediabox/shared/extensions/snackbar_extension.dart';
+import 'package:mediabox/shared/widgets/error_details_dialog.dart';
 
 import '../../helpers/test_helpers.dart';
 

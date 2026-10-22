@@ -156,6 +156,7 @@ class LookupChains {
         ];
       case MediaType.audio:
       case MediaType.custom:
+      case MediaType.character:
         return const <LookupSource>[];
     }
   }

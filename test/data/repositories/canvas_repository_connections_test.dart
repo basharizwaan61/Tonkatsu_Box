@@ -1,7 +1,7 @@
 import 'package:core/models/canvas_connection.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:tonkatsu_box/data/repositories/canvas_repository.dart';
+import 'package:mediabox/data/repositories/canvas_repository.dart';
 
 import '../../helpers/test_helpers.dart';
 

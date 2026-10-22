@@ -29,6 +29,7 @@ const List<SourceInfo> kDataSourceCatalog = <SourceInfo>[
       MediaType.movie,
       MediaType.tvShow,
       MediaType.animation,
+      MediaType.character,
     ],
     url: 'https://www.themoviedb.org/',
     keyRequirement: SourceKeyRequirement.recommended,
@@ -46,7 +47,7 @@ const List<SourceInfo> kDataSourceCatalog = <SourceInfo>[
   ),
   SourceInfo(
     source: DataSource.igdb,
-    mediaTypes: <MediaType>[MediaType.game],
+    mediaTypes: <MediaType>[MediaType.game, MediaType.character],
     url: 'https://www.igdb.com/',
     keyRequirement: SourceKeyRequirement.recommended,
   ),
@@ -116,5 +117,35 @@ const List<SourceInfo> kDataSourceCatalog = <SourceInfo>[
     // "Get a key" link target: free registration hands out the key/secret pair.
     url: 'https://api.podcastindex.org/',
     keyRequirement: SourceKeyRequirement.recommended,
+  ),
+  SourceInfo(
+    source: DataSource.jikan,
+    mediaTypes: <MediaType>[MediaType.character],
+    url: 'https://jikan.moe/',
+    keyRequirement: SourceKeyRequirement.none,
+  ),
+  SourceInfo(
+    source: DataSource.disney,
+    mediaTypes: <MediaType>[MediaType.character],
+    url: 'https://disneyapi.dev/',
+    keyRequirement: SourceKeyRequirement.none,
+  ),
+  SourceInfo(
+    source: DataSource.fandom,
+    mediaTypes: <MediaType>[MediaType.character],
+    url: 'https://www.fandom.com/',
+    keyRequirement: SourceKeyRequirement.none,
+  ),
+  SourceInfo(
+    source: DataSource.wikidata,
+    mediaTypes: <MediaType>[MediaType.character],
+    url: 'https://www.wikidata.org/',
+    keyRequirement: SourceKeyRequirement.none,
+  ),
+  SourceInfo(
+    source: DataSource.superHero,
+    mediaTypes: <MediaType>[MediaType.character],
+    url: 'https://superheroapi.com/',
+    keyRequirement: SourceKeyRequirement.mandatory,
   ),
 ];

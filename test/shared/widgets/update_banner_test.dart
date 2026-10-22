@@ -1,18 +1,18 @@
-import 'package:tonkatsu_box/l10n/app_localizations.dart';
+import 'package:mediabox/l10n/app_localizations.dart';
 
 import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/core/services/update_service.dart';
-import 'package:tonkatsu_box/shared/widgets/update_banner.dart';
+import 'package:mediabox/core/services/update_service.dart';
+import 'package:mediabox/shared/widgets/update_banner.dart';
 
 void main() {
   const UpdateInfo updateAvailable = UpdateInfo(
     currentVersion: '0.9.0',
     latestVersion: '0.10.0',
-    releaseUrl: 'https://github.com/hacan359/tonkatsu_box/releases/tag/v0.10.0',
+    releaseUrl: 'https://github.com/basharizwaan61/Tonkatsu_Box/releases/tag/v0.10.0',
     hasUpdate: true,
     releaseNotes: 'New features',
   );
@@ -20,7 +20,7 @@ void main() {
   const UpdateInfo noUpdate = UpdateInfo(
     currentVersion: '0.10.0',
     latestVersion: '0.10.0',
-    releaseUrl: 'https://github.com/hacan359/tonkatsu_box/releases/tag/v0.10.0',
+    releaseUrl: 'https://github.com/basharizwaan61/Tonkatsu_Box/releases/tag/v0.10.0',
     hasUpdate: false,
   );
 

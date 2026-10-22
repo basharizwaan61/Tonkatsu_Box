@@ -1,8 +1,8 @@
 import 'package:core/models/data_source.dart';
 import 'package:core/models/media_type.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/features/showcase/models/showcase_item.dart';
-import 'package:tonkatsu_box/features/showcase/utils/release_schedule.dart';
+import 'package:mediabox/features/showcase/models/showcase_item.dart';
+import 'package:mediabox/features/showcase/utils/release_schedule.dart';
 
 ShowcaseItem _item(int id, {DateTime? nextDate}) => ShowcaseItem(
       media: Object(),

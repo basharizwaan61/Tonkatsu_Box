@@ -9,7 +9,7 @@ class SZh extends S {
   SZh([String locale = 'zh']) : super(locale);
 
   @override
-  String get appName => 'Tonkatsu Box';
+  String get appName => 'Mediabox';
 
   @override
   String get navMain => '主页';
@@ -173,6 +173,27 @@ class SZh extends S {
 
   @override
   String get mediaTypeCustom => '自定义';
+
+  @override
+  String get mediaTypeCharacter => 'Character';
+
+  @override
+  String get characterAppearsIn => 'Appears in';
+
+  @override
+  String get characterPictures => 'Pictures';
+
+  @override
+  String get characterAddPicture => 'Add picture';
+
+  @override
+  String get characterPictureUrl => 'Image URL';
+
+  @override
+  String get characterPictureCaption => 'Caption (optional)';
+
+  @override
+  String get characterPictureRemove => 'Remove picture';
 
   @override
   String get sortManualDisplay => '手动';
@@ -514,7 +535,7 @@ class SZh extends S {
   String get settingsWelcomeGuide => '欢迎指南';
 
   @override
-  String get settingsWelcomeGuideSubtitle => '开始使用 Tonkatsu Box';
+  String get settingsWelcomeGuideSubtitle => '开始使用 Mediabox';
 
   @override
   String get settingsAbout => '关于';
@@ -700,7 +721,7 @@ class SZh extends S {
   String get credentialsTitle => '凭证';
 
   @override
-  String get credentialsWelcome => '欢迎使用 Tonkatsu Box！';
+  String get credentialsWelcome => '欢迎使用 Mediabox！';
 
   @override
   String get credentialsWelcomeHint =>
@@ -1028,7 +1049,7 @@ class SZh extends S {
 
   @override
   String get storageLocationPermissionMessage =>
-      'Android 需要「所有文件访问」权限才能使用自定义数据文件夹。在打开的列表中找到 Tonkatsu Box，启用访问权限，然后返回重新选择文件夹。';
+      'Android 需要「所有文件访问」权限才能使用自定义数据文件夹。在打开的列表中找到 Mediabox，启用访问权限，然后返回重新选择文件夹。';
 
   @override
   String get storageLocationLegacyPermissionMessage =>
@@ -1432,7 +1453,7 @@ class SZh extends S {
   String get creditsOpenSource => '开源';
 
   @override
-  String get creditsOpenSourceDesc => 'Tonkatsu Box 是免费的开源软件，基于 MIT 许可证发布。';
+  String get creditsOpenSourceDesc => 'Mediabox 是免费的开源软件，基于 MIT 许可证发布。';
 
   @override
   String get creditsViewLicenses => '查看开源许可';
@@ -1937,6 +1958,9 @@ class SZh extends S {
   String get collectionFilterBooks => '书籍';
 
   @override
+  String get collectionFilterCharacters => 'Characters';
+
+  @override
   String get searchHint => '搜索...';
 
   @override
@@ -2318,6 +2342,22 @@ class SZh extends S {
   String get searchHintMusic => '搜索专辑...';
 
   @override
+  String get searchHintCharacters => 'Search characters...';
+
+  @override
+  String get settingsFandomWiki => 'Fandom wiki';
+
+  @override
+  String get settingsFandomWikiSubtitle =>
+      'Which wiki the character search reads';
+
+  @override
+  String get settingsFandomWikiCustom => 'Custom wiki...';
+
+  @override
+  String get settingsFandomWikiCustomHint => 'e.g. naruto, or any wiki name';
+
+  @override
   String get musicFilterAlbumsDefault => '专辑';
 
   @override
@@ -2675,7 +2715,7 @@ class SZh extends S {
   String get welcomeLanguageSubtitle => '选择应用界面语言';
 
   @override
-  String get welcomeTitle => '欢迎使用 Tonkatsu Box';
+  String get welcomeTitle => '欢迎使用 Mediabox';
 
   @override
   String get welcomeSubtitle => '整理您的游戏、电影、电视剧、\n动漫、视觉小说、漫画和书籍收藏';
@@ -4460,7 +4500,7 @@ class SZh extends S {
   String get kodiEnableSync => '启用 Kodi 同步';
 
   @override
-  String get kodiEnableSyncActiveSubtitle => 'Tonkatsu 运行时活跃';
+  String get kodiEnableSyncActiveSubtitle => 'Mediabox 运行时活跃';
 
   @override
   String get kodiEnableSyncDisabledSubtitle => '请先选择目标收藏';
@@ -4812,7 +4852,7 @@ class SZh extends S {
   String get moodGridCreateTitle => '新建心情格';
 
   @override
-  String get moodGridPresetAboutMe => '关于我：Tonkatsu Box';
+  String get moodGridPresetAboutMe => '关于我：Mediabox';
 
   @override
   String get moodGridPresetAboutMeSubtitle => '1×5 — 最喜欢的游戏、电影、电视剧、动漫、漫画';

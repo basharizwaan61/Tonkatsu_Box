@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:path/path.dart' as p;
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:tonkatsu_box/core/services/storage_root.dart';
-import 'package:tonkatsu_box/features/settings/widgets/storage_location_section.dart';
+import 'package:mediabox/core/services/storage_root.dart';
+import 'package:mediabox/features/settings/widgets/storage_location_section.dart';
 
 import '../../../helpers/test_helpers.dart';
 

@@ -82,14 +82,14 @@ jobs:
       - name: Archive Windows build
         run: |
           $version = "${{ github.ref_name }}"
-          Compress-Archive -Path build\windows\x64\runner\Release\* -DestinationPath "tonkatsu-box-${version}-windows.zip"
+          Compress-Archive -Path build\windows\x64\runner\Release\* -DestinationPath "mediabox-${version}-windows.zip"
         shell: powershell
 
       - name: Upload Windows artifact
         uses: actions/upload-artifact@v4
         with:
           name: windows-build
-          path: tonkatsu-box-${{ github.ref_name }}-windows.zip
+          path: mediabox-${{ github.ref_name }}-windows.zip
           retention-days: 1
 
   build-android:
@@ -116,14 +116,14 @@ jobs:
         env:
           KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
         run: |
-          echo "$KEYSTORE_BASE64" | base64 --decode > "$RUNNER_TEMP/tonkatsu-box-release.jks"
+          echo "$KEYSTORE_BASE64" | base64 --decode > "$RUNNER_TEMP/mediabox-release.jks"
 
       # Two builds: a universal APK (single file for direct GitHub download)
       # and smaller per-ABI splits. The split build keeps app-release.apk
       # from the first build intact.
       - name: Build Android APKs (universal + per-ABI)
         env:
-          KEYSTORE_PATH: ${{ runner.temp }}/tonkatsu-box-release.jks
+          KEYSTORE_PATH: ${{ runner.temp }}/mediabox-release.jks
           KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
           KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
         run: |
@@ -146,16 +146,16 @@ jobs:
         run: |
           VERSION="${{ github.ref_name }}"
           D=build/app/outputs/flutter-apk
-          mv "$D/app-release.apk"             "tonkatsu-box-${VERSION}-android.apk"
-          mv "$D/app-arm64-v8a-release.apk"   "tonkatsu-box-${VERSION}-android-arm64-v8a.apk"
-          mv "$D/app-armeabi-v7a-release.apk" "tonkatsu-box-${VERSION}-android-armeabi-v7a.apk"
-          mv "$D/app-x86_64-release.apk"      "tonkatsu-box-${VERSION}-android-x86_64.apk"
+          mv "$D/app-release.apk"             "mediabox-${VERSION}-android.apk"
+          mv "$D/app-arm64-v8a-release.apk"   "mediabox-${VERSION}-android-arm64-v8a.apk"
+          mv "$D/app-armeabi-v7a-release.apk" "mediabox-${VERSION}-android-armeabi-v7a.apk"
+          mv "$D/app-x86_64-release.apk"      "mediabox-${VERSION}-android-x86_64.apk"
 
       - name: Upload Android artifacts
         uses: actions/upload-artifact@v4
         with:
           name: android-build
-          path: tonkatsu-box-${{ github.ref_name }}-android*.apk
+          path: mediabox-${{ github.ref_name }}-android*.apk
           retention-days: 1
 
   build-linux:
@@ -302,12 +302,12 @@ jobs:
         run: |
           VERSION="${{ github.ref_name }}"
           gh release create "$VERSION" \
-            --title "Tonkatsu Box $VERSION" \
+            --title "Mediabox $VERSION" \
             --notes-file release_notes.md \
-            "tonkatsu-box-${VERSION}-windows.zip" \
-            "tonkatsu-box-${VERSION}-android.apk" \
-            "tonkatsu-box-${VERSION}-android-arm64-v8a.apk" \
-            "tonkatsu-box-${VERSION}-android-armeabi-v7a.apk" \
-            "tonkatsu-box-${VERSION}-android-x86_64.apk" \
+            "mediabox-${VERSION}-windows.zip" \
+            "mediabox-${VERSION}-android.apk" \
+            "mediabox-${VERSION}-android-arm64-v8a.apk" \
+            "mediabox-${VERSION}-android-armeabi-v7a.apk" \
+            "mediabox-${VERSION}-android-x86_64.apk" \
             "tonkatsu-box-${VERSION}-linux.tar.gz" \
             "tonkatsu-box-${VERSION}-macos-experimental.dmg"

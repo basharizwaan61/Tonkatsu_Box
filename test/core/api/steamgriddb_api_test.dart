@@ -3,7 +3,7 @@ import 'package:core/models/steamgriddb_image.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:tonkatsu_box/core/api/steamgriddb_api.dart';
+import 'package:mediabox/core/api/steamgriddb_api.dart';
 
 import '../../helpers/test_helpers.dart';
 

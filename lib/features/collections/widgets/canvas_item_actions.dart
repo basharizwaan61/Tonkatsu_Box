@@ -94,6 +94,7 @@ class CanvasItemActions {
       case CanvasItemType.book:
       case CanvasItemType.audio:
       case CanvasItemType.custom:
+      case CanvasItemType.character:
         break;
     }
   }

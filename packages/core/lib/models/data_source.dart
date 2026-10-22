@@ -60,6 +60,23 @@ enum DataSource {
   /// `audio` media type with `AudioKind.podcast` records.
   podcastIndex('Podcast Index', 0xFFF04438),
 
+  /// Jikan — unofficial MyAnimeList API, character catalog.
+  jikan('Jikan', 0xFF2E51A2),
+
+  /// Disney API — open catalog of Disney characters.
+  disney('Disney', 0xFF1355C9),
+
+  /// Fandom — wiki pages; a character comes from one wiki, named by the
+  /// source key suffix (see [sourceKey]).
+  fandom('Fandom', 0xFF00A9E0),
+
+  /// SuperHero API — DC and Marvel heroes and heroines. Needs a free user
+  /// token, which travels in the request path.
+  superHero('SuperHero', 0xFF3B82F6),
+
+  /// Wikidata — open entity database; a character is an entity.
+  wikidata('Wikidata', 0xFF339966),
+
   /// Local source (custom items).
   local('Custom', 0xFF26A69A);
 
@@ -99,5 +116,12 @@ enum DataSource {
       if (s.name == name) return s;
     }
     return null;
+  }
+
+  /// Builds the key that names one provider inside a scope — the provider
+  /// plus the variant, e.g. `fandom:marvel`.
+  static String sourceKey(DataSource source, String? variant) {
+    if (variant == null || variant.isEmpty) return source.name;
+    return '${source.name}:$variant';
   }
 }

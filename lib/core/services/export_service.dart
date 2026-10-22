@@ -592,6 +592,9 @@ class ExportService {
               platformIds.add(customPlatformId);
             }
           }
+        case MediaType.character:
+          // The character cache is not part of the export payload.
+          break;
       }
     }
 

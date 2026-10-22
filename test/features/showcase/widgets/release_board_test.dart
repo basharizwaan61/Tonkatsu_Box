@@ -3,11 +3,11 @@ import 'package:core/models/media_type.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/features/showcase/models/showcase_item.dart';
-import 'package:tonkatsu_box/features/showcase/providers/showcase_clock_provider.dart';
-import 'package:tonkatsu_box/features/showcase/utils/release_schedule.dart';
-import 'package:tonkatsu_box/features/showcase/widgets/release_board.dart';
-import 'package:tonkatsu_box/features/showcase/widgets/release_card.dart';
+import 'package:mediabox/features/showcase/models/showcase_item.dart';
+import 'package:mediabox/features/showcase/providers/showcase_clock_provider.dart';
+import 'package:mediabox/features/showcase/utils/release_schedule.dart';
+import 'package:mediabox/features/showcase/widgets/release_board.dart';
+import 'package:mediabox/features/showcase/widgets/release_card.dart';
 
 import '../../../helpers/test_helpers.dart';
 

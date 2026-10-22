@@ -4,9 +4,9 @@ import 'package:core/models/media_type.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:tonkatsu_box/core/database/database_service.dart';
-import 'package:tonkatsu_box/features/statistics/models/library_stats.dart';
-import 'package:tonkatsu_box/features/statistics/providers/statistics_provider.dart';
+import 'package:mediabox/core/database/database_service.dart';
+import 'package:mediabox/features/statistics/models/library_stats.dart';
+import 'package:mediabox/features/statistics/providers/statistics_provider.dart';
 
 import '../../../helpers/test_helpers.dart';
 

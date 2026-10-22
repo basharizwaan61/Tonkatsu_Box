@@ -7,14 +7,14 @@ import 'package:core/models/media_type.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:tonkatsu_box/core/api/anilist_api.dart';
-import 'package:tonkatsu_box/core/api/mangabaka_api.dart';
-import 'package:tonkatsu_box/core/api/mangadex_api.dart';
-import 'package:tonkatsu_box/core/api/tmdb_api.dart';
-import 'package:tonkatsu_box/core/database/database_service.dart';
-import 'package:tonkatsu_box/features/home/providers/all_items_provider.dart';
-import 'package:tonkatsu_box/features/recommendations/providers/recommendations_provider.dart';
-import 'package:tonkatsu_box/features/settings/providers/settings_provider.dart';
+import 'package:mediabox/core/api/anilist_api.dart';
+import 'package:mediabox/core/api/mangabaka_api.dart';
+import 'package:mediabox/core/api/mangadex_api.dart';
+import 'package:mediabox/core/api/tmdb_api.dart';
+import 'package:mediabox/core/database/database_service.dart';
+import 'package:mediabox/features/home/providers/all_items_provider.dart';
+import 'package:mediabox/features/recommendations/providers/recommendations_provider.dart';
+import 'package:mediabox/features/settings/providers/settings_provider.dart';
 
 import '../../../helpers/test_helpers.dart';
 

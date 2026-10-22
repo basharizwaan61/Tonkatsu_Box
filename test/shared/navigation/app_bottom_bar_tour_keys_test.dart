@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/features/releases/providers/releases_provider.dart';
-import 'package:tonkatsu_box/features/welcome/providers/menu_tour_provider.dart';
-import 'package:tonkatsu_box/features/wishlist/providers/wishlist_provider.dart';
-import 'package:tonkatsu_box/l10n/app_localizations.dart';
-import 'package:tonkatsu_box/shared/navigation/app_bottom_bar.dart';
-import 'package:tonkatsu_box/shared/navigation/nav_tab.dart';
-import 'package:tonkatsu_box/shared/navigation/nav_tour_keys.dart';
+import 'package:mediabox/features/releases/providers/releases_provider.dart';
+import 'package:mediabox/features/welcome/providers/menu_tour_provider.dart';
+import 'package:mediabox/features/wishlist/providers/wishlist_provider.dart';
+import 'package:mediabox/l10n/app_localizations.dart';
+import 'package:mediabox/shared/navigation/app_bottom_bar.dart';
+import 'package:mediabox/shared/navigation/nav_tab.dart';
+import 'package:mediabox/shared/navigation/nav_tour_keys.dart';
 
 void main() {
   group('AppBottomBar tour keys', () {

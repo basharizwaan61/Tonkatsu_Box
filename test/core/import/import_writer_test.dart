@@ -4,7 +4,7 @@ import 'package:core/models/media_type.dart';
 import 'package:core/models/wishlist_item.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:tonkatsu_box/core/import/import_writer.dart';
+import 'package:mediabox/core/import/import_writer.dart';
 
 import '../../helpers/test_helpers.dart';
 

@@ -6,9 +6,9 @@ import 'package:core/models/media_type.dart';
 import 'package:core/models/platform.dart' as p;
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/features/collections/widgets/collection_table/collection_table_view.dart';
-import 'package:tonkatsu_box/features/collections/widgets/collection_table/table_filter.dart';
-import 'package:tonkatsu_box/features/collections/widgets/collection_table/table_layout_store.dart';
+import 'package:mediabox/features/collections/widgets/collection_table/collection_table_view.dart';
+import 'package:mediabox/features/collections/widgets/collection_table/table_filter.dart';
+import 'package:mediabox/features/collections/widgets/collection_table/table_layout_store.dart';
 import 'package:trina_grid/trina_grid.dart';
 
 import '../../../helpers/test_helpers.dart';

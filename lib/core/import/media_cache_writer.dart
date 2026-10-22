@@ -1,5 +1,6 @@
 import 'package:core/models/anime.dart';
 import 'package:core/models/book.dart';
+import 'package:core/models/character.dart';
 import 'package:core/models/game.dart';
 import 'package:core/models/manga.dart';
 import 'package:core/models/movie.dart';
@@ -29,6 +30,7 @@ class MediaCacheWriter {
     final List<Manga> mangas = <Manga>[];
     final List<Book> books = <Book>[];
     final List<VisualNovel> vns = <VisualNovel>[];
+    final List<Character> characters = <Character>[];
     for (final Object item in media) {
       switch (item) {
         case final Movie m:
@@ -45,6 +47,8 @@ class MediaCacheWriter {
           books.add(b);
         case final VisualNovel v:
           vns.add(v);
+        case final Character c:
+          characters.add(c);
         default:
           throw ArgumentError.value(item, 'media', 'Unsupported media model');
       }
@@ -56,5 +60,8 @@ class MediaCacheWriter {
     if (mangas.isNotEmpty) await _db.mangaDao.upsertMangas(mangas);
     if (books.isNotEmpty) await _db.bookDao.upsertBooks(books);
     if (vns.isNotEmpty) await _db.visualNovelDao.upsertVisualNovels(vns);
+    if (characters.isNotEmpty) {
+      await _db.characterDao.upsertCharacters(characters);
+    }
   }
 }

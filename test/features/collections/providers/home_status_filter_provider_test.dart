@@ -2,9 +2,9 @@ import 'package:core/models/item_status.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:tonkatsu_box/features/collections/providers/collections_provider.dart';
-import 'package:tonkatsu_box/features/settings/providers/profile_provider.dart';
-import 'package:tonkatsu_box/features/settings/providers/settings_provider.dart';
+import 'package:mediabox/features/collections/providers/collections_provider.dart';
+import 'package:mediabox/features/settings/providers/profile_provider.dart';
+import 'package:mediabox/features/settings/providers/settings_provider.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();

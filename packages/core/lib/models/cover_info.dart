@@ -92,6 +92,8 @@ class CoverInfo {
         return ImageType.audioCover;
       case MediaType.custom:
         return ImageType.customCover;
+      case MediaType.character:
+        return ImageType.characterCover;
     }
   }
 
@@ -112,6 +114,7 @@ class CoverInfo {
       case MediaType.book:
       case MediaType.audio:
       case MediaType.custom:
+      case MediaType.character:
         return url;
     }
   }

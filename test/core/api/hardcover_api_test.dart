@@ -4,7 +4,7 @@ import 'package:core/models/data_source.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:tonkatsu_box/core/api/hardcover_api.dart';
+import 'package:mediabox/core/api/hardcover_api.dart';
 
 import '../../helpers/test_helpers.dart';
 

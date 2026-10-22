@@ -13,6 +13,13 @@ const Map<String, Duration> kHostMinRequestGap = <String, Duration>{
   'api.igdb.com': Duration(milliseconds: 260),
   // AniList: 90 requests per minute, 429 with Retry-After past that.
   'graphql.anilist.co': Duration(milliseconds: 700),
+  // Jikan: 3 requests a second and 60 a minute. The minute cap binds, so the
+  // gap is a full second with a little headroom.
+  'api.jikan.moe': Duration(milliseconds: 1100),
+  // Wikimedia asks for a descriptive User-Agent and a low rate; a search
+  // costs several calls, so the gap keeps a burst of them polite.
+  'www.wikidata.org': Duration(milliseconds: 1100),
+  'en.wikipedia.org': Duration(milliseconds: 1100),
 };
 
 /// Serialises requests to one host: starts stay in FIFO order and at least

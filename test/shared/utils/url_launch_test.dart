@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/shared/utils/url_launch.dart';
+import 'package:mediabox/shared/utils/url_launch.dart';
 
 void main() {
   group('openUrlCallback', () {

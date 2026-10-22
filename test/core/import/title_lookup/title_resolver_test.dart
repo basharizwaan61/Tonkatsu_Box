@@ -1,10 +1,10 @@
 import 'package:core/models/data_source.dart';
 import 'package:core/models/media_type.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/core/import/rate_limited_retry.dart';
-import 'package:tonkatsu_box/core/import/title_lookup/lookup_candidate.dart';
-import 'package:tonkatsu_box/core/import/title_lookup/lookup_chains.dart';
-import 'package:tonkatsu_box/core/import/title_lookup/title_resolver.dart';
+import 'package:mediabox/core/import/rate_limited_retry.dart';
+import 'package:mediabox/core/import/title_lookup/lookup_candidate.dart';
+import 'package:mediabox/core/import/title_lookup/lookup_chains.dart';
+import 'package:mediabox/core/import/title_lookup/title_resolver.dart';
 
 class _RateLimit implements Exception {}
 

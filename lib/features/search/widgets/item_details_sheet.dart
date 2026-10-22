@@ -3,6 +3,7 @@ import 'dart:ui' show ImageFilter;
 import 'package:core/models/audio_item.dart';
 import 'package:core/models/anime.dart';
 import 'package:core/models/book.dart';
+import 'package:core/models/character.dart';
 import 'package:core/models/game.dart';
 import 'package:core/models/manga.dart';
 import 'package:core/models/media_type.dart';
@@ -27,6 +28,7 @@ import '../../../shared/constants/screenscraper_systemes.dart';
 import '../../../shared/widgets/cached_image.dart';
 import '../../../shared/widgets/source_badge.dart';
 import '../../collections/widgets/screenscraper_gallery_section.dart';
+import 'character_appears_in_section.dart';
 
 /// Unified bottom sheet for game / movie / TV / manga / anime / VN details.
 class ItemDetailsSheet extends StatelessWidget {
@@ -57,6 +59,7 @@ class ItemDetailsSheet extends StatelessWidget {
     this.screenScraperPlatformId,
     this.editionsSection,
     this.moreByAuthorSection,
+    this.appearsInSection,
     super.key,
   });
 
@@ -287,6 +290,64 @@ class ItemDetailsSheet extends StatelessWidget {
     );
   }
 
+  factory ItemDetailsSheet.character(
+    Character character, {
+    required VoidCallback onAddToCollection,
+  }) {
+    return ItemDetailsSheet(
+      title: character.name,
+      icon: Icons.face_outlined,
+      overview: character.description,
+      subtitle: character.nameNative,
+      genres: character.aliases,
+      infoChips: <MediaDetailChip>[
+        if (character.franchise != null)
+          MediaDetailChip(icon: Icons.auto_awesome, text: character.franchise!),
+        if (character.firstAppearance != null)
+          MediaDetailChip(
+            icon: Icons.first_page,
+            text: character.firstAppearance!,
+          ),
+        if (character.species != null)
+          MediaDetailChip(icon: Icons.pets, text: character.species!),
+        if (character.gender != null)
+          MediaDetailChip(
+            icon: Icons.wc,
+            text: character.gender!,
+          ),
+        if (character.affiliation != null)
+          MediaDetailChip(icon: Icons.groups, text: character.affiliation!),
+        if (character.abilities != null)
+          MediaDetailChip(
+            icon: Icons.auto_awesome_motion,
+            text: character.abilities!,
+          ),
+        if (character.publisher != null)
+          MediaDetailChip(icon: Icons.business, text: character.publisher!),
+        if (character.alignment != null)
+          MediaDetailChip(
+            icon: Icons.shield_outlined,
+            text: character.alignment!,
+          ),
+      ],
+      posterUrl: character.imageUrl,
+      cacheImageType: ImageType.characterCover,
+      cacheImageId: coverImageId(
+        mediaType: MediaType.character,
+        externalId: character.id,
+        source: character.source,
+        sourceVariant: character.variant,
+      ),
+      externalUrl: character.externalUrl,
+      dataSource: character.source,
+      appearsInSection: character.appearsIn == null ||
+              character.appearsIn!.isEmpty
+          ? null
+          : CharacterAppearsInSection(appearsIn: character.appearsIn!),
+      onAddToCollection: onAddToCollection,
+    );
+  }
+
   factory ItemDetailsSheet.book(
     Book book, {
     required VoidCallback onAddToCollection,
@@ -470,6 +531,10 @@ class ItemDetailsSheet extends StatelessWidget {
   /// author" strip). Kept opaque so this generic sheet stays decoupled.
   final Widget? moreByAuthorSection;
 
+  /// Opaque section rendered at the very bottom (the character's "appears in"
+  /// list).
+  final Widget? appearsInSection;
+
   @override
   Widget build(BuildContext context) {
     return DraggableScrollableSheet(
@@ -580,6 +645,13 @@ class ItemDetailsSheet extends StatelessWidget {
                             AppSpacing.lg, 0, AppSpacing.lg, AppSpacing.lg,
                           ),
                           child: moreByAuthorSection,
+                        ),
+                      if (appearsInSection != null)
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(
+                            AppSpacing.lg, 0, AppSpacing.lg, AppSpacing.lg,
+                          ),
+                          child: appearsInSection,
                         ),
                     ],
                   ),

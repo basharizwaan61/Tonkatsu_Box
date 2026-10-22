@@ -7,6 +7,8 @@ import 'package:core/models/audio_item.dart';
 import 'package:core/models/audio_kind.dart';
 import 'package:core/models/book.dart';
 import 'package:core/models/book_kind.dart';
+import 'package:core/models/character.dart';
+import 'package:core/models/character_image.dart';
 import 'package:core/models/collected_item_info.dart';
 import 'package:core/models/collection.dart';
 import 'package:core/models/collection_item.dart';
@@ -38,6 +40,7 @@ class RemoteCollectionDao implements CollectionDao {
     required int externalId,
     int? platformId,
     DataSource? source,
+    String? sourceVariant,
     String? authorComment,
     ItemStatus status = ItemStatus.notStarted,
     DateTime? addedAt,
@@ -49,6 +52,7 @@ class RemoteCollectionDao implements CollectionDao {
           'externalId': encodeInt(externalId),
           'platformId': encodeIntOrNull(platformId),
           'source': source?.name,
+          'sourceVariant': sourceVariant,
           'authorComment': authorComment,
           'status': encodeEnum(status),
           'addedAt': encodeDateTimeOrNull(addedAt),
@@ -203,6 +207,7 @@ class RemoteCollectionDao implements CollectionDao {
               asObject(e)['source'],
               DataSource.values,
             ),
+            sourceVariant: asObject(e)['sourceVariant'] as String?,
             tagId: decodeIntOrNull(asObject(e)['tagId']),
             currentSeason: decodeInt(asObject(e)['currentSeason']),
             currentEpisode: decodeInt(asObject(e)['currentEpisode']),
@@ -214,6 +219,14 @@ class RemoteCollectionDao implements CollectionDao {
             userRating: (asObject(e)['userRating'] as num?)?.toDouble(),
             overrideName: asObject(e)['overrideName'] as String?,
             overrideCoverUrl: asObject(e)['overrideCoverUrl'] as String?,
+            characterImages: asList(asObject(e)['characterImages'])
+                .map(
+                  (Object? e) => CharacterImage(
+                    url: asObject(e)['url'] as String,
+                    caption: asObject(e)['caption'] as String?,
+                  ),
+                )
+                .toList(),
             isFavorite: asObject(e)['isFavorite'] as bool,
             game: decodeNullable<Game>(
               asObject(e)['game'],
@@ -543,6 +556,43 @@ class RemoteCollectionDao implements CollectionDao {
                 unitGroupTotal: decodeIntOrNull(asObject(v)['unitGroupTotal']),
                 externalUrl: asObject(v)['externalUrl'] as String?,
                 cachedAt: decodeIntOrNull(asObject(v)['cachedAt']),
+              ),
+            ),
+            character: decodeNullable<Character>(
+              asObject(e)['character'],
+              (Object? v) => Character(
+                id: decodeInt(asObject(v)['id']),
+                source: decodeEnum<DataSource>(
+                  asObject(v)['source'],
+                  DataSource.values,
+                ),
+                name: asObject(v)['name'] as String,
+                variant: asObject(v)['variant'] as String?,
+                nameNative: asObject(v)['nameNative'] as String?,
+                description: asObject(v)['description'] as String?,
+                imageUrl: asObject(v)['imageUrl'] as String?,
+                aliases: asObject(v)['aliases'] == null
+                    ? null
+                    : asList(
+                        asObject(v)['aliases'],
+                      ).map((Object? e) => e as String).toList(),
+                franchise: asObject(v)['franchise'] as String?,
+                firstAppearance: asObject(v)['firstAppearance'] as String?,
+                species: asObject(v)['species'] as String?,
+                gender: asObject(v)['gender'] as String?,
+                affiliation: asObject(v)['affiliation'] as String?,
+                abilities: asObject(v)['abilities'] as String?,
+                publisher: asObject(v)['publisher'] as String?,
+                alignment: asObject(v)['alignment'] as String?,
+                appearsIn: asObject(v)['appearsIn'] == null
+                    ? null
+                    : asObject(asObject(v)['appearsIn']).map(
+                        (String k, Object? v) =>
+                            MapEntry<String, String>(k, v as String),
+                      ),
+                externalUrl: asObject(v)['externalUrl'] as String?,
+                popularity: decodeIntOrNull(asObject(v)['popularity']),
+                updatedAt: decodeIntOrNull(asObject(v)['updatedAt']),
               ),
             ),
             platform: decodeNullable<Platform>(
@@ -625,6 +675,7 @@ class RemoteCollectionDao implements CollectionDao {
           asObject(v)['source'],
           DataSource.values,
         ),
+        sourceVariant: asObject(v)['sourceVariant'] as String?,
         tagId: decodeIntOrNull(asObject(v)['tagId']),
         currentSeason: decodeInt(asObject(v)['currentSeason']),
         currentEpisode: decodeInt(asObject(v)['currentEpisode']),
@@ -636,6 +687,14 @@ class RemoteCollectionDao implements CollectionDao {
         userRating: (asObject(v)['userRating'] as num?)?.toDouble(),
         overrideName: asObject(v)['overrideName'] as String?,
         overrideCoverUrl: asObject(v)['overrideCoverUrl'] as String?,
+        characterImages: asList(asObject(v)['characterImages'])
+            .map(
+              (Object? e) => CharacterImage(
+                url: asObject(e)['url'] as String,
+                caption: asObject(e)['caption'] as String?,
+              ),
+            )
+            .toList(),
         isFavorite: asObject(v)['isFavorite'] as bool,
         game: decodeNullable<Game>(
           asObject(v)['game'],
@@ -959,6 +1018,43 @@ class RemoteCollectionDao implements CollectionDao {
             unitGroupTotal: decodeIntOrNull(asObject(v)['unitGroupTotal']),
             externalUrl: asObject(v)['externalUrl'] as String?,
             cachedAt: decodeIntOrNull(asObject(v)['cachedAt']),
+          ),
+        ),
+        character: decodeNullable<Character>(
+          asObject(v)['character'],
+          (Object? v) => Character(
+            id: decodeInt(asObject(v)['id']),
+            source: decodeEnum<DataSource>(
+              asObject(v)['source'],
+              DataSource.values,
+            ),
+            name: asObject(v)['name'] as String,
+            variant: asObject(v)['variant'] as String?,
+            nameNative: asObject(v)['nameNative'] as String?,
+            description: asObject(v)['description'] as String?,
+            imageUrl: asObject(v)['imageUrl'] as String?,
+            aliases: asObject(v)['aliases'] == null
+                ? null
+                : asList(
+                    asObject(v)['aliases'],
+                  ).map((Object? e) => e as String).toList(),
+            franchise: asObject(v)['franchise'] as String?,
+            firstAppearance: asObject(v)['firstAppearance'] as String?,
+            species: asObject(v)['species'] as String?,
+            gender: asObject(v)['gender'] as String?,
+            affiliation: asObject(v)['affiliation'] as String?,
+            abilities: asObject(v)['abilities'] as String?,
+            publisher: asObject(v)['publisher'] as String?,
+            alignment: asObject(v)['alignment'] as String?,
+            appearsIn: asObject(v)['appearsIn'] == null
+                ? null
+                : asObject(asObject(v)['appearsIn']).map(
+                    (String k, Object? v) =>
+                        MapEntry<String, String>(k, v as String),
+                  ),
+            externalUrl: asObject(v)['externalUrl'] as String?,
+            popularity: decodeIntOrNull(asObject(v)['popularity']),
+            updatedAt: decodeIntOrNull(asObject(v)['updatedAt']),
           ),
         ),
         platform: decodeNullable<Platform>(
@@ -1012,6 +1108,7 @@ class RemoteCollectionDao implements CollectionDao {
           asObject(v)['source'],
           DataSource.values,
         ),
+        sourceVariant: asObject(v)['sourceVariant'] as String?,
         tagId: decodeIntOrNull(asObject(v)['tagId']),
         currentSeason: decodeInt(asObject(v)['currentSeason']),
         currentEpisode: decodeInt(asObject(v)['currentEpisode']),
@@ -1023,6 +1120,14 @@ class RemoteCollectionDao implements CollectionDao {
         userRating: (asObject(v)['userRating'] as num?)?.toDouble(),
         overrideName: asObject(v)['overrideName'] as String?,
         overrideCoverUrl: asObject(v)['overrideCoverUrl'] as String?,
+        characterImages: asList(asObject(v)['characterImages'])
+            .map(
+              (Object? e) => CharacterImage(
+                url: asObject(e)['url'] as String,
+                caption: asObject(e)['caption'] as String?,
+              ),
+            )
+            .toList(),
         isFavorite: asObject(v)['isFavorite'] as bool,
         game: decodeNullable<Game>(
           asObject(v)['game'],
@@ -1348,6 +1453,43 @@ class RemoteCollectionDao implements CollectionDao {
             cachedAt: decodeIntOrNull(asObject(v)['cachedAt']),
           ),
         ),
+        character: decodeNullable<Character>(
+          asObject(v)['character'],
+          (Object? v) => Character(
+            id: decodeInt(asObject(v)['id']),
+            source: decodeEnum<DataSource>(
+              asObject(v)['source'],
+              DataSource.values,
+            ),
+            name: asObject(v)['name'] as String,
+            variant: asObject(v)['variant'] as String?,
+            nameNative: asObject(v)['nameNative'] as String?,
+            description: asObject(v)['description'] as String?,
+            imageUrl: asObject(v)['imageUrl'] as String?,
+            aliases: asObject(v)['aliases'] == null
+                ? null
+                : asList(
+                    asObject(v)['aliases'],
+                  ).map((Object? e) => e as String).toList(),
+            franchise: asObject(v)['franchise'] as String?,
+            firstAppearance: asObject(v)['firstAppearance'] as String?,
+            species: asObject(v)['species'] as String?,
+            gender: asObject(v)['gender'] as String?,
+            affiliation: asObject(v)['affiliation'] as String?,
+            abilities: asObject(v)['abilities'] as String?,
+            publisher: asObject(v)['publisher'] as String?,
+            alignment: asObject(v)['alignment'] as String?,
+            appearsIn: asObject(v)['appearsIn'] == null
+                ? null
+                : asObject(asObject(v)['appearsIn']).map(
+                    (String k, Object? v) =>
+                        MapEntry<String, String>(k, v as String),
+                  ),
+            externalUrl: asObject(v)['externalUrl'] as String?,
+            popularity: decodeIntOrNull(asObject(v)['popularity']),
+            updatedAt: decodeIntOrNull(asObject(v)['updatedAt']),
+          ),
+        ),
         platform: decodeNullable<Platform>(
           asObject(v)['platform'],
           (Object? v) => Platform(
@@ -1392,6 +1534,7 @@ class RemoteCollectionDao implements CollectionDao {
               asObject(e)['source'],
               DataSource.values,
             ),
+            sourceVariant: asObject(e)['sourceVariant'] as String?,
             tagId: decodeIntOrNull(asObject(e)['tagId']),
             currentSeason: decodeInt(asObject(e)['currentSeason']),
             currentEpisode: decodeInt(asObject(e)['currentEpisode']),
@@ -1403,6 +1546,14 @@ class RemoteCollectionDao implements CollectionDao {
             userRating: (asObject(e)['userRating'] as num?)?.toDouble(),
             overrideName: asObject(e)['overrideName'] as String?,
             overrideCoverUrl: asObject(e)['overrideCoverUrl'] as String?,
+            characterImages: asList(asObject(e)['characterImages'])
+                .map(
+                  (Object? e) => CharacterImage(
+                    url: asObject(e)['url'] as String,
+                    caption: asObject(e)['caption'] as String?,
+                  ),
+                )
+                .toList(),
             isFavorite: asObject(e)['isFavorite'] as bool,
             game: decodeNullable<Game>(
               asObject(e)['game'],
@@ -1732,6 +1883,43 @@ class RemoteCollectionDao implements CollectionDao {
                 unitGroupTotal: decodeIntOrNull(asObject(v)['unitGroupTotal']),
                 externalUrl: asObject(v)['externalUrl'] as String?,
                 cachedAt: decodeIntOrNull(asObject(v)['cachedAt']),
+              ),
+            ),
+            character: decodeNullable<Character>(
+              asObject(e)['character'],
+              (Object? v) => Character(
+                id: decodeInt(asObject(v)['id']),
+                source: decodeEnum<DataSource>(
+                  asObject(v)['source'],
+                  DataSource.values,
+                ),
+                name: asObject(v)['name'] as String,
+                variant: asObject(v)['variant'] as String?,
+                nameNative: asObject(v)['nameNative'] as String?,
+                description: asObject(v)['description'] as String?,
+                imageUrl: asObject(v)['imageUrl'] as String?,
+                aliases: asObject(v)['aliases'] == null
+                    ? null
+                    : asList(
+                        asObject(v)['aliases'],
+                      ).map((Object? e) => e as String).toList(),
+                franchise: asObject(v)['franchise'] as String?,
+                firstAppearance: asObject(v)['firstAppearance'] as String?,
+                species: asObject(v)['species'] as String?,
+                gender: asObject(v)['gender'] as String?,
+                affiliation: asObject(v)['affiliation'] as String?,
+                abilities: asObject(v)['abilities'] as String?,
+                publisher: asObject(v)['publisher'] as String?,
+                alignment: asObject(v)['alignment'] as String?,
+                appearsIn: asObject(v)['appearsIn'] == null
+                    ? null
+                    : asObject(asObject(v)['appearsIn']).map(
+                        (String k, Object? v) =>
+                            MapEntry<String, String>(k, v as String),
+                      ),
+                externalUrl: asObject(v)['externalUrl'] as String?,
+                popularity: decodeIntOrNull(asObject(v)['popularity']),
+                updatedAt: decodeIntOrNull(asObject(v)['updatedAt']),
               ),
             ),
             platform: decodeNullable<Platform>(
@@ -1779,6 +1967,7 @@ class RemoteCollectionDao implements CollectionDao {
               asObject(e)['source'],
               DataSource.values,
             ),
+            sourceVariant: asObject(e)['sourceVariant'] as String?,
             tagId: decodeIntOrNull(asObject(e)['tagId']),
             currentSeason: decodeInt(asObject(e)['currentSeason']),
             currentEpisode: decodeInt(asObject(e)['currentEpisode']),
@@ -1790,6 +1979,14 @@ class RemoteCollectionDao implements CollectionDao {
             userRating: (asObject(e)['userRating'] as num?)?.toDouble(),
             overrideName: asObject(e)['overrideName'] as String?,
             overrideCoverUrl: asObject(e)['overrideCoverUrl'] as String?,
+            characterImages: asList(asObject(e)['characterImages'])
+                .map(
+                  (Object? e) => CharacterImage(
+                    url: asObject(e)['url'] as String,
+                    caption: asObject(e)['caption'] as String?,
+                  ),
+                )
+                .toList(),
             isFavorite: asObject(e)['isFavorite'] as bool,
             game: decodeNullable<Game>(
               asObject(e)['game'],
@@ -2119,6 +2316,43 @@ class RemoteCollectionDao implements CollectionDao {
                 unitGroupTotal: decodeIntOrNull(asObject(v)['unitGroupTotal']),
                 externalUrl: asObject(v)['externalUrl'] as String?,
                 cachedAt: decodeIntOrNull(asObject(v)['cachedAt']),
+              ),
+            ),
+            character: decodeNullable<Character>(
+              asObject(e)['character'],
+              (Object? v) => Character(
+                id: decodeInt(asObject(v)['id']),
+                source: decodeEnum<DataSource>(
+                  asObject(v)['source'],
+                  DataSource.values,
+                ),
+                name: asObject(v)['name'] as String,
+                variant: asObject(v)['variant'] as String?,
+                nameNative: asObject(v)['nameNative'] as String?,
+                description: asObject(v)['description'] as String?,
+                imageUrl: asObject(v)['imageUrl'] as String?,
+                aliases: asObject(v)['aliases'] == null
+                    ? null
+                    : asList(
+                        asObject(v)['aliases'],
+                      ).map((Object? e) => e as String).toList(),
+                franchise: asObject(v)['franchise'] as String?,
+                firstAppearance: asObject(v)['firstAppearance'] as String?,
+                species: asObject(v)['species'] as String?,
+                gender: asObject(v)['gender'] as String?,
+                affiliation: asObject(v)['affiliation'] as String?,
+                abilities: asObject(v)['abilities'] as String?,
+                publisher: asObject(v)['publisher'] as String?,
+                alignment: asObject(v)['alignment'] as String?,
+                appearsIn: asObject(v)['appearsIn'] == null
+                    ? null
+                    : asObject(asObject(v)['appearsIn']).map(
+                        (String k, Object? v) =>
+                            MapEntry<String, String>(k, v as String),
+                      ),
+                externalUrl: asObject(v)['externalUrl'] as String?,
+                popularity: decodeIntOrNull(asObject(v)['popularity']),
+                updatedAt: decodeIntOrNull(asObject(v)['updatedAt']),
               ),
             ),
             platform: decodeNullable<Platform>(
@@ -2186,6 +2420,7 @@ class RemoteCollectionDao implements CollectionDao {
                   asObject(e)['source'],
                   DataSource.values,
                 ),
+                sourceVariant: asObject(e)['sourceVariant'] as String?,
               ),
             )
             .toList(),
@@ -2308,6 +2543,7 @@ class RemoteCollectionDao implements CollectionDao {
           asObject(v)['source'],
           DataSource.values,
         ),
+        sourceVariant: asObject(v)['sourceVariant'] as String?,
         tagId: decodeIntOrNull(asObject(v)['tagId']),
         currentSeason: decodeInt(asObject(v)['currentSeason']),
         currentEpisode: decodeInt(asObject(v)['currentEpisode']),
@@ -2319,6 +2555,14 @@ class RemoteCollectionDao implements CollectionDao {
         userRating: (asObject(v)['userRating'] as num?)?.toDouble(),
         overrideName: asObject(v)['overrideName'] as String?,
         overrideCoverUrl: asObject(v)['overrideCoverUrl'] as String?,
+        characterImages: asList(asObject(v)['characterImages'])
+            .map(
+              (Object? e) => CharacterImage(
+                url: asObject(e)['url'] as String,
+                caption: asObject(e)['caption'] as String?,
+              ),
+            )
+            .toList(),
         isFavorite: asObject(v)['isFavorite'] as bool,
         game: decodeNullable<Game>(
           asObject(v)['game'],
@@ -2644,6 +2888,43 @@ class RemoteCollectionDao implements CollectionDao {
             cachedAt: decodeIntOrNull(asObject(v)['cachedAt']),
           ),
         ),
+        character: decodeNullable<Character>(
+          asObject(v)['character'],
+          (Object? v) => Character(
+            id: decodeInt(asObject(v)['id']),
+            source: decodeEnum<DataSource>(
+              asObject(v)['source'],
+              DataSource.values,
+            ),
+            name: asObject(v)['name'] as String,
+            variant: asObject(v)['variant'] as String?,
+            nameNative: asObject(v)['nameNative'] as String?,
+            description: asObject(v)['description'] as String?,
+            imageUrl: asObject(v)['imageUrl'] as String?,
+            aliases: asObject(v)['aliases'] == null
+                ? null
+                : asList(
+                    asObject(v)['aliases'],
+                  ).map((Object? e) => e as String).toList(),
+            franchise: asObject(v)['franchise'] as String?,
+            firstAppearance: asObject(v)['firstAppearance'] as String?,
+            species: asObject(v)['species'] as String?,
+            gender: asObject(v)['gender'] as String?,
+            affiliation: asObject(v)['affiliation'] as String?,
+            abilities: asObject(v)['abilities'] as String?,
+            publisher: asObject(v)['publisher'] as String?,
+            alignment: asObject(v)['alignment'] as String?,
+            appearsIn: asObject(v)['appearsIn'] == null
+                ? null
+                : asObject(asObject(v)['appearsIn']).map(
+                    (String k, Object? v) =>
+                        MapEntry<String, String>(k, v as String),
+                  ),
+            externalUrl: asObject(v)['externalUrl'] as String?,
+            popularity: decodeIntOrNull(asObject(v)['popularity']),
+            updatedAt: decodeIntOrNull(asObject(v)['updatedAt']),
+          ),
+        ),
         platform: decodeNullable<Platform>(
           asObject(v)['platform'],
           (Object? v) => Platform(
@@ -2720,6 +3001,7 @@ class RemoteCollectionDao implements CollectionDao {
               asObject(e)['source'],
               DataSource.values,
             ),
+            sourceVariant: asObject(e)['sourceVariant'] as String?,
             tagId: decodeIntOrNull(asObject(e)['tagId']),
             currentSeason: decodeInt(asObject(e)['currentSeason']),
             currentEpisode: decodeInt(asObject(e)['currentEpisode']),
@@ -2731,6 +3013,14 @@ class RemoteCollectionDao implements CollectionDao {
             userRating: (asObject(e)['userRating'] as num?)?.toDouble(),
             overrideName: asObject(e)['overrideName'] as String?,
             overrideCoverUrl: asObject(e)['overrideCoverUrl'] as String?,
+            characterImages: asList(asObject(e)['characterImages'])
+                .map(
+                  (Object? e) => CharacterImage(
+                    url: asObject(e)['url'] as String,
+                    caption: asObject(e)['caption'] as String?,
+                  ),
+                )
+                .toList(),
             isFavorite: asObject(e)['isFavorite'] as bool,
             game: decodeNullable<Game>(
               asObject(e)['game'],
@@ -3060,6 +3350,43 @@ class RemoteCollectionDao implements CollectionDao {
                 unitGroupTotal: decodeIntOrNull(asObject(v)['unitGroupTotal']),
                 externalUrl: asObject(v)['externalUrl'] as String?,
                 cachedAt: decodeIntOrNull(asObject(v)['cachedAt']),
+              ),
+            ),
+            character: decodeNullable<Character>(
+              asObject(e)['character'],
+              (Object? v) => Character(
+                id: decodeInt(asObject(v)['id']),
+                source: decodeEnum<DataSource>(
+                  asObject(v)['source'],
+                  DataSource.values,
+                ),
+                name: asObject(v)['name'] as String,
+                variant: asObject(v)['variant'] as String?,
+                nameNative: asObject(v)['nameNative'] as String?,
+                description: asObject(v)['description'] as String?,
+                imageUrl: asObject(v)['imageUrl'] as String?,
+                aliases: asObject(v)['aliases'] == null
+                    ? null
+                    : asList(
+                        asObject(v)['aliases'],
+                      ).map((Object? e) => e as String).toList(),
+                franchise: asObject(v)['franchise'] as String?,
+                firstAppearance: asObject(v)['firstAppearance'] as String?,
+                species: asObject(v)['species'] as String?,
+                gender: asObject(v)['gender'] as String?,
+                affiliation: asObject(v)['affiliation'] as String?,
+                abilities: asObject(v)['abilities'] as String?,
+                publisher: asObject(v)['publisher'] as String?,
+                alignment: asObject(v)['alignment'] as String?,
+                appearsIn: asObject(v)['appearsIn'] == null
+                    ? null
+                    : asObject(asObject(v)['appearsIn']).map(
+                        (String k, Object? v) =>
+                            MapEntry<String, String>(k, v as String),
+                      ),
+                externalUrl: asObject(v)['externalUrl'] as String?,
+                popularity: decodeIntOrNull(asObject(v)['popularity']),
+                updatedAt: decodeIntOrNull(asObject(v)['updatedAt']),
               ),
             ),
             platform: decodeNullable<Platform>(
@@ -3111,6 +3438,7 @@ class RemoteCollectionDao implements CollectionDao {
               asObject(e)['source'],
               DataSource.values,
             ),
+            sourceVariant: asObject(e)['sourceVariant'] as String?,
             tagId: decodeIntOrNull(asObject(e)['tagId']),
             currentSeason: decodeInt(asObject(e)['currentSeason']),
             currentEpisode: decodeInt(asObject(e)['currentEpisode']),
@@ -3122,6 +3450,14 @@ class RemoteCollectionDao implements CollectionDao {
             userRating: (asObject(e)['userRating'] as num?)?.toDouble(),
             overrideName: asObject(e)['overrideName'] as String?,
             overrideCoverUrl: asObject(e)['overrideCoverUrl'] as String?,
+            characterImages: asList(asObject(e)['characterImages'])
+                .map(
+                  (Object? e) => CharacterImage(
+                    url: asObject(e)['url'] as String,
+                    caption: asObject(e)['caption'] as String?,
+                  ),
+                )
+                .toList(),
             isFavorite: asObject(e)['isFavorite'] as bool,
             game: decodeNullable<Game>(
               asObject(e)['game'],
@@ -3451,6 +3787,43 @@ class RemoteCollectionDao implements CollectionDao {
                 unitGroupTotal: decodeIntOrNull(asObject(v)['unitGroupTotal']),
                 externalUrl: asObject(v)['externalUrl'] as String?,
                 cachedAt: decodeIntOrNull(asObject(v)['cachedAt']),
+              ),
+            ),
+            character: decodeNullable<Character>(
+              asObject(e)['character'],
+              (Object? v) => Character(
+                id: decodeInt(asObject(v)['id']),
+                source: decodeEnum<DataSource>(
+                  asObject(v)['source'],
+                  DataSource.values,
+                ),
+                name: asObject(v)['name'] as String,
+                variant: asObject(v)['variant'] as String?,
+                nameNative: asObject(v)['nameNative'] as String?,
+                description: asObject(v)['description'] as String?,
+                imageUrl: asObject(v)['imageUrl'] as String?,
+                aliases: asObject(v)['aliases'] == null
+                    ? null
+                    : asList(
+                        asObject(v)['aliases'],
+                      ).map((Object? e) => e as String).toList(),
+                franchise: asObject(v)['franchise'] as String?,
+                firstAppearance: asObject(v)['firstAppearance'] as String?,
+                species: asObject(v)['species'] as String?,
+                gender: asObject(v)['gender'] as String?,
+                affiliation: asObject(v)['affiliation'] as String?,
+                abilities: asObject(v)['abilities'] as String?,
+                publisher: asObject(v)['publisher'] as String?,
+                alignment: asObject(v)['alignment'] as String?,
+                appearsIn: asObject(v)['appearsIn'] == null
+                    ? null
+                    : asObject(asObject(v)['appearsIn']).map(
+                        (String k, Object? v) =>
+                            MapEntry<String, String>(k, v as String),
+                      ),
+                externalUrl: asObject(v)['externalUrl'] as String?,
+                popularity: decodeIntOrNull(asObject(v)['popularity']),
+                updatedAt: decodeIntOrNull(asObject(v)['updatedAt']),
               ),
             ),
             platform: decodeNullable<Platform>(
@@ -3551,6 +3924,7 @@ class RemoteCollectionDao implements CollectionDao {
               asObject(e)['source'],
               DataSource.values,
             ),
+            sourceVariant: asObject(e)['sourceVariant'] as String?,
             tagId: decodeIntOrNull(asObject(e)['tagId']),
             currentSeason: decodeInt(asObject(e)['currentSeason']),
             currentEpisode: decodeInt(asObject(e)['currentEpisode']),
@@ -3562,6 +3936,14 @@ class RemoteCollectionDao implements CollectionDao {
             userRating: (asObject(e)['userRating'] as num?)?.toDouble(),
             overrideName: asObject(e)['overrideName'] as String?,
             overrideCoverUrl: asObject(e)['overrideCoverUrl'] as String?,
+            characterImages: asList(asObject(e)['characterImages'])
+                .map(
+                  (Object? e) => CharacterImage(
+                    url: asObject(e)['url'] as String,
+                    caption: asObject(e)['caption'] as String?,
+                  ),
+                )
+                .toList(),
             isFavorite: asObject(e)['isFavorite'] as bool,
             game: decodeNullable<Game>(
               asObject(e)['game'],
@@ -3891,6 +4273,43 @@ class RemoteCollectionDao implements CollectionDao {
                 unitGroupTotal: decodeIntOrNull(asObject(v)['unitGroupTotal']),
                 externalUrl: asObject(v)['externalUrl'] as String?,
                 cachedAt: decodeIntOrNull(asObject(v)['cachedAt']),
+              ),
+            ),
+            character: decodeNullable<Character>(
+              asObject(e)['character'],
+              (Object? v) => Character(
+                id: decodeInt(asObject(v)['id']),
+                source: decodeEnum<DataSource>(
+                  asObject(v)['source'],
+                  DataSource.values,
+                ),
+                name: asObject(v)['name'] as String,
+                variant: asObject(v)['variant'] as String?,
+                nameNative: asObject(v)['nameNative'] as String?,
+                description: asObject(v)['description'] as String?,
+                imageUrl: asObject(v)['imageUrl'] as String?,
+                aliases: asObject(v)['aliases'] == null
+                    ? null
+                    : asList(
+                        asObject(v)['aliases'],
+                      ).map((Object? e) => e as String).toList(),
+                franchise: asObject(v)['franchise'] as String?,
+                firstAppearance: asObject(v)['firstAppearance'] as String?,
+                species: asObject(v)['species'] as String?,
+                gender: asObject(v)['gender'] as String?,
+                affiliation: asObject(v)['affiliation'] as String?,
+                abilities: asObject(v)['abilities'] as String?,
+                publisher: asObject(v)['publisher'] as String?,
+                alignment: asObject(v)['alignment'] as String?,
+                appearsIn: asObject(v)['appearsIn'] == null
+                    ? null
+                    : asObject(asObject(v)['appearsIn']).map(
+                        (String k, Object? v) =>
+                            MapEntry<String, String>(k, v as String),
+                      ),
+                externalUrl: asObject(v)['externalUrl'] as String?,
+                popularity: decodeIntOrNull(asObject(v)['popularity']),
+                updatedAt: decodeIntOrNull(asObject(v)['updatedAt']),
               ),
             ),
             platform: decodeNullable<Platform>(
@@ -4004,6 +4423,7 @@ class RemoteCollectionDao implements CollectionDao {
               asObject(e)['source'],
               DataSource.values,
             ),
+            sourceVariant: asObject(e)['sourceVariant'] as String?,
             tagId: decodeIntOrNull(asObject(e)['tagId']),
             currentSeason: decodeInt(asObject(e)['currentSeason']),
             currentEpisode: decodeInt(asObject(e)['currentEpisode']),
@@ -4015,6 +4435,14 @@ class RemoteCollectionDao implements CollectionDao {
             userRating: (asObject(e)['userRating'] as num?)?.toDouble(),
             overrideName: asObject(e)['overrideName'] as String?,
             overrideCoverUrl: asObject(e)['overrideCoverUrl'] as String?,
+            characterImages: asList(asObject(e)['characterImages'])
+                .map(
+                  (Object? e) => CharacterImage(
+                    url: asObject(e)['url'] as String,
+                    caption: asObject(e)['caption'] as String?,
+                  ),
+                )
+                .toList(),
             isFavorite: asObject(e)['isFavorite'] as bool,
             game: decodeNullable<Game>(
               asObject(e)['game'],
@@ -4346,6 +4774,43 @@ class RemoteCollectionDao implements CollectionDao {
                 cachedAt: decodeIntOrNull(asObject(v)['cachedAt']),
               ),
             ),
+            character: decodeNullable<Character>(
+              asObject(e)['character'],
+              (Object? v) => Character(
+                id: decodeInt(asObject(v)['id']),
+                source: decodeEnum<DataSource>(
+                  asObject(v)['source'],
+                  DataSource.values,
+                ),
+                name: asObject(v)['name'] as String,
+                variant: asObject(v)['variant'] as String?,
+                nameNative: asObject(v)['nameNative'] as String?,
+                description: asObject(v)['description'] as String?,
+                imageUrl: asObject(v)['imageUrl'] as String?,
+                aliases: asObject(v)['aliases'] == null
+                    ? null
+                    : asList(
+                        asObject(v)['aliases'],
+                      ).map((Object? e) => e as String).toList(),
+                franchise: asObject(v)['franchise'] as String?,
+                firstAppearance: asObject(v)['firstAppearance'] as String?,
+                species: asObject(v)['species'] as String?,
+                gender: asObject(v)['gender'] as String?,
+                affiliation: asObject(v)['affiliation'] as String?,
+                abilities: asObject(v)['abilities'] as String?,
+                publisher: asObject(v)['publisher'] as String?,
+                alignment: asObject(v)['alignment'] as String?,
+                appearsIn: asObject(v)['appearsIn'] == null
+                    ? null
+                    : asObject(asObject(v)['appearsIn']).map(
+                        (String k, Object? v) =>
+                            MapEntry<String, String>(k, v as String),
+                      ),
+                externalUrl: asObject(v)['externalUrl'] as String?,
+                popularity: decodeIntOrNull(asObject(v)['popularity']),
+                updatedAt: decodeIntOrNull(asObject(v)['updatedAt']),
+              ),
+            ),
             platform: decodeNullable<Platform>(
               asObject(e)['platform'],
               (Object? v) => Platform(
@@ -4357,6 +4822,29 @@ class RemoteCollectionDao implements CollectionDao {
           ),
         )
         .toList();
+  }
+
+  @override
+  Future<void> setItemCharacterImages(
+    int id,
+    List<CharacterImage> images,
+  ) async {
+    await _transport.call(
+      'CollectionDao',
+      'setItemCharacterImages',
+      <String, Object?>{
+        'id': encodeInt(id),
+        'images': images
+            .map(
+              (CharacterImage e) => <String, Object?>{
+                'url': e.url,
+                'caption': e.caption,
+              },
+            )
+            .toList(),
+      },
+    );
+    return;
   }
 
   @override

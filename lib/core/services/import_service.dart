@@ -1002,6 +1002,9 @@ class ImportService {
           albumRefs.add(ref);
         case MediaType.custom:
           break;
+        case MediaType.character:
+          // Characters are not refetched from their provider on import.
+          break;
       }
     }
 

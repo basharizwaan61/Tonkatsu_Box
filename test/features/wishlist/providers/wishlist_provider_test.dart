@@ -3,8 +3,8 @@ import 'package:core/models/wishlist_item.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:tonkatsu_box/data/repositories/wishlist_repository.dart';
-import 'package:tonkatsu_box/features/wishlist/providers/wishlist_provider.dart';
+import 'package:mediabox/data/repositories/wishlist_repository.dart';
+import 'package:mediabox/features/wishlist/providers/wishlist_provider.dart';
 
 import '../../../helpers/test_helpers.dart';
 

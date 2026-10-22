@@ -3,9 +3,9 @@ import 'dart:ui';
 
 import 'package:core/models/media_type.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/features/genre_cloud/facet.dart';
-import 'package:tonkatsu_box/features/genre_cloud/facet_value.dart';
-import 'package:tonkatsu_box/features/genre_cloud/genre_cloud_layout.dart';
+import 'package:mediabox/features/genre_cloud/facet.dart';
+import 'package:mediabox/features/genre_cloud/facet_value.dart';
+import 'package:mediabox/features/genre_cloud/genre_cloud_layout.dart';
 
 FacetValue _w(String label, int count) => FacetValue(
       facet: Facet.genre,

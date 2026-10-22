@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/shared/widgets/draggable_fab.dart';
+import 'package:mediabox/shared/widgets/draggable_fab.dart';
 
 import '../../helpers/test_helpers.dart';
 

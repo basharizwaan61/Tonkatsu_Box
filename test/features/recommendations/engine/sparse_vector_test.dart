@@ -1,7 +1,7 @@
 import 'dart:math' as math;
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/features/recommendations/engine/sparse_vector.dart';
+import 'package:mediabox/features/recommendations/engine/sparse_vector.dart';
 
 void main() {
   group('SparseVector', () {

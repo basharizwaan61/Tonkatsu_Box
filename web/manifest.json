@@ -1,11 +1,11 @@
 {
-    "name": "Tonkatsu Box",
-    "short_name": "Tonkatsu Box",
+    "name": "Mediabox",
+    "short_name": "Mediabox",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0A0A0A",
     "theme_color": "#0A0A0A",
-    "description": "Tonkatsu Box — media collection manager.",
+    "description": "Mediabox — media collection manager.",
     "orientation": "any",
     "prefer_related_applications": false,
     "icons": [

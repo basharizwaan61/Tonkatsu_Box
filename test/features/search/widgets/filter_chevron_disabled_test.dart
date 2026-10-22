@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/features/search/filters/anilist_tag_filter.dart';
-import 'package:tonkatsu_box/features/search/providers/browse_provider.dart';
-import 'package:tonkatsu_box/features/search/widgets/filter_control.dart';
-import 'package:tonkatsu_box/shared/theme/app_colors.dart';
+import 'package:mediabox/features/search/filters/anilist_tag_filter.dart';
+import 'package:mediabox/features/search/providers/browse_provider.dart';
+import 'package:mediabox/features/search/widgets/filter_control.dart';
+import 'package:mediabox/shared/theme/app_colors.dart';
 
 import '../../../helpers/test_helpers.dart';
 

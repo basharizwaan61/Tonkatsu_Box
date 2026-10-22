@@ -1,3 +1,4 @@
+import 'package:core/models/character_image.dart';
 import 'package:core/models/collection.dart';
 import 'package:core/models/collection_item.dart';
 import 'package:core/models/data_source.dart';
@@ -32,6 +33,7 @@ class CollectionStats {
     this.bookCount = 0,
     this.audioCount = 0,
     this.customCount = 0,
+    this.characterCount = 0,
   });
 
   final int total;
@@ -52,6 +54,7 @@ class CollectionStats {
   final int bookCount;
   final int audioCount;
   final int customCount;
+  final int characterCount;
 
   Map<MediaType, int> get mediaTypeCounts => <MediaType, int>{
     MediaType.game: gameCount,
@@ -64,6 +67,7 @@ class CollectionStats {
     MediaType.book: bookCount,
     MediaType.audio: audioCount,
     MediaType.custom: customCount,
+    MediaType.character: characterCount,
   };
 
   /// Types with at least one item, dominant first; ties keep enum order.
@@ -210,6 +214,7 @@ class CollectionRepository {
     required int externalId,
     int? platformId,
     DataSource? source,
+    String? sourceVariant,
     String? authorComment,
     ItemStatus status = ItemStatus.notStarted,
     DateTime? addedAt,
@@ -220,6 +225,7 @@ class CollectionRepository {
       externalId: externalId,
       platformId: platformId,
       source: source,
+      sourceVariant: sourceVariant,
       authorComment: authorComment,
       status: status,
       addedAt: addedAt,
@@ -312,6 +318,13 @@ class CollectionRepository {
     await _db.setItemOverrideCoverUrl(id, url);
   }
 
+  Future<void> setItemCharacterImages(
+    int id,
+    List<CharacterImage> images,
+  ) async {
+    await _db.setItemCharacterImages(id, images);
+  }
+
   Future<int> countItemsWithOverrideCover(String url) =>
       _db.countItemsWithOverrideCover(url);
 
@@ -362,6 +375,7 @@ class CollectionRepository {
       bookCount: raw['bookCount'] ?? 0,
       audioCount: raw['audioCount'] ?? 0,
       customCount: raw['customCount'] ?? 0,
+      characterCount: raw['characterCount'] ?? 0,
     );
   }
 

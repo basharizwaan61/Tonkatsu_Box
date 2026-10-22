@@ -3,8 +3,8 @@ import 'package:core/models/data_source.dart';
 import 'package:core/models/item_status.dart';
 import 'package:core/models/media_type.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/features/recommendations/anime_taste_input.dart';
-import 'package:tonkatsu_box/features/recommendations/engine/recommendation_models.dart';
+import 'package:mediabox/features/recommendations/anime_taste_input.dart';
+import 'package:mediabox/features/recommendations/engine/recommendation_models.dart';
 
 import '../../helpers/test_helpers.dart';
 

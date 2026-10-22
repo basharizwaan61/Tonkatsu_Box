@@ -63,6 +63,9 @@ abstract final class AppColors {
 
   static Color get audioAccent => palette.audioAccent;
 
+  /// Accent for characters.
+  static Color get characterAccent => palette.characterAccent;
+
   /// Accent for custom items.
   static Color get customAccent => palette.customAccent;
 

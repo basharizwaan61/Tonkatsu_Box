@@ -3,10 +3,10 @@ import 'package:core/models/data_source.dart';
 import 'package:core/models/media_type.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/features/collections/widgets/item_detail/item_detail_media_config.dart';
-import 'package:tonkatsu_box/shared/constants/media_type_theme.dart';
-import 'package:tonkatsu_box/shared/navigation/search_providers.dart';
-import 'package:tonkatsu_box/shared/widgets/media_detail/media_detail_chip.dart';
+import 'package:mediabox/features/collections/widgets/item_detail/item_detail_media_config.dart';
+import 'package:mediabox/shared/constants/media_type_theme.dart';
+import 'package:mediabox/shared/navigation/search_providers.dart';
+import 'package:mediabox/shared/widgets/media_detail/media_detail_chip.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../helpers/test_helpers.dart';

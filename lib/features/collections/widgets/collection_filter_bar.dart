@@ -441,6 +441,11 @@ class _CollectionFilterBarState extends ConsumerState<CollectionFilterBar> {
       _TypeEntry(MediaType.anime, l.mediaTypeAnime, counts[MediaType.anime]),
       _TypeEntry(MediaType.book, l.collectionFilterBooks, counts[MediaType.book]),
       _TypeEntry(MediaType.audio, l.mediaTypeAudio, counts[MediaType.audio]),
+      _TypeEntry(
+        MediaType.character,
+        l.collectionFilterCharacters,
+        counts[MediaType.character],
+      ),
       _TypeEntry(MediaType.custom, l.mediaTypeCustom, counts[MediaType.custom]),
     ];
   }
@@ -532,5 +537,6 @@ int? _totalCountFor(MediaType type, CollectionStats? stats) {
     MediaType.book => stats.bookCount,
     MediaType.audio => stats.audioCount,
     MediaType.custom => stats.customCount,
+    MediaType.character => stats.characterCount,
   };
 }

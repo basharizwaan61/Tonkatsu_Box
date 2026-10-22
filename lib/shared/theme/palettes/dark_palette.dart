@@ -26,6 +26,7 @@ const AppPalette darkPalette = AppPalette(
   animeAccent: Color(0xFFE85D75),
   bookAccent: Color(0xFF9B6A4F),
   audioAccent: Color(0xFFBA478F),
+  characterAccent: Color(0xFFF06292),
   customAccent: Color(0xFF26A69A),
   success: Color(0xFF66BB6A),
   warning: Color(0xFFFFA726),

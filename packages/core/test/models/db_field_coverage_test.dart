@@ -22,6 +22,7 @@ const Map<String, Set<String>> _notStored = <String, Set<String>>{
     'book',
     'audioItem',
     'customMedia',
+    'character',
     'platform',
   },
   // Joined media plus the overrides read from collection_items.
@@ -35,6 +36,7 @@ const Map<String, Set<String>> _notStored = <String, Set<String>>{
     'book',
     'audioItem',
     'customMedia',
+    'character',
     'overrideName',
     'overrideCoverUrl',
   },

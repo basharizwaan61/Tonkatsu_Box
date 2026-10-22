@@ -7,6 +7,7 @@ import 'audio_dao.remote.rpc.dart';
 import 'book_dao.remote.rpc.dart';
 import 'calendar_entry_dao.remote.rpc.dart';
 import 'canvas_dao.remote.rpc.dart';
+import 'character_dao.remote.rpc.dart';
 import 'collection_dao.remote.rpc.dart';
 import 'custom_media_dao.remote.rpc.dart';
 import 'game_dao.remote.rpc.dart';
@@ -24,6 +25,7 @@ import 'package:core/database/dao/audio_dao.dart';
 import 'package:core/database/dao/book_dao.dart';
 import 'package:core/database/dao/calendar_entry_dao.dart';
 import 'package:core/database/dao/canvas_dao.dart';
+import 'package:core/database/dao/character_dao.dart';
 import 'package:core/database/dao/collection_dao.dart';
 import 'package:core/database/dao/custom_media_dao.dart';
 import 'package:core/database/dao/game_dao.dart';
@@ -71,6 +73,8 @@ class RemoteDaoSet {
   );
 
   late final CanvasDao canvasDao = RemoteCanvasDao(_transport);
+
+  late final CharacterDao characterDao = RemoteCharacterDao(_transport);
 
   late final CollectionDao collectionDao = RemoteCollectionDao(_transport);
 

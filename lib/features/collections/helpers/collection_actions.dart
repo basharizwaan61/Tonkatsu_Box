@@ -750,6 +750,7 @@ class CollectionActions {
             return _RefreshOutcome.unsupported();
           }
         case MediaType.custom:
+        case MediaType.character:
           return _RefreshOutcome.unsupported();
       }
 

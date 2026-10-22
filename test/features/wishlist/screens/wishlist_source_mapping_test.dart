@@ -1,8 +1,8 @@
 import 'package:core/models/media_type.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/features/search/models/search_source.dart';
-import 'package:tonkatsu_box/features/search/sources/search_sources.dart';
-import 'package:tonkatsu_box/features/wishlist/screens/wishlist_screen.dart';
+import 'package:mediabox/features/search/models/search_source.dart';
+import 'package:mediabox/features/search/sources/search_sources.dart';
+import 'package:mediabox/features/wishlist/screens/wishlist_screen.dart';
 
 void main() {
   group('wishlistMediaTypeFor', () {

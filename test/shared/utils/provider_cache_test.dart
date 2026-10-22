@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/shared/utils/provider_cache.dart';
+import 'package:mediabox/shared/utils/provider_cache.dart';
 
 void main() {
   group('cacheFor', () {

@@ -2,8 +2,8 @@ import 'package:core/models/item_mark.dart';
 import 'package:core/models/marked_unit.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/features/likes/utils/marked_unit_label.dart';
-import 'package:tonkatsu_box/l10n/app_localizations.dart';
+import 'package:mediabox/features/likes/utils/marked_unit_label.dart';
+import 'package:mediabox/l10n/app_localizations.dart';
 
 MarkedUnit _unit(
   String unitType,

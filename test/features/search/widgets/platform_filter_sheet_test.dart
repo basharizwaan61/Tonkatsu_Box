@@ -1,8 +1,8 @@
 import 'package:core/models/platform.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/features/search/widgets/platform_filter_sheet.dart';
-import 'package:tonkatsu_box/l10n/app_localizations.dart';
+import 'package:mediabox/features/search/widgets/platform_filter_sheet.dart';
+import 'package:mediabox/l10n/app_localizations.dart';
 
 void main() {
   const List<Platform> testPlatforms = <Platform>[

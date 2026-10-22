@@ -1,8 +1,12 @@
+import 'dart:convert';
+
 import 'package:sqflite_common/sqlite_api.dart';
 
 import '../../models/audio_item.dart';
 import '../../models/anime.dart';
 import '../../models/book.dart';
+import '../../models/character.dart';
+import '../../models/character_image.dart';
 import '../../models/collected_item_info.dart';
 import '../../models/collection.dart';
 import '../../models/collection_item.dart';
@@ -22,6 +26,7 @@ import '../query_chunk.dart';
 import 'audio_dao.dart';
 import 'anime_dao.dart';
 import 'book_dao.dart';
+import 'character_dao.dart';
 import 'custom_media_dao.dart';
 import 'game_dao.dart';
 import 'manga_dao.dart';
@@ -41,6 +46,7 @@ class CollectionDao {
     required BookDao bookDao,
     required AudioDao audioDao,
     required CustomMediaDao customMediaDao,
+    required CharacterDao characterDao,
   })  : _gameDao = gameDao,
         _movieDao = movieDao,
         _tvShowDao = tvShowDao,
@@ -49,7 +55,8 @@ class CollectionDao {
         _mangaDao = mangaDao,
         _bookDao = bookDao,
         _audioDao = audioDao,
-        _customMediaDao = customMediaDao;
+        _customMediaDao = customMediaDao,
+        _characterDao = characterDao;
 
   /// The media DAOs are always the same nine over the same connection, so
   /// every host (app, server, tests) would otherwise repeat the wiring.
@@ -67,6 +74,7 @@ class CollectionDao {
       bookDao: BookDao(getDatabase),
       audioDao: AudioDao(getDatabase),
       customMediaDao: CustomMediaDao(getDatabase),
+      characterDao: CharacterDao(getDatabase),
     );
   }
 
@@ -80,6 +88,7 @@ class CollectionDao {
   final BookDao _bookDao;
   final AudioDao _audioDao;
   final CustomMediaDao _customMediaDao;
+  final CharacterDao _characterDao;
 
   Future<List<Collection>> getAllCollections() async {
     final Database db = await _getDatabase();
@@ -513,6 +522,7 @@ class CollectionDao {
     required int externalId,
     int? platformId,
     DataSource? source,
+    String? sourceVariant,
     String? authorComment,
     ItemStatus status = ItemStatus.notStarted,
     DateTime? addedAt,
@@ -531,6 +541,7 @@ class CollectionDao {
           'external_id': externalId,
           'platform_id': platformId,
           'source': source?.name,
+          'source_variant': sourceVariant,
           'status': status.value,
           'author_comment': authorComment,
           'added_at': timestamp,
@@ -1016,6 +1027,25 @@ class CollectionDao {
     );
   }
 
+  /// The user's own pictures for a character. Stored as a JSON array so one
+  /// column carries them all; an empty list clears the column.
+  Future<void> setItemCharacterImages(
+    int id,
+    List<CharacterImage> images,
+  ) async {
+    final Database db = await _getDatabase();
+    await db.update(
+      'collection_items',
+      <String, dynamic>{
+        'character_images': images.isEmpty
+            ? null
+            : jsonEncode(images.map((CharacterImage i) => i.toJson()).toList()),
+      },
+      where: 'id = ?',
+      whereArgs: <Object?>[id],
+    );
+  }
+
   /// One override file can back several items (an import into two
   /// collections), so it is deleted only once no row points at it.
   Future<int> countItemsWithOverrideCover(String url) async {
@@ -1190,6 +1220,7 @@ class CollectionDao {
       'bookCount': 0,
       'audioCount': 0,
       'customCount': 0,
+      'characterCount': 0,
     };
 
     for (final Map<String, dynamic> row in result) {
@@ -1208,6 +1239,7 @@ class CollectionDao {
         MediaType.book => 'bookCount',
         MediaType.audio => 'audioCount',
         MediaType.custom => 'customCount',
+        MediaType.character => 'characterCount',
         null => null,
       };
       if (typeKey != null) stats[typeKey] = (stats[typeKey] ?? 0) + count;
@@ -1255,8 +1287,8 @@ class CollectionDao {
   ) async {
     final Database db = await _getDatabase();
     final List<Map<String, dynamic>> rows = await db.rawQuery('''
-      SELECT ci.id, ci.external_id, ci.source, ci.collection_id,
-             ci.platform_id, c.name
+      SELECT ci.id, ci.external_id, ci.source, ci.source_variant,
+             ci.collection_id, ci.platform_id, c.name
       FROM collection_items ci
       LEFT JOIN collections c ON c.id = ci.collection_id
       WHERE ci.media_type = ?
@@ -1267,13 +1299,14 @@ class CollectionDao {
         <int, List<CollectedItemInfo>>{};
     for (final Map<String, dynamic> row in rows) {
       final int externalId = row['external_id'] as int;
+      final String? rawSource = row['source'] as String?;
       final CollectedItemInfo info = CollectedItemInfo(
         recordId: row['id'] as int,
         collectionId: row['collection_id'] as int?,
         collectionName: row['name'] as String?,
         platformId: row['platform_id'] as int?,
-        source: DataSource.fromNameOr(
-            row['source'] as String?, mediaType.defaultSource),
+        source: DataSource.fromNameOr(rawSource, mediaType.defaultSource),
+        sourceVariant: row['source_variant'] as String?,
       );
       result.putIfAbsent(externalId, () => <CollectedItemInfo>[]).add(info);
     }
@@ -1324,6 +1357,7 @@ class CollectionDao {
             WHEN 'book' THEN bc.cover_url
             WHEN 'audio' THEN aud.cover_url
             WHEN 'custom' THEN cm.cover_url
+            WHEN 'character' THEN ch.image_url
           END AS thumbnail_url
         FROM collection_items ci
         LEFT JOIN games g
@@ -1359,6 +1393,10 @@ class CollectionDao {
           AND aud.source = COALESCE(ci.source, 'musicBrainz')
         LEFT JOIN custom_items cm
           ON ci.media_type = 'custom' AND ci.external_id = cm.id
+        LEFT JOIN characters_cache ch
+          ON ci.media_type = 'character' AND ci.external_id = ch.id
+          AND ch.source = COALESCE(ci.source, 'fandom')
+          AND ch.variant = COALESCE(ci.source_variant, '')
         WHERE $whereClause
       )
       WHERE COALESCE(override_cover_url, thumbnail_url) IS NOT NULL
@@ -1387,6 +1425,7 @@ class CollectionDao {
     final List<int> bookIds = <int>[];
     final List<int> audioIds = <int>[];
     final List<int> customIds = <int>[];
+    final List<int> characterIds = <int>[];
     final Set<int> platformIds = <int>{};
 
     for (final CollectionItem item in items) {
@@ -1418,6 +1457,8 @@ class CollectionDao {
           audioIds.add(item.externalId);
         case MediaType.custom:
           customIds.add(item.externalId);
+        case MediaType.character:
+          characterIds.add(item.externalId);
       }
     }
 
@@ -1453,6 +1494,9 @@ class CollectionDao {
       audioIds.isNotEmpty
           ? _audioDao.getAudioItemsByIds(audioIds)
           : Future<List<AudioItem>>.value(<AudioItem>[]),
+      characterIds.isNotEmpty
+          ? _characterDao.getCharactersByIds(characterIds)
+          : Future<List<Character>>.value(<Character>[]),
     ]);
 
     final List<Game> games = results[0] as List<Game>;
@@ -1465,6 +1509,7 @@ class CollectionDao {
     final List<Platform> platforms = results[7] as List<Platform>;
     final List<Book> books = results[8] as List<Book>;
     final List<AudioItem> audioItems = results[9] as List<AudioItem>;
+    final List<Character> characters = results[10] as List<Character>;
 
     final Map<int, Platform> platformsMap = <int, Platform>{
       for (final Platform p in platforms) p.id: p,
@@ -1535,6 +1580,11 @@ class CollectionDao {
     final Map<int, CustomMedia> customMap = <int, CustomMedia>{
       for (final CustomMedia c in customMediaList) c.id: c,
     };
+    // Characters are keyed by `(source, id)` — a Fandom page id belongs to one
+    // wiki, so the key carries the wiki too.
+    final Map<String, Character> characterMap = <String, Character>{
+      for (final Character c in characters) '${c.sourceKey}:${c.id}': c,
+    };
 
     return items.map((CollectionItem item) {
       switch (item.mediaType) {
@@ -1595,6 +1645,11 @@ class CollectionDao {
             platform: cm?.platformId != null
                 ? platformsMap[cm!.platformId]
                 : null,
+          );
+        case MediaType.character:
+          return item.copyWith(
+            character: characterMap[
+              '${DataSource.sourceKey(item.source ?? DataSource.fandom, item.sourceVariant)}:${item.externalId}'],
           );
       }
     }).toList();

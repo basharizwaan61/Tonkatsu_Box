@@ -12,6 +12,10 @@ import '../../shared/constants/platform_features.dart';
 
 const int configFormatVersion = 1;
 
+// The key is written inside exported config files, so it doubles as the
+// format marker older builds wrote. It keeps the upstream name for that
+// reason — renaming it would make previously exported configs fail to
+// import. Only the suggested file name was rebranded.
 const String _configVersionKey = 'tonkatsu_box_config_version';
 
 // Legacy version key, accepted on import for backwards compatibility.
@@ -201,17 +205,17 @@ class ConfigService {
       // returns null — there is no cancel to observe.
       if (kIsWebBuild) {
         await FilePicker.platform.saveFile(
-          fileName: 'tonkatsu-box-config.json',
+          fileName: 'mediabox-config.json',
           bytes: jsonBytes,
         );
-        return const ConfigResult.success('tonkatsu-box-config.json');
+        return const ConfigResult.success('mediabox-config.json');
       }
 
       // On Android/iOS FileType.custom doesn't support custom extensions.
       final bool useAny = kIsMobile;
       final String? outputPath = await FilePicker.platform.saveFile(
         dialogTitle: 'Export Configuration',
-        fileName: 'tonkatsu-box-config.json',
+        fileName: 'mediabox-config.json',
         type: useAny ? FileType.any : FileType.custom,
         allowedExtensions: useAny ? null : <String>['json'],
         bytes: jsonBytes,
@@ -280,7 +284,7 @@ class ConfigService {
           decoded[_configVersionKey] ?? decoded[_legacyConfigVersionKey];
       if (version == null) {
         return const ConfigResult.failure(
-          'Not a valid Tonkatsu Box config file (missing version)',
+          'Not a valid Mediabox config file (missing version)',
         );
       }
 

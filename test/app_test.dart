@@ -4,21 +4,21 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:tonkatsu_box/app.dart';
-import 'package:tonkatsu_box/core/database/database_service.dart';
-import 'package:tonkatsu_box/core/services/update_service.dart';
-import 'package:tonkatsu_box/data/repositories/collection_repository.dart';
-import 'package:tonkatsu_box/features/settings/providers/settings_provider.dart';
-import 'package:tonkatsu_box/features/splash/screens/splash_screen.dart';
-import 'package:tonkatsu_box/features/welcome/screens/welcome_screen.dart';
-import 'package:tonkatsu_box/shared/navigation/app_bottom_bar.dart';
-import 'package:tonkatsu_box/shared/navigation/app_shell.dart';
-import 'package:tonkatsu_box/shared/navigation/app_sidebar.dart';
+import 'package:mediabox/app.dart';
+import 'package:mediabox/core/database/database_service.dart';
+import 'package:mediabox/core/services/update_service.dart';
+import 'package:mediabox/data/repositories/collection_repository.dart';
+import 'package:mediabox/features/settings/providers/settings_provider.dart';
+import 'package:mediabox/features/splash/screens/splash_screen.dart';
+import 'package:mediabox/features/welcome/screens/welcome_screen.dart';
+import 'package:mediabox/shared/navigation/app_bottom_bar.dart';
+import 'package:mediabox/shared/navigation/app_shell.dart';
+import 'package:mediabox/shared/navigation/app_sidebar.dart';
 
 import 'helpers/test_helpers.dart';
 
 void main() {
-  group('TonkatsuBoxApp', () {
+  group('MediaboxApp', () {
     late MockCollectionRepository mockRepo;
     late MockDatabaseService mockDb;
     late MockGameDao mockGameDao;
@@ -49,7 +49,7 @@ void main() {
             databaseServiceProvider.overrideWithValue(mockDb),
             updateCheckProvider.overrideWith((Ref ref) async => null),
           ],
-          child: const TonkatsuBoxApp(),
+          child: const MediaboxApp(),
         ),
       );
 
@@ -69,7 +69,7 @@ void main() {
             databaseServiceProvider.overrideWithValue(mockDb),
             updateCheckProvider.overrideWith((Ref ref) async => null),
           ],
-          child: const TonkatsuBoxApp(),
+          child: const MediaboxApp(),
         ),
       );
 
@@ -91,7 +91,7 @@ void main() {
             databaseServiceProvider.overrideWithValue(mockDb),
             updateCheckProvider.overrideWith((Ref ref) async => null),
           ],
-          child: const TonkatsuBoxApp(),
+          child: const MediaboxApp(),
         ),
       );
 
@@ -114,7 +114,7 @@ void main() {
             databaseServiceProvider.overrideWithValue(mockDb),
             updateCheckProvider.overrideWith((Ref ref) async => null),
           ],
-          child: const TonkatsuBoxApp(),
+          child: const MediaboxApp(),
         ),
       );
 
@@ -136,7 +136,7 @@ void main() {
             databaseServiceProvider.overrideWithValue(mockDb),
             updateCheckProvider.overrideWith((Ref ref) async => null),
           ],
-          child: const TonkatsuBoxApp(),
+          child: const MediaboxApp(),
         ),
       );
 
@@ -167,7 +167,7 @@ void main() {
             databaseServiceProvider.overrideWithValue(mockDb),
             updateCheckProvider.overrideWith((Ref ref) async => null),
           ],
-          child: const TonkatsuBoxApp(),
+          child: const MediaboxApp(),
         ),
       );
 
@@ -200,7 +200,7 @@ void main() {
             databaseServiceProvider.overrideWithValue(mockDb),
             updateCheckProvider.overrideWith((Ref ref) async => null),
           ],
-          child: const TonkatsuBoxApp(),
+          child: const MediaboxApp(),
         ),
       );
 
@@ -224,7 +224,7 @@ void main() {
             databaseServiceProvider.overrideWithValue(mockDb),
             updateCheckProvider.overrideWith((Ref ref) async => null),
           ],
-          child: const TonkatsuBoxApp(),
+          child: const MediaboxApp(),
         ),
       );
 
@@ -249,7 +249,7 @@ void main() {
             databaseServiceProvider.overrideWithValue(mockDb),
             updateCheckProvider.overrideWith((Ref ref) async => null),
           ],
-          child: const TonkatsuBoxApp(),
+          child: const MediaboxApp(),
         ),
       );
 

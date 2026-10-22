@@ -68,6 +68,8 @@ class DbSyncService {
   })  : _database = database,
         _metaProvider = metaProvider;
 
+  // Transfer file names, inherited from the project's former name. They are
+  // part of the LAN sync handshake, so both peers must agree on them.
   static const String snapshotFileName = 'xerabora-sync.db';
 
   static const String manifestFileName = 'xerabora-sync.json';

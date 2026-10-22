@@ -2,7 +2,7 @@ import 'package:core/models/item_status.dart';
 import 'package:core/models/media_type.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/features/collections/widgets/status_ribbon.dart';
+import 'package:mediabox/features/collections/widgets/status_ribbon.dart';
 
 void main() {
   Widget createWidget({

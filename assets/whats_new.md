@@ -17,4 +17,4 @@
 
 A friendly reminder: our cozy [Discord](https://discord.gg/JZVNPF7cS2) server is where you can directly influence
 which features get built. And if you use the app but have not starred it on
-[GitHub](https://github.com/hacan359/tonkatsu_box) yet, now is a great moment — it matters for the project.
+[GitHub](https://github.com/basharizwaan61/Tonkatsu_Box) yet, now is a great moment — it matters for the project.

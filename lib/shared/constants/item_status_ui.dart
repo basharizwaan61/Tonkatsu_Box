@@ -75,6 +75,7 @@ extension ItemStatusUi on ItemStatus {
           case MediaType.animation:
           case MediaType.anime:
           case MediaType.custom:
+          case MediaType.character:
             return l.statusRewatching;
         }
       case ItemStatus.ignored:

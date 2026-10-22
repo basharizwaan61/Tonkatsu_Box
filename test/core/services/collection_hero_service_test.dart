@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:path/path.dart' as p;
-import 'package:tonkatsu_box/core/services/collection_hero_service.dart';
+import 'package:mediabox/core/services/collection_hero_service.dart';
 
 void main() {
   late Directory tempDir;

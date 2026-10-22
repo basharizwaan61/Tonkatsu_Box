@@ -1,9 +1,9 @@
 import 'package:core/models/item_status.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/l10n/app_localizations.dart';
-import 'package:tonkatsu_box/shared/constants/item_status_ui.dart';
-import 'package:tonkatsu_box/shared/widgets/chevron_filter_bar.dart';
+import 'package:mediabox/l10n/app_localizations.dart';
+import 'package:mediabox/shared/constants/item_status_ui.dart';
+import 'package:mediabox/shared/widgets/chevron_filter_bar.dart';
 
 import '../../helpers/test_helpers.dart';
 

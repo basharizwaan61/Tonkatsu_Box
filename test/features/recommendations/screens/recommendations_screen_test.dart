@@ -4,10 +4,10 @@ import 'package:core/models/media_type.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/features/collections/providers/collections_provider.dart';
-import 'package:tonkatsu_box/features/recommendations/providers/recommendations_provider.dart';
-import 'package:tonkatsu_box/features/recommendations/screens/recommendations_screen.dart';
-import 'package:tonkatsu_box/features/recommendations/widgets/recommendation_row.dart';
+import 'package:mediabox/features/collections/providers/collections_provider.dart';
+import 'package:mediabox/features/recommendations/providers/recommendations_provider.dart';
+import 'package:mediabox/features/recommendations/screens/recommendations_screen.dart';
+import 'package:mediabox/features/recommendations/widgets/recommendation_row.dart';
 
 import '../../../helpers/test_helpers.dart';
 

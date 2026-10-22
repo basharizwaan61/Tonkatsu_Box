@@ -1,8 +1,8 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/shared/navigation/nav_tab.dart';
-import 'package:tonkatsu_box/shared/navigation/nav_tour_keys.dart';
+import 'package:mediabox/shared/navigation/nav_tab.dart';
+import 'package:mediabox/shared/navigation/nav_tour_keys.dart';
 
 void main() {
   group('NavTourKeys', () {

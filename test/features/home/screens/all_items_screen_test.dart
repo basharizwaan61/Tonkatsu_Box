@@ -14,17 +14,17 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:tonkatsu_box/core/database/database_service.dart';
-import 'package:tonkatsu_box/data/repositories/collection_repository.dart';
-import 'package:tonkatsu_box/features/collections/providers/episode_tracker_provider.dart';
-import 'package:tonkatsu_box/features/collections/widgets/bulk_action_bar.dart';
-import 'package:tonkatsu_box/features/collections/screens/collection_screen.dart';
-import 'package:tonkatsu_box/features/home/screens/all_items_screen.dart';
-import 'package:tonkatsu_box/features/settings/providers/profile_provider.dart';
-import 'package:tonkatsu_box/features/settings/providers/settings_provider.dart';
-import 'package:tonkatsu_box/l10n/app_localizations.dart';
-import 'package:tonkatsu_box/shared/navigation/search_providers.dart';
-import 'package:tonkatsu_box/shared/widgets/logo_loader.dart';
+import 'package:mediabox/core/database/database_service.dart';
+import 'package:mediabox/data/repositories/collection_repository.dart';
+import 'package:mediabox/features/collections/providers/episode_tracker_provider.dart';
+import 'package:mediabox/features/collections/widgets/bulk_action_bar.dart';
+import 'package:mediabox/features/collections/screens/collection_screen.dart';
+import 'package:mediabox/features/home/screens/all_items_screen.dart';
+import 'package:mediabox/features/settings/providers/profile_provider.dart';
+import 'package:mediabox/features/settings/providers/settings_provider.dart';
+import 'package:mediabox/l10n/app_localizations.dart';
+import 'package:mediabox/shared/navigation/search_providers.dart';
+import 'package:mediabox/shared/widgets/logo_loader.dart';
 
 import '../../../helpers/test_helpers.dart';
 

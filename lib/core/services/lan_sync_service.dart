@@ -52,6 +52,9 @@ class LanSyncService {
 
   static const int discoveryPort = 47813;
 
+  // Wire tag for the UDP discovery beacon. It must be identical on both
+  // peers, so it keeps the upstream value: changing it would silently stop
+  // this build from discovering older builds on the same network.
   static const String _announceApp = 'tonkatsubox-sync';
   static const Duration _announceEvery = Duration(seconds: 1);
   static const Duration _peerTtl = Duration(seconds: 5);
@@ -329,7 +332,7 @@ class LanSyncService {
     }
 
     final Directory tmpDir =
-        await Directory.systemTemp.createTemp('tonkatsu_box_lan_out');
+        await Directory.systemTemp.createTemp('mediabox_lan_out');
     try {
       await _sync.sendSnapshot(tmpDir.path);
       final File snapshot =

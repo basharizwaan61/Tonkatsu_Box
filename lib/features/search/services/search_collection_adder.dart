@@ -35,6 +35,7 @@ class SearchCollectionAdder {
     required int externalId,
     int? platformId,
     DataSource? source,
+    String? sourceVariant,
     required String title,
     required Future<void> Function() upsert,
     required ImageType imageType,
@@ -52,6 +53,7 @@ class SearchCollectionAdder {
           externalId: externalId,
           platformId: platformId,
           source: source,
+          sourceVariant: sourceVariant,
         );
 
     if (!context.mounted) return success;
@@ -89,6 +91,7 @@ class SearchCollectionAdder {
     required int externalId,
     int? platformId,
     DataSource? source,
+    String? sourceVariant,
     required String title,
     required Future<void> Function() upsert,
     required ImageType imageType,
@@ -118,6 +121,7 @@ class SearchCollectionAdder {
             externalId: externalId,
             platformId: platformId,
             source: source,
+            sourceVariant: sourceVariant,
           );
       if (success) added++;
     }

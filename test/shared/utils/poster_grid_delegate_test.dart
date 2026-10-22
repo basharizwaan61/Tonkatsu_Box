@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/shared/theme/app_spacing.dart';
-import 'package:tonkatsu_box/shared/utils/poster_grid_delegate.dart';
+import 'package:mediabox/shared/theme/app_spacing.dart';
+import 'package:mediabox/shared/utils/poster_grid_delegate.dart';
 
 void main() {
   /// Resolves the geometry at [size] the way a real grid would.

@@ -1,4 +1,4 @@
-name: tonkatsu_box
+name: mediabox
 description: "Your personal collection manager for games, movies, TV shows, anime, visual novels, and manga."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.

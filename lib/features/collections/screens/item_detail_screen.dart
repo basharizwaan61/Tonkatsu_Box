@@ -5,6 +5,7 @@ import 'package:core/database/dao/tracked_release_dao.dart';
 import 'package:core/models/book.dart';
 import 'package:core/models/calendar_entry.dart';
 import 'package:core/models/card_link.dart';
+import 'package:core/models/character_image.dart';
 import 'package:core/models/collected_item_info.dart';
 import 'package:core/models/collection.dart';
 import 'package:core/models/collection_item.dart';
@@ -53,6 +54,7 @@ import '../../home/providers/all_items_provider.dart';
 import '../extensions/item_display_name.dart';
 import '../providers/steamgriddb_panel_provider.dart';
 import '../providers/vgmaps_panel_provider.dart';
+import '../widgets/character_pictures_section.dart';
 import '../widgets/episode_tracker_section.dart';
 import '../widgets/item_tags_section.dart';
 import '../widgets/anime_progress_section.dart';
@@ -308,6 +310,7 @@ class _ItemDetailScreenState extends ConsumerState<ItemDetailScreen> {
       case MediaType.book:
       case MediaType.audio:
       case MediaType.custom:
+      case MediaType.character:
         return item.releaseYear != null ? DateTime(item.releaseYear!) : null;
     }
   }
@@ -932,6 +935,13 @@ class _ItemDetailScreenState extends ConsumerState<ItemDetailScreen> {
             currentGroup: item.currentSeason,
             accentColor: config.accentColor,
           ),
+        if (item.mediaType == MediaType.character)
+          CharacterPicturesSection(
+            images: item.characterImages,
+            isEditable: widget.isEditable,
+            onChanged: (List<CharacterImage> images) =>
+                _saveCharacterImages(item, images),
+          ),
       ],
       recommendationSections: <Widget>[
         if (showRecs)
@@ -1098,6 +1108,7 @@ class _ItemDetailScreenState extends ConsumerState<ItemDetailScreen> {
       MediaType.book => l.mediaTypeBook,
       MediaType.audio => l.mediaTypeAudio,
       MediaType.custom => l.unknownCustom,
+      MediaType.character => l.mediaTypeCharacter,
       null => l.gameNotFound,
     };
   }
@@ -1445,6 +1456,16 @@ class _ItemDetailScreenState extends ConsumerState<ItemDetailScreen> {
     await _container
         .read(collectionItemsNotifierProvider(widget.collectionId).notifier)
         .updateUserComment(id, text);
+  }
+
+  /// The user's own pictures for a character; the whole list is replaced.
+  Future<void> _saveCharacterImages(
+    CollectionItem item,
+    List<CharacterImage> images,
+  ) async {
+    await ref
+        .read(collectionItemsNotifierProvider(widget.collectionId).notifier)
+        .setCharacterImages(item.id, images);
   }
 
   Future<void> _updateUserRating(int id, double? rating) async {

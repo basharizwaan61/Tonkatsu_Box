@@ -23,6 +23,8 @@ abstract final class MediaTypeTheme {
 
   static Color get audioColor => AppColors.audioAccent;
 
+  static Color get characterColor => AppColors.characterAccent;
+
   static Color get customColor => AppColors.customAccent;
 
   static IconData iconFor(MediaType type) => switch (type) {
@@ -35,6 +37,7 @@ abstract final class MediaTypeTheme {
         MediaType.anime => Icons.play_circle_outline,
         MediaType.book => Icons.menu_book,
         MediaType.audio => Icons.headphones,
+        MediaType.character => Icons.face_outlined,
         MediaType.custom => Icons.dashboard_customize,
       };
 
@@ -49,6 +52,7 @@ abstract final class MediaTypeTheme {
         MediaType.anime => Icons.play_circle_outline,
         MediaType.book => Icons.menu_book,
         MediaType.audio => Icons.headphones_outlined,
+        MediaType.character => Icons.face_outlined,
         MediaType.custom => Icons.dashboard_customize,
       };
 
@@ -82,6 +86,7 @@ abstract final class MediaTypeTheme {
         MediaType.anime => animeColor,
         MediaType.book => bookColor,
         MediaType.audio => audioColor,
+        MediaType.character => characterColor,
         MediaType.custom => customColor,
       };
 }

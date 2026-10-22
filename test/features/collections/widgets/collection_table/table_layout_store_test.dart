@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:tonkatsu_box/features/collections/widgets/collection_table/table_layout_store.dart';
+import 'package:mediabox/features/collections/widgets/collection_table/table_layout_store.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();

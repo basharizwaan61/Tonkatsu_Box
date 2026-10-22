@@ -7,8 +7,8 @@ import 'package:core/models/media_type.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/features/collections/widgets/bulk_export/bulk_poster_mosaic_view.dart';
-import 'package:tonkatsu_box/shared/widgets/cached_image.dart';
+import 'package:mediabox/features/collections/widgets/bulk_export/bulk_poster_mosaic_view.dart';
+import 'package:mediabox/shared/widgets/cached_image.dart';
 
 CollectionItem _item(int id, {bool withCover = false}) {
   return CollectionItem(

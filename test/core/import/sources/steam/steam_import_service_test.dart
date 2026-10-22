@@ -6,9 +6,9 @@ import 'package:core/models/universal_import_result.dart';
 import 'package:core/models/wishlist_item.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:tonkatsu_box/core/api/steam_api.dart';
-import 'package:tonkatsu_box/core/import/sources/steam/steam_import_service.dart';
-import 'package:tonkatsu_box/core/services/import_service.dart';
+import 'package:mediabox/core/api/steam_api.dart';
+import 'package:mediabox/core/import/sources/steam/steam_import_service.dart';
+import 'package:mediabox/core/services/import_service.dart';
 
 import '../../../../helpers/test_helpers.dart';
 

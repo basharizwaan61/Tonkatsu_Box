@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/features/search/filters/anilist_genre_filter.dart';
-import 'package:tonkatsu_box/features/search/models/search_source.dart';
+import 'package:mediabox/features/search/filters/anilist_genre_filter.dart';
+import 'package:mediabox/features/search/models/search_source.dart';
 
 import '../../../helpers/test_helpers.dart';
 

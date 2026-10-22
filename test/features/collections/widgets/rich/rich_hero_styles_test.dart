@@ -5,9 +5,9 @@ import 'package:core/models/media_type.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/features/collections/providers/rich_collections_provider.dart';
-import 'package:tonkatsu_box/features/collections/widgets/rich/rich_hero_styles.dart';
-import 'package:tonkatsu_box/shared/constants/rich_hero_style.dart';
+import 'package:mediabox/features/collections/providers/rich_collections_provider.dart';
+import 'package:mediabox/features/collections/widgets/rich/rich_hero_styles.dart';
+import 'package:mediabox/shared/constants/rich_hero_style.dart';
 
 import '../../../../helpers/test_helpers.dart';
 

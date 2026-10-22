@@ -33,7 +33,12 @@ enum MediaType {
   audio('audio'),
 
   /// Custom user-created item.
-  custom('custom');
+  custom('custom'),
+
+  /// Character — a person, creature or android (Jikan / Disney / Fandom).
+  /// Appended last so the existing type order — which several sort keys and
+  /// tie-breaks rely on — stays untouched.
+  character('character');
 
   const MediaType(this.value);
 
@@ -53,7 +58,8 @@ enum MediaType {
       this == MediaType.tvShow ||
       this == MediaType.movie ||
       this == MediaType.book ||
-      this == MediaType.audio;
+      this == MediaType.audio ||
+      this == MediaType.character;
 
   /// Fallback source for rows whose `source` column is NULL.
   DataSource get defaultSource => switch (this) {
@@ -67,6 +73,7 @@ enum MediaType {
         MediaType.book => DataSource.openLibrary,
         MediaType.audio => DataSource.musicBrainz,
         MediaType.custom => DataSource.local,
+        MediaType.character => DataSource.fandom,
       };
 
   /// String value stored in the database.
@@ -110,6 +117,8 @@ enum MediaType {
         return 'Audio';
       case MediaType.custom:
         return 'Custom';
+      case MediaType.character:
+        return 'Character';
     }
   }
 

@@ -6,11 +6,11 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:path/path.dart' as p;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
-import 'package:tonkatsu_box/core/database/database_service.dart';
-import 'package:tonkatsu_box/core/services/config_service.dart';
-import 'package:tonkatsu_box/core/services/db_sync_service.dart';
-import 'package:tonkatsu_box/core/services/lan_sync_service.dart';
-import 'package:tonkatsu_box/core/services/storage_root.dart';
+import 'package:mediabox/core/database/database_service.dart';
+import 'package:mediabox/core/services/config_service.dart';
+import 'package:mediabox/core/services/db_sync_service.dart';
+import 'package:mediabox/core/services/lan_sync_service.dart';
+import 'package:mediabox/core/services/storage_root.dart';
 
 void main() {
   setUpAll(() {

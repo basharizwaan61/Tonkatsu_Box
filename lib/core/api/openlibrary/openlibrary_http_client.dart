@@ -19,7 +19,7 @@ class OpenLibraryHttpClient {
 
   static const String _baseUrl = 'https://openlibrary.org';
   static const String _userAgent =
-      'TonkatsuBox/0.32 (https://github.com/hacan359/tonkatsu_box)';
+      'Mediabox/0.32 (https://github.com/basharizwaan61/Tonkatsu_Box)';
 
   final Dio _dio;
 

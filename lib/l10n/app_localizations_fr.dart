@@ -9,7 +9,7 @@ class SFr extends S {
   SFr([String locale = 'fr']) : super(locale);
 
   @override
-  String get appName => 'Tonkatsu Box';
+  String get appName => 'Mediabox';
 
   @override
   String get navMain => 'Accueil';
@@ -174,6 +174,27 @@ class SFr extends S {
 
   @override
   String get mediaTypeCustom => 'Personnalisé';
+
+  @override
+  String get mediaTypeCharacter => 'Character';
+
+  @override
+  String get characterAppearsIn => 'Appears in';
+
+  @override
+  String get characterPictures => 'Pictures';
+
+  @override
+  String get characterAddPicture => 'Add picture';
+
+  @override
+  String get characterPictureUrl => 'Image URL';
+
+  @override
+  String get characterPictureCaption => 'Caption (optional)';
+
+  @override
+  String get characterPictureRemove => 'Remove picture';
 
   @override
   String get sortManualDisplay => 'Manuel';
@@ -563,8 +584,7 @@ class SFr extends S {
   String get settingsWelcomeGuide => 'Première utilisation';
 
   @override
-  String get settingsWelcomeGuideSubtitle =>
-      'Première utilisation de Tonkatsu Box';
+  String get settingsWelcomeGuideSubtitle => 'Première utilisation de Mediabox';
 
   @override
   String get settingsAbout => 'À propos';
@@ -759,7 +779,7 @@ class SFr extends S {
   String get credentialsTitle => 'Identifiants';
 
   @override
-  String get credentialsWelcome => 'Bienvenue sur Tonkatsu Box !';
+  String get credentialsWelcome => 'Bienvenue sur Mediabox !';
 
   @override
   String get credentialsWelcomeHint =>
@@ -1127,7 +1147,7 @@ class SFr extends S {
 
   @override
   String get storageLocationPermissionMessage =>
-      'Android a besoin de la permission \"Accéder aux fichiers\" pour un dossier personnalisé. Dans la liste, trouvez Tonkatsu Box, autorisez l\'accès, revenez en arrière et sélectionnez à nouveau le dossier.';
+      'Android a besoin de la permission \"Accéder aux fichiers\" pour un dossier personnalisé. Dans la liste, trouvez Mediabox, autorisez l\'accès, revenez en arrière et sélectionnez à nouveau le dossier.';
 
   @override
   String get storageLocationLegacyPermissionMessage =>
@@ -1567,7 +1587,7 @@ class SFr extends S {
 
   @override
   String get creditsOpenSourceDesc =>
-      'Tonkatsu Box is gratuit et est un logiciel open source, publié sous la Licence MIT.';
+      'Mediabox is gratuit et est un logiciel open source, publié sous la Licence MIT.';
 
   @override
   String get creditsViewLicenses => 'Voir les licences Open Source';
@@ -2093,6 +2113,9 @@ class SFr extends S {
   String get collectionFilterBooks => 'Livres';
 
   @override
+  String get collectionFilterCharacters => 'Characters';
+
+  @override
   String get searchHint => 'Recherche...';
 
   @override
@@ -2481,6 +2504,22 @@ class SFr extends S {
 
   @override
   String get searchHintMusic => 'Rechercher des albums...';
+
+  @override
+  String get searchHintCharacters => 'Search characters...';
+
+  @override
+  String get settingsFandomWiki => 'Fandom wiki';
+
+  @override
+  String get settingsFandomWikiSubtitle =>
+      'Which wiki the character search reads';
+
+  @override
+  String get settingsFandomWikiCustom => 'Custom wiki...';
+
+  @override
+  String get settingsFandomWikiCustomHint => 'e.g. naruto, or any wiki name';
 
   @override
   String get musicFilterAlbumsDefault => 'Albums';
@@ -2880,7 +2919,7 @@ class SFr extends S {
       'Sélectionnez la langue de l\'interface';
 
   @override
-  String get welcomeTitle => 'Tonkatsu Box vous souhaite la bienvenue';
+  String get welcomeTitle => 'Mediabox vous souhaite la bienvenue';
 
   @override
   String get welcomeSubtitle =>
@@ -4770,7 +4809,7 @@ class SFr extends S {
 
   @override
   String get kodiEnableSyncActiveSubtitle =>
-      'Actif tant que Tonkatsu est ouvert';
+      'Actif tant que Mediabox est ouvert';
 
   @override
   String get kodiEnableSyncDisabledSubtitle =>
@@ -5160,7 +5199,7 @@ class SFr extends S {
   String get moodGridCreateTitle => 'Nouvelle grille d\'humeur';
 
   @override
-  String get moodGridPresetAboutMe => 'À propos de moi : Tonkatsu Box';
+  String get moodGridPresetAboutMe => 'À propos de moi : Mediabox';
 
   @override
   String get moodGridPresetAboutMeSubtitle =>

@@ -5,10 +5,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/database/database_service.dart';
 
 /// Default preset id used by the create dialog and elsewhere.
-enum MoodGridPreset { aboutMeTonkatsuBox, blank }
+enum MoodGridPreset { aboutMeMediabox, blank }
 
-/// Default labels for the «About Me: Tonkatsu Box» preset.
-List<MoodGridCellSpec> aboutMeTonkatsuBoxCells() {
+/// Default labels for the «About Me: Mediabox» preset.
+List<MoodGridCellSpec> aboutMeMediaboxCells() {
   return const <MoodGridCellSpec>[
     MoodGridCellSpec(label: 'Favorite Game'),
     MoodGridCellSpec(label: 'Favorite Movie'),
@@ -19,7 +19,7 @@ List<MoodGridCellSpec> aboutMeTonkatsuBoxCells() {
 }
 
 /// Default title used when the user does not type one.
-const String kDefaultMoodGridTitle = 'About Me: Tonkatsu Box';
+const String kDefaultMoodGridTitle = 'About Me: Mediabox';
 
 final AsyncNotifierProvider<MoodGridsNotifier, List<MoodGrid>>
     moodGridsProvider =
@@ -52,8 +52,8 @@ class MoodGridsNotifier extends AsyncNotifier<List<MoodGrid>> {
     final int actualCols;
 
     switch (preset) {
-      case MoodGridPreset.aboutMeTonkatsuBox:
-        cellSpecs = aboutMeTonkatsuBoxCells();
+      case MoodGridPreset.aboutMeMediabox:
+        cellSpecs = aboutMeMediaboxCells();
         actualRows = 1;
         actualCols = 5;
       case MoodGridPreset.blank:

@@ -3,8 +3,8 @@ import 'dart:async';
 import 'package:core/models/data_source.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/core/import/import_progress.dart';
-import 'package:tonkatsu_box/shared/widgets/import_progress_dialog.dart';
+import 'package:mediabox/core/import/import_progress.dart';
+import 'package:mediabox/shared/widgets/import_progress_dialog.dart';
 
 import '../../helpers/test_helpers.dart';
 

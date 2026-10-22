@@ -18,7 +18,7 @@ REST client for OpenLibrary, the global open book catalog (~40M works, CC0/ODbL)
 
 ## Key points
 
-- **User-Agent required.** Anonymous bots can be blocked, so `OpenLibraryHttpClient` always sends `TonkatsuBox/<ver> (<repo>)`.
+- **User-Agent required.** Anonymous bots can be blocked, so `OpenLibraryHttpClient` always sends `Mediabox/<ver> (<repo>)`.
 - **Identity.** Works have no numeric id — only the OLID string `OL[1-9]\d{0,7}W`. `Book` stores the digits in `id` (`27448`) and the full OLID in `nativeId` (`OL27448W`); both are produced in `Book.fromOpenLibrary*`.
 - **Two construction paths.** Search results come from `search.json` `docs[]` (`Book.fromOpenLibrarySearchDoc`, lightweight); the detail view loads the full work (`Book.fromOpenLibraryWork`, with description / subjects / rating / authors).
 - **Ratings scale.** `/ratings.json` `summary.average` is 1–5; `Book.fromOpenLibraryWork` doubles it to the app's 1–10 scale.

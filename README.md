@@ -1,25 +1,25 @@
 <p align="center">
-  <img src="assets/images/logo.png" width="120" alt="Tonkatsu Box">
+  <img src="assets/images/logo.png" width="120" alt="Mediabox">
 </p>
 
-<h1 align="center">Tonkatsu Box</h1>
+<h1 align="center">Mediabox</h1>
 
 <p align="center">
   <b>Your personal collection manager for games, movies, TV shows, anime, visual novels, manga, books, music and podcasts</b>
 </p>
 
 <p align="center">
-  <a href="https://github.com/hacan359/tonkatsu_box/releases/latest"><img src="https://img.shields.io/badge/Windows-0078D4?style=for-the-badge&logo=windows&logoColor=white" alt="Windows"></a>
-  <a href="https://github.com/hacan359/tonkatsu_box/releases/latest"><img src="https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black" alt="Linux"></a>
-    <a href="https://github.com/hacan359/tonkatsu_box/releases/latest"><img src="https://img.shields.io/badge/macOS-979797?style=for-the-badge&logo=apple&logoColor=white" alt="macOS"></a>
-  <a href="https://github.com/hacan359/tonkatsu_box/releases/latest"><img src="https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white" alt="Android"></a>
-  <a href="https://www.rustore.ru/catalog/app/com.hacan359.tonkatsubox?utm_source=available_in_rustore&utm_medium=com.hacan359.tonkatsubox&rsm=1&mt_link_id=iios36&mt_sub1=com.hacan359.tonkatsubox"><img src="https://img.shields.io/badge/RuStore-0066FF?style=for-the-badge&logo=rustore&logoColor=white" alt="RuStore"></a>
+  <a href="https://github.com/basharizwaan61/Tonkatsu_Box/releases/latest"><img src="https://img.shields.io/badge/Windows-0078D4?style=for-the-badge&logo=windows&logoColor=white" alt="Windows"></a>
+  <a href="https://github.com/basharizwaan61/Tonkatsu_Box/releases/latest"><img src="https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black" alt="Linux"></a>
+    <a href="https://github.com/basharizwaan61/Tonkatsu_Box/releases/latest"><img src="https://img.shields.io/badge/macOS-979797?style=for-the-badge&logo=apple&logoColor=white" alt="macOS"></a>
+  <a href="https://github.com/basharizwaan61/Tonkatsu_Box/releases/latest"><img src="https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white" alt="Android"></a>
 </p>
 
 <p align="center">
-  <a href="https://github.com/hacan359/tonkatsu_box/actions/workflows/test.yml"><img src="https://github.com/hacan359/tonkatsu_box/actions/workflows/test.yml/badge.svg" alt="Tests"></a>
-  <a href="https://github.com/hacan359/tonkatsu_box/actions/workflows/test.yml"><img src="https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/hacan359/7ed48e87a6bd59afeb08eaf656fd2adb/raw/tonkatsu-box-coverage.json" alt="Coverage"></a>
-  <a href="https://github.com/hacan359/tonkatsu_box/releases"><img src="https://img.shields.io/github/downloads/hacan359/tonkatsu_box/total?label=Downloads" alt="Downloads"></a>
+  <a href="https://github.com/basharizwaan61/Tonkatsu_Box/actions/workflows/test.yml"><img src="https://github.com/basharizwaan61/Tonkatsu_Box/actions/workflows/test.yml/badge.svg" alt="Tests"></a>
+  <!-- Coverage badge: re-add once this repository owns a gist and the
+       dynamic-badges workflow has a GIST_TOKEN secret configured. -->
+  <a href="https://github.com/basharizwaan61/Tonkatsu_Box/releases"><img src="https://img.shields.io/github/downloads/basharizwaan61/Tonkatsu_Box/total?label=Downloads" alt="Downloads"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License: MIT"></a>
   <a href="https://flutter.dev"><img src="https://img.shields.io/badge/Flutter-3.38+-02569B?logo=flutter&logoColor=white" alt="Flutter 3.38+"></a>
   <a href="https://discord.gg/JZVNPF7cS2"><img src="https://img.shields.io/badge/Discord-5865F2?logo=discord&logoColor=white" alt="Discord"></a>
@@ -32,14 +32,18 @@
 
 > [!WARNING]
 > **This app is in active development.** Updates may include database migrations that change data format. Please **create a backup** before updating (Settings → Backup → Create Backup). Alternatively, you can manually copy the app data folder:
-> - **Windows:** `%APPDATA%\Roaming\Tonkatsu Box\Tonkatsu Box`
+> - **Windows:** `%APPDATA%\tonkatsu_box`
 > - **Linux:** `~/.local/share/tonkatsu_box` (or `$XDG_DATA_HOME/tonkatsu_box`)
-> - **macOS:** `~/Library/Application Support/com.hacan359.tonkatsuBox`
+> - **macOS:** `~/Library/Application Support/tonkatsu_box`
 > - **Android:** use the built-in backup feature (Settings → Backup)
+>
+> The data folder keeps its original name on every platform. It is where
+> existing installations already keep their library, and renaming it would
+> orphan that data.
 
 ---
 
-Tonkatsu Box is a free, open-source app to organize your media collections. Search millions of titles across fifteen catalogs, track your progress episode by episode, rate everything, see your library in numbers, build visual boards, tier lists and mood grids, and bring in what you already track elsewhere.
+Mediabox is a free, open-source app to organize your media collections. Search millions of titles across fifteen catalogs, track your progress episode by episode, rate everything, see your library in numbers, build visual boards, tier lists and mood grids, and bring in what you already track elsewhere.
 
 ### Search fifteen catalogs
 
@@ -122,16 +126,16 @@ The whole interface is localized with runtime switching. Pick your language in *
 
 | Platform | Link |
 |----------|------|
-| Windows | [**Download .zip**](https://github.com/hacan359/tonkatsu_box/releases/latest) |
-| Linux | [**Download .tar.gz**](https://github.com/hacan359/tonkatsu_box/releases/latest) |
-| macOS | [**Download .dmg**](https://github.com/hacan359/tonkatsu_box/releases/latest) |
-| Android | [**Download .apk**](https://github.com/hacan359/tonkatsu_box/releases/latest) or [**RuStore**](https://www.rustore.ru/catalog/app/com.hacan359.tonkatsubox) |
+| Windows | [**Download .zip**](https://github.com/basharizwaan61/Tonkatsu_Box/releases/latest) |
+| Linux | [**Download .tar.gz**](https://github.com/basharizwaan61/Tonkatsu_Box/releases/latest) |
+| macOS | [**Download .dmg**](https://github.com/basharizwaan61/Tonkatsu_Box/releases/latest) |
+| Android | [**Download .apk**](https://github.com/basharizwaan61/Tonkatsu_Box/releases/latest) |
 
 > The Linux build ships as a plain bundle: unpack it anywhere and run `tonkatsu_box`. It needs GTK 3 and SQLite from your distribution, plus `zenity` for the file dialogs and `xdg-utils` for opening links.
 
 > macOS support is experimental. That build has not been tested by the maintainers yet, so expect rough edges. It is also unsigned, so macOS will warn about an unidentified developer on first launch.
 
-> On Android you have three options: grab the APK from Releases, install from [RuStore](https://www.rustore.ru/catalog/app/com.hacan359.tonkatsubox), or set up Obtainium for auto-updates (below). RuStore handles updates for you through its own store.
+> On Android you have two options: grab the APK from Releases, or set up Obtainium for auto-updates (below).
 
 ### Auto-updates on Android (Obtainium)
 
@@ -140,7 +144,7 @@ The whole interface is localized with runtime switching. Pick your language in *
 1. Install Obtainium.
 2. Tap **Add App** and paste this into **App source URL**:
    ```
-   https://github.com/hacan359/tonkatsu_box
+   https://github.com/basharizwaan61/Tonkatsu_Box
    ```
 3. Tap **Add**.
 4. The first time it updates, Android asks you to allow installs from Obtainium. Allow it once.
@@ -156,7 +160,7 @@ When a new release ships, Obtainium downloads the APK and shows the system insta
 
 The app works offline after setup. API keys are built-in.
 
-> [Full guide on Wiki](https://github.com/hacan359/tonkatsu_box/wiki/Getting-Started)
+> [Full guide on Wiki](https://github.com/basharizwaan61/Tonkatsu_Box/wiki/Getting-Started)
 
 ## Ready-made Collections
 
@@ -180,7 +184,7 @@ Already tracking elsewhere? Bring your data:
 | 📁 | **Your own cards** | A JSON or CSV file of custom entries — titles, types, covers, notes, tags and personal fields; with the source lookup on, rows that match one catalog record become real cards. [File format and lookup rules](docs/CUSTOM_CARDS_IMPORT.md) |
 | 📦 | **.xcollx files** | Collections shared by others |
 
-> [Import guides on Wiki](https://github.com/hacan359/tonkatsu_box/wiki)
+> [Import guides on Wiki](https://github.com/basharizwaan61/Tonkatsu_Box/wiki)
 
 ## Sync & Backup
 
@@ -194,7 +198,7 @@ Everything lives on your device. Nothing here needs an account or a cloud.
 | <img src="assets/images/icon_kodi_color.png" width="24" alt="Kodi"> | **Kodi sync** — pull watched status and ratings for your movies from a Kodi media server | Settings → Kodi |
 | <img src="assets/images/icon_discord_color.png" width="24" alt="Discord"> | **Discord Rich Presence** — show what you're playing, watching or reading | Settings → Discord |
 
-> [Details on the Wiki](https://github.com/hacan359/tonkatsu_box/wiki/Data-Sync-Backup)
+> [Details on the Wiki](https://github.com/basharizwaan61/Tonkatsu_Box/wiki/Data-Sync-Backup)
 
 ### Device-to-Device Sync
 
@@ -222,7 +226,7 @@ Before replacing anything, the app keeps the previous database as a backup. **Se
 
 By default the database lives in the app's private folder. **Settings → Database → Storage location** lets you move it to any folder you pick — for example an SD card or a folder synced by a cloud client.
 
-When you pick an empty folder, the app copies your current data there. When you pick a folder that already holds Tonkatsu Box data, the app switches to that data instead. Either way a restart is required. If the custom folder is missing on startup (unplugged drive, dead network share), the app falls back to the default location instead of failing — Settings shows a warning when that happens.
+When you pick an empty folder, the app copies your current data there. When you pick a folder that already holds Mediabox data, the app switches to that data instead. Either way a restart is required. If the custom folder is missing on startup (unplugged drive, dead network share), the app falls back to the default location instead of failing — Settings shows a warning when that happens.
 
 > [!CAUTION]
 > - Pointing two devices or a cloud client at the **same live folder** is not supported and can corrupt the database. Sync clients copy files while they are being written; SQLite does not survive that.
@@ -252,7 +256,7 @@ When you pick an empty folder, the app copies your current data there. When you 
 | <img src="assets/images/icon_scrapper_color.png" width="28" alt="ScreenScraper"> | Retro media gallery | [ScreenScraper](https://www.screenscraper.fr/) | Required (user account) |
 | <img src="assets/images/ra_logo.png" width="28" alt="RetroAchievements"> | Achievements | [RetroAchievements](https://retroachievements.org/) | Required |
 
-> [API Keys Setup](https://github.com/hacan359/tonkatsu_box/wiki/API-Keys-Setup)
+> [API Keys Setup](https://github.com/basharizwaan61/Tonkatsu_Box/wiki/API-Keys-Setup)
 
 ## Platform Support
 
@@ -272,7 +276,7 @@ When you pick an empty folder, the app copies your current data there. When you 
 
 ## Self-Hosting (Web)
 
-Run Tonkatsu Box as a web app on your own machine or home server. One Docker
+Run Mediabox as a web app on your own machine or home server. One Docker
 container serves the app in the browser and keeps the database on the server,
 so every device on your network works with the same library.
 
@@ -283,8 +287,8 @@ so every device on your network works with the same library.
 ### Install and run
 
 ```bash
-git clone https://github.com/hacan359/tonkatsu_box.git
-cd tonkatsu_box
+git clone https://github.com/basharizwaan61/Tonkatsu_Box.git
+cd Tonkatsu_Box
 docker compose up -d --build
 ```
 
@@ -364,15 +368,15 @@ requirement.
 
 ## Documentation
 
-- [**Wiki**](https://github.com/hacan359/tonkatsu_box/wiki) — user guides & FAQ
+- [**Wiki**](https://github.com/basharizwaan61/Tonkatsu_Box/wiki) — user guides & FAQ
 - [**Changelog**](CHANGELOG.md) — version history
 - [**Custom cards import**](docs/CUSTOM_CARDS_IMPORT.md) — JSON/CSV file format and source lookup rules
 
 ## Building from Source
 
 ```bash
-git clone https://github.com/hacan359/tonkatsu_box.git
-cd tonkatsu_box
+git clone https://github.com/basharizwaan61/Tonkatsu_Box.git
+cd Tonkatsu_Box
 flutter pub get
 flutter run -d windows  # or linux / macos / android
 ```
@@ -382,11 +386,19 @@ Requires Flutter 3.38+ / Dart 3.10+. See [CONTRIBUTING.md](docs/CONTRIBUTING.md)
 ## Community
 
 - [Discord](https://discord.gg/JZVNPF7cS2) — chat & support
-- [Issues](https://github.com/hacan359/tonkatsu_box/issues) — bug reports
+- [Issues](https://github.com/basharizwaan61/Tonkatsu_Box/issues) — bug reports
 
 ## Contributing
 
 Contributions welcome! See [CONTRIBUTING.md](docs/CONTRIBUTING.md) for build instructions, code style, and PR guidelines.
+
+## Upstream
+
+Mediabox is an independently maintained fork of
+[Tonkatsu Box](https://github.com/hacan359/tonkatsu_box) by
+[hacan359](https://github.com/hacan359), released under the MIT license. The
+original project remains the source of this codebase — see [LICENSE](LICENSE)
+for the full terms.
 
 ## Credits
 

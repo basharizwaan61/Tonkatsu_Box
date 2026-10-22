@@ -59,6 +59,7 @@ class ItemDetailMediaConfig {
       MediaType.book => item.book?.externalUrl,
       MediaType.audio => item.audioItem?.externalUrl,
       MediaType.custom => item.customMedia?.externalUrl,
+      MediaType.character => item.character?.externalUrl,
     };
 
     return ItemDetailMediaConfig(
@@ -140,6 +141,7 @@ String _typeLabel(CollectionItem item, BuildContext context) {
     // identity line, not a chip lost among the metadata.
     MediaType.audio => item.audioItem?.artistsString ?? l.mediaTypeAudio,
     MediaType.custom => item.customMedia?.platformName ?? l.mediaTypeCustom,
+    MediaType.character => item.character?.franchise ?? l.mediaTypeCharacter,
   };
 }
 

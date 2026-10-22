@@ -4,13 +4,13 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:core/models/anime.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:tonkatsu_box/core/api/anilist_api.dart';
-import 'package:tonkatsu_box/features/search/filters/anilist_studio_filter.dart';
-import 'package:tonkatsu_box/features/search/models/common_filter.dart';
-import 'package:tonkatsu_box/features/search/models/search_source.dart';
-import 'package:tonkatsu_box/features/search/providers/browse_provider.dart';
-import 'package:tonkatsu_box/features/search/sources/search_sources.dart';
-import 'package:tonkatsu_box/features/settings/providers/settings_provider.dart';
+import 'package:mediabox/core/api/anilist_api.dart';
+import 'package:mediabox/features/search/filters/anilist_studio_filter.dart';
+import 'package:mediabox/features/search/models/common_filter.dart';
+import 'package:mediabox/features/search/models/search_source.dart';
+import 'package:mediabox/features/search/providers/browse_provider.dart';
+import 'package:mediabox/features/search/sources/search_sources.dart';
+import 'package:mediabox/features/settings/providers/settings_provider.dart';
 
 import '../../../helpers/test_helpers.dart';
 

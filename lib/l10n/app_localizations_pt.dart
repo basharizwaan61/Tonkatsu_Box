@@ -9,7 +9,7 @@ class SPt extends S {
   SPt([String locale = 'pt']) : super(locale);
 
   @override
-  String get appName => 'Tonkatsu Box';
+  String get appName => 'Mediabox';
 
   @override
   String get navMain => 'Início';
@@ -174,6 +174,27 @@ class SPt extends S {
 
   @override
   String get mediaTypeCustom => 'Personalizado';
+
+  @override
+  String get mediaTypeCharacter => 'Character';
+
+  @override
+  String get characterAppearsIn => 'Appears in';
+
+  @override
+  String get characterPictures => 'Pictures';
+
+  @override
+  String get characterAddPicture => 'Add picture';
+
+  @override
+  String get characterPictureUrl => 'Image URL';
+
+  @override
+  String get characterPictureCaption => 'Caption (optional)';
+
+  @override
+  String get characterPictureRemove => 'Remove picture';
 
   @override
   String get sortManualDisplay => 'Manual';
@@ -562,8 +583,7 @@ class SPt extends S {
   String get settingsWelcomeGuide => 'Guia de boas-vindas';
 
   @override
-  String get settingsWelcomeGuideSubtitle =>
-      'Primeiros passos com o Tonkatsu Box';
+  String get settingsWelcomeGuideSubtitle => 'Primeiros passos com o Mediabox';
 
   @override
   String get settingsAbout => 'Sobre';
@@ -757,7 +777,7 @@ class SPt extends S {
   String get credentialsTitle => 'Credenciais';
 
   @override
-  String get credentialsWelcome => 'Bem-vindo ao Tonkatsu Box!';
+  String get credentialsWelcome => 'Bem-vindo ao Mediabox!';
 
   @override
   String get credentialsWelcomeHint =>
@@ -1130,7 +1150,7 @@ class SPt extends S {
 
   @override
   String get storageLocationPermissionMessage =>
-      'O Android exige a permissão \"Acesso a todos os arquivos\" para uma pasta de dados personalizada. Na lista que abrir, encontre o Tonkatsu Box, ative o acesso e volte para escolher a pasta novamente.';
+      'O Android exige a permissão \"Acesso a todos os arquivos\" para uma pasta de dados personalizada. Na lista que abrir, encontre o Mediabox, ative o acesso e volte para escolher a pasta novamente.';
 
   @override
   String get storageLocationLegacyPermissionMessage =>
@@ -1563,7 +1583,7 @@ class SPt extends S {
 
   @override
   String get creditsOpenSourceDesc =>
-      'Tonkatsu Box é software livre e de código aberto, publicado sob a licença MIT.';
+      'Mediabox é software livre e de código aberto, publicado sob a licença MIT.';
 
   @override
   String get creditsViewLicenses => 'Ver licenças de código aberto';
@@ -2087,6 +2107,9 @@ class SPt extends S {
   String get collectionFilterBooks => 'Livros';
 
   @override
+  String get collectionFilterCharacters => 'Characters';
+
+  @override
   String get searchHint => 'Buscar...';
 
   @override
@@ -2475,6 +2498,22 @@ class SPt extends S {
 
   @override
   String get searchHintMusic => 'Buscar álbuns...';
+
+  @override
+  String get searchHintCharacters => 'Search characters...';
+
+  @override
+  String get settingsFandomWiki => 'Fandom wiki';
+
+  @override
+  String get settingsFandomWikiSubtitle =>
+      'Which wiki the character search reads';
+
+  @override
+  String get settingsFandomWikiCustom => 'Custom wiki...';
+
+  @override
+  String get settingsFandomWikiCustomHint => 'e.g. naruto, or any wiki name';
 
   @override
   String get musicFilterAlbumsDefault => 'Álbuns';
@@ -2873,7 +2912,7 @@ class SPt extends S {
       'Selecione o idioma da interface do app';
 
   @override
-  String get welcomeTitle => 'Bem-vindo ao Tonkatsu Box';
+  String get welcomeTitle => 'Bem-vindo ao Mediabox';
 
   @override
   String get welcomeSubtitle =>
@@ -4744,7 +4783,7 @@ class SPt extends S {
 
   @override
   String get kodiEnableSyncActiveSubtitle =>
-      'Ativa enquanto o Tonkatsu estiver em execução';
+      'Ativa enquanto o Mediabox estiver em execução';
 
   @override
   String get kodiEnableSyncDisabledSubtitle =>
@@ -5125,7 +5164,7 @@ class SPt extends S {
   String get moodGridCreateTitle => 'Novo Mood Grid';
 
   @override
-  String get moodGridPresetAboutMe => 'Sobre mim: Tonkatsu Box';
+  String get moodGridPresetAboutMe => 'Sobre mim: Mediabox';
 
   @override
   String get moodGridPresetAboutMeSubtitle =>

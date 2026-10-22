@@ -2,7 +2,7 @@
 
 # 📦 Collection File Formats
 
-Tonkatsu Box supports two file formats for sharing collections.
+Mediabox supports two file formats for sharing collections.
 
 ## Formats Overview
 

@@ -1,8 +1,8 @@
 import 'package:core/models/media_type.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/l10n/app_localizations.dart';
-import 'package:tonkatsu_box/l10n/app_localizations_ru.dart';
-import 'package:tonkatsu_box/shared/constants/collection_item_ui.dart';
+import 'package:mediabox/l10n/app_localizations.dart';
+import 'package:mediabox/l10n/app_localizations_ru.dart';
+import 'package:mediabox/shared/constants/collection_item_ui.dart';
 
 import '../../helpers/test_helpers.dart';
 

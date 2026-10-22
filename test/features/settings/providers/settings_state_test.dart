@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/features/settings/providers/settings_provider.dart';
-import 'package:tonkatsu_box/shared/constants/api_defaults.dart';
+import 'package:mediabox/features/settings/providers/settings_provider.dart';
+import 'package:mediabox/shared/constants/api_defaults.dart';
 
 void main() {
   group('SettingsKeys', () {

@@ -86,6 +86,10 @@ class StorageRoot {
     final Future<String> Function()? override = defaultPathProvider;
     if (override != null) return override();
 
+    // The data root folder keeps the upstream name on purpose: it is where
+    // every existing installation already keeps its library, profiles, covers
+    // and image cache. Renaming it would orphan all of it. Rebrand the folder
+    // only together with a migration that relocates the old one.
     const String folderName =
         kReleaseMode ? 'tonkatsu_box' : 'tonkatsu_box_dev';
 

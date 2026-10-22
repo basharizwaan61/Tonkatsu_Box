@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/core/services/whats_new_service.dart';
-import 'package:tonkatsu_box/shared/widgets/mini_markdown_text.dart';
-import 'package:tonkatsu_box/shared/widgets/whats_new_dialog.dart';
+import 'package:mediabox/core/services/whats_new_service.dart';
+import 'package:mediabox/shared/widgets/mini_markdown_text.dart';
+import 'package:mediabox/shared/widgets/whats_new_dialog.dart';
 
 import '../../helpers/test_helpers.dart';
 

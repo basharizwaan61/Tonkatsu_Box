@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'data_source.dart';
 import 'exportable.dart';
 import 'image_type.dart';
@@ -7,6 +9,8 @@ import '../utils/cover_image_id.dart' as cover_id;
 import 'audio_item.dart';
 import 'audio_kind.dart';
 import 'book.dart';
+import 'character.dart';
+import 'character_image.dart';
 import 'custom_media.dart';
 import 'game.dart';
 import 'item_status.dart';
@@ -33,6 +37,7 @@ class CollectionItem with Exportable {
     this.lastActivityAt,
     this.platformId,
     this.source,
+    this.sourceVariant,
     this.tagId,
     this.currentSeason = 0,
     this.currentEpisode = 0,
@@ -44,6 +49,7 @@ class CollectionItem with Exportable {
     this.userRating,
     this.overrideName,
     this.overrideCoverUrl,
+    this.characterImages = const <CharacterImage>[],
     this.isFavorite = false,
     this.game,
     this.movie,
@@ -54,6 +60,7 @@ class CollectionItem with Exportable {
     this.book,
     this.audioItem,
     this.customMedia,
+    this.character,
     this.platform,
   });
 
@@ -74,17 +81,26 @@ class CollectionItem with Exportable {
     Book? book,
     AudioItem? audioItem,
     CustomMedia? customMedia,
+    Character? character,
     Platform? platform,
   }) {
+    // The variant narrows the source to one of its sub-scopes — the wiki a
+    // Fandom character came from. A null column stays null: the type's
+    // default source fills in later, and writing one would change the
+    // identity of legacy rows.
+    final String? rawSource = row['source'] as String?;
+    final MediaType mediaType =
+        MediaType.fromString(row['media_type'] as String);
     return CollectionItem(
       id: row['id'] as int,
       collectionId: row['collection_id'] as int?,
-      mediaType: MediaType.fromString(row['media_type'] as String),
+      mediaType: mediaType,
       externalId: row['external_id'] as int,
       platformId: row['platform_id'] as int?,
-      source: row['source'] != null
-          ? DataSource.fromName(row['source'] as String?)
-          : null,
+      source: rawSource == null
+          ? null
+          : DataSource.fromNameOr(rawSource, mediaType.defaultSource),
+      sourceVariant: row['source_variant'] as String?,
       tagId: row['tag_id'] as int?,
       currentSeason: (row['current_season'] as int?) ?? 0,
       currentEpisode: (row['current_episode'] as int?) ?? 0,
@@ -97,6 +113,7 @@ class CollectionItem with Exportable {
       userRating: (row['user_rating'] as num?)?.toDouble(),
       overrideName: row['override_name'] as String?,
       overrideCoverUrl: row['override_cover_url'] as String?,
+      characterImages: _parseCharacterImages(row['character_images']),
       isFavorite: (row['is_favorite'] as int?) == 1,
       addedAt: DateTime.fromMillisecondsSinceEpoch(
         (row['added_at'] as int) * 1000,
@@ -125,6 +142,7 @@ class CollectionItem with Exportable {
       book: book,
       audioItem: audioItem,
       customMedia: customMedia,
+      character: character,
       platform: platform,
     );
   }
@@ -135,15 +153,19 @@ class CollectionItem with Exportable {
     int? collectionId,
     DateTime? addedAt,
   }) {
+    final String? rawSource = json['source'] as String?;
+    final MediaType mediaType =
+        MediaType.fromString(json['media_type'] as String);
     return CollectionItem(
       id: id,
       collectionId: collectionId,
-      mediaType: MediaType.fromString(json['media_type'] as String),
+      mediaType: mediaType,
       externalId: json['external_id'] as int,
       platformId: json['platform_id'] as int?,
-      source: json['source'] != null
-          ? DataSource.fromName(json['source'] as String?)
-          : null,
+      source: rawSource == null
+          ? null
+          : DataSource.fromNameOr(rawSource, mediaType.defaultSource),
+      sourceVariant: json['source_variant'] as String?,
       currentSeason: (json['current_season'] as int?) ?? 0,
       currentEpisode: (json['current_episode'] as int?) ?? 0,
       timeSpentMinutes: (json['time_spent_minutes'] as int?) ?? 0,
@@ -156,6 +178,7 @@ class CollectionItem with Exportable {
       userRating: (json['user_rating'] as num?)?.toDouble(),
       overrideName: json['override_name'] as String?,
       overrideCoverUrl: json['override_cover_url'] as String?,
+      characterImages: _parseCharacterImages(json['character_images']),
       isFavorite: (json['is_favorite'] as int?) == 1,
       sortOrder: (json['sort_order'] as int?) ?? 0,
       addedAt: json['added_at'] != null
@@ -203,6 +226,10 @@ class CollectionItem with Exportable {
   /// manga identity so one `external_id` from two providers stays distinct.
   final DataSource? source;
 
+  /// Narrows [source] to a sub-scope of it — the wiki a Fandom character came
+  /// from. Only characters carry one; every other type leaves it null.
+  final String? sourceVariant;
+
   /// Optional grouping tag inside a collection.
   final int? tagId;
 
@@ -239,6 +266,10 @@ class CollectionItem with Exportable {
   /// `local://cover/<token>` marker. `null` shows the joined media's cover.
   final String? overrideCoverUrl;
 
+  /// Pictures the user attached to a character — stills, wallpapers, portraits
+  /// from anywhere online. Only a [MediaType.character] item carries them.
+  final List<CharacterImage> characterImages;
+
   /// User-set favorite flag. Per-item and per-collection: the same title in
   /// two collections has independent flags.
   final bool isFavorite;
@@ -259,6 +290,9 @@ class CollectionItem with Exportable {
   final Book? book;
   final AudioItem? audioItem;
   final CustomMedia? customMedia;
+
+  /// Character metadata, joined for a [MediaType.character] item.
+  final Character? character;
 
   /// Joined platform metadata for games / animation.
   final Platform? platform;
@@ -486,6 +520,24 @@ class CollectionItem with Exportable {
           source: DataSource.local,
           imageType: ImageType.customCover,
         );
+      case MediaType.character:
+        return (
+          name: character?.name,
+          coverUrl: character?.imageUrl,
+          thumbUrl: character?.imageUrl,
+          description: character?.description,
+          rating: null,
+          formattedRating: null,
+          releaseYear: null,
+          runtime: null,
+          totalSeasons: null,
+          totalEpisodes: null,
+          genresString: character?.aliasesString,
+          genres: character?.aliases,
+          mediaStatus: null,
+          source: character?.source ?? source ?? DataSource.fandom,
+          imageType: ImageType.characterCover,
+        );
     }
   }
 
@@ -505,6 +557,7 @@ class CollectionItem with Exportable {
           ? 'Unknown Podcast'
           : 'Unknown Album',
       MediaType.custom => 'Unknown Custom Item',
+      MediaType.character => 'Unknown Character',
     };
     return overrideName ?? _resolvedMedia.name ?? fallback;
   }
@@ -560,7 +613,8 @@ class CollectionItem with Exportable {
         MediaType.manga ||
         MediaType.book ||
         MediaType.audio ||
-        MediaType.custom =>
+        MediaType.custom ||
+        MediaType.character =>
           false,
       };
 
@@ -579,6 +633,7 @@ class CollectionItem with Exportable {
         MediaType.book => book?.externalUrl,
         MediaType.audio => audioItem?.externalUrl,
         MediaType.custom => customMedia?.externalUrl,
+        MediaType.character => character?.externalUrl,
       };
 
   /// A masquerading custom item shows under both its display type and Custom —
@@ -744,6 +799,13 @@ class CollectionItem with Exportable {
       ...?customMedia?.genreList,
       customMedia?.platformName,
       customMedia?.format,
+      ...?character?.aliases,
+      character?.franchise,
+      character?.species,
+      character?.gender,
+      character?.affiliation,
+      character?.publisher,
+      character?.alignment,
       releaseYear?.toString(),
     ];
     return <String>[
@@ -772,6 +834,7 @@ class CollectionItem with Exportable {
         mediaType: mediaType,
         externalId: externalId,
         source: source,
+        sourceVariant: sourceVariant,
         coverUrl: _resolvedMedia.thumbUrl,
       );
 
@@ -784,7 +847,24 @@ class CollectionItem with Exportable {
         'status', 'current_season', 'current_episode',
         'tag_id', 'time_spent_minutes', 'override_name',
         'override_cover_url', 'is_favorite', 'rewatch_count',
+        'character_images',
       };
+
+  /// The user's own pictures, stored as a JSON array so a column carries
+  /// them all. A malformed value reads as no pictures rather than an error.
+  static List<CharacterImage> _parseCharacterImages(Object? raw) {
+    if (raw is! String || raw.isEmpty) return const <CharacterImage>[];
+    try {
+      final List<dynamic> decoded = jsonDecode(raw) as List<dynamic>;
+      return decoded
+          .whereType<Map<String, dynamic>>()
+          .map(CharacterImage.fromJson)
+          .where((CharacterImage i) => i.url.isNotEmpty)
+          .toList();
+    } on FormatException {
+      return const <CharacterImage>[];
+    }
+  }
 
   @override
   Map<String, String> get dbToExportKeyMapping =>
@@ -799,6 +879,7 @@ class CollectionItem with Exportable {
       'external_id': externalId,
       'platform_id': platformId,
       'source': source?.name,
+      'source_variant': sourceVariant,
       'tag_id': tagId,
       'current_season': currentSeason,
       'current_episode': currentEpisode,
@@ -810,6 +891,11 @@ class CollectionItem with Exportable {
       'rewatch_count': rewatchCount,
       'override_name': overrideName,
       'override_cover_url': overrideCoverUrl,
+      'character_images': characterImages.isEmpty
+          ? null
+          : jsonEncode(
+              characterImages.map((CharacterImage i) => i.toJson()).toList(),
+            ),
       'is_favorite': isFavorite ? 1 : 0,
       'added_at': addedAt.millisecondsSinceEpoch ~/ 1000,
       'sort_order': sortOrder,
@@ -847,9 +933,14 @@ class CollectionItem with Exportable {
       'native_id': ?exportNativeId,
       'platform_id': platformId,
       'source': source?.name,
+      'source_variant': sourceVariant,
       'comment': authorComment,
       'user_rating': userRating,
       if (includeCoverOverride) 'override_cover_url': ?overrideCoverUrl,
+      if (characterImages.isNotEmpty)
+        'character_images': jsonEncode(
+          characterImages.map((CharacterImage i) => i.toJson()).toList(),
+        ),
     };
     if (includeUserData) {
       if (overrideName != null) {
@@ -885,6 +976,7 @@ class CollectionItem with Exportable {
     int? externalId,
     int? platformId,
     DataSource? source,
+    String? sourceVariant,
     int? tagId,
     bool clearTagId = false,
     int? currentSeason,
@@ -904,6 +996,7 @@ class CollectionItem with Exportable {
     bool clearOverrideName = false,
     String? overrideCoverUrl,
     bool clearOverrideCoverUrl = false,
+    List<CharacterImage>? characterImages,
     bool? isFavorite,
     DateTime? addedAt,
     DateTime? startedAt,
@@ -920,6 +1013,7 @@ class CollectionItem with Exportable {
     Book? book,
     AudioItem? audioItem,
     CustomMedia? customMedia,
+    Character? character,
     Platform? platform,
   }) {
     return CollectionItem(
@@ -948,6 +1042,7 @@ class CollectionItem with Exportable {
       overrideCoverUrl: clearOverrideCoverUrl
           ? null
           : (overrideCoverUrl ?? this.overrideCoverUrl),
+      characterImages: characterImages ?? this.characterImages,
       isFavorite: isFavorite ?? this.isFavorite,
       addedAt: addedAt ?? this.addedAt,
       startedAt: clearStartedAt ? null : (startedAt ?? this.startedAt),
@@ -962,6 +1057,7 @@ class CollectionItem with Exportable {
       book: book ?? this.book,
       audioItem: audioItem ?? this.audioItem,
       customMedia: customMedia ?? this.customMedia,
+      character: character ?? this.character,
       platform: platform ?? this.platform,
     );
   }

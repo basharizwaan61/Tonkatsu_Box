@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/core/api/screenscraper_api.dart';
-import 'package:tonkatsu_box/features/collections/widgets/screenscraper_gallery_section.dart';
-import 'package:tonkatsu_box/shared/constants/platform_features.dart';
+import 'package:mediabox/core/api/screenscraper_api.dart';
+import 'package:mediabox/features/collections/widgets/screenscraper_gallery_section.dart';
+import 'package:mediabox/shared/constants/platform_features.dart';
 
 const SsMedia _screenshot = SsMedia(
   type: 'ss',

@@ -5,10 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:tonkatsu_box/core/api/fantlab_api.dart';
-import 'package:tonkatsu_box/features/collections/providers/collections_provider.dart';
-import 'package:tonkatsu_box/features/collections/widgets/book_similars_section.dart';
-import 'package:tonkatsu_box/l10n/app_localizations.dart';
+import 'package:mediabox/core/api/fantlab_api.dart';
+import 'package:mediabox/features/collections/providers/collections_provider.dart';
+import 'package:mediabox/features/collections/widgets/book_similars_section.dart';
+import 'package:mediabox/l10n/app_localizations.dart';
 
 import '../../../helpers/test_helpers.dart';
 

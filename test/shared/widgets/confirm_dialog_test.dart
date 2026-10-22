@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/l10n/app_localizations.dart';
-import 'package:tonkatsu_box/shared/widgets/confirm_dialog.dart';
+import 'package:mediabox/l10n/app_localizations.dart';
+import 'package:mediabox/shared/widgets/confirm_dialog.dart';
 
 void main() {
   group('ConfirmDialog', () {

@@ -9,15 +9,15 @@ import 'package:core/models/tv_show.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/core/api/api_error_extract.dart';
-import 'package:tonkatsu_box/features/search/widgets/source_error_strip.dart';
+import 'package:mediabox/core/api/api_error_extract.dart';
+import 'package:mediabox/features/search/widgets/source_error_strip.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:tonkatsu_box/features/collections/providers/collections_provider.dart';
-import 'package:tonkatsu_box/features/search/providers/browse_provider.dart';
-import 'package:tonkatsu_box/features/search/widgets/browse_grid.dart';
-import 'package:tonkatsu_box/features/settings/providers/settings_provider.dart';
-import 'package:tonkatsu_box/l10n/app_localizations.dart';
-import 'package:tonkatsu_box/shared/widgets/media_poster_card.dart';
+import 'package:mediabox/features/collections/providers/collections_provider.dart';
+import 'package:mediabox/features/search/providers/browse_provider.dart';
+import 'package:mediabox/features/search/widgets/browse_grid.dart';
+import 'package:mediabox/features/settings/providers/settings_provider.dart';
+import 'package:mediabox/l10n/app_localizations.dart';
+import 'package:mediabox/shared/widgets/media_poster_card.dart';
 
 void main() {
   late SharedPreferences prefs;
@@ -54,6 +54,9 @@ void main() {
         (Ref ref) async => const <int, List<CollectedItemInfo>>{},
       ),
       collectedAudioIdsProvider.overrideWith(
+        (Ref ref) async => const <int, List<CollectedItemInfo>>{},
+      ),
+      collectedCharacterIdsProvider.overrideWith(
         (Ref ref) async => const <int, List<CollectedItemInfo>>{},
       ),
     ];
@@ -93,6 +96,9 @@ void main() {
       collectedAnimeIdsProvider.overrideWith((Ref ref) async => animes),
       collectedBookIdsProvider.overrideWith((Ref ref) async => books),
       collectedAudioIdsProvider.overrideWith((Ref ref) async => albums),
+      collectedCharacterIdsProvider.overrideWith(
+        (Ref ref) async => const <int, List<CollectedItemInfo>>{},
+      ),
     ];
   }
 

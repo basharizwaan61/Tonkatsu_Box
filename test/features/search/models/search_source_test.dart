@@ -3,7 +3,7 @@ import 'package:core/models/media_type.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/features/search/models/search_source.dart';
+import 'package:mediabox/features/search/models/search_source.dart';
 
 void main() {
   group('FilterOption', () {

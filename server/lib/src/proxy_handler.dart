@@ -117,10 +117,22 @@ class ApiProxy {
           return _error(HttpStatus.serviceUnavailable, e.message);
         }
 
+        // A family upstream names its member in the path: `/proxy/fandom/marvel/…`
+        // forwards to `https://marvel.fandom.com/…`.
+        final String? member = target.family && segments.length > 2
+            ? segments[2].toLowerCase()
+            : null;
+        if (target.family && !_isValidMember(member)) {
+          return _error(
+            HttpStatus.notFound,
+            'Unknown ${target.slug} member "${segments.length > 2 ? segments[2] : ''}"',
+          );
+        }
+
         final Uri url = Uri(
           scheme: 'https',
-          host: target.host,
-          pathSegments: segments.skip(2),
+          host: member == null ? target.host : '$member.${target.host}',
+          pathSegments: member == null ? segments.skip(2) : segments.skip(3),
           queryParameters: query.isEmpty ? null : query,
         );
 
@@ -216,7 +228,10 @@ class ApiProxy {
         }
       // Keyless: the proxy is still the only way there from a browser.
       case ProxyTarget.anilist:
+      case ProxyTarget.disney:
+      case ProxyTarget.fandom:
       case ProxyTarget.fantlab:
+      case ProxyTarget.jikan:
       case ProxyTarget.kitsu:
       case ProxyTarget.listenbrainz:
       case ProxyTarget.mangabaka:
@@ -224,12 +239,22 @@ class ApiProxy {
       case ProxyTarget.musicbrainz:
       case ProxyTarget.openlibrary:
       case ProxyTarget.steam:
+      // The SuperHero token travels in the path, not in a header the server
+      // would have to attach.
+      case ProxyTarget.superhero:
       case ProxyTarget.tvmaze:
       case ProxyTarget.vndb:
+      case ProxyTarget.wikidata:
+      case ProxyTarget.wikipedia:
         break;
     }
     return body;
   }
+
+  /// A family member is a wiki slug — it becomes a host label, so only plain
+  /// lower-case words may pass.
+  static bool _isValidMember(String? member) =>
+      member != null && RegExp(r'^[a-z0-9][a-z0-9-]*$').hasMatch(member);
 
   /// TheTVDB logins are a JWT valid for about a month; a day of cache keeps
   /// one login per boot instead of one per request.

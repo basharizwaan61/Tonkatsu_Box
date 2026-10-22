@@ -9,7 +9,7 @@ class SRu extends S {
   SRu([String locale = 'ru']) : super(locale);
 
   @override
-  String get appName => 'Tonkatsu Box';
+  String get appName => 'Mediabox';
 
   @override
   String get navMain => 'Главная';
@@ -174,6 +174,27 @@ class SRu extends S {
 
   @override
   String get mediaTypeCustom => 'Своё';
+
+  @override
+  String get mediaTypeCharacter => 'Character';
+
+  @override
+  String get characterAppearsIn => 'Appears in';
+
+  @override
+  String get characterPictures => 'Pictures';
+
+  @override
+  String get characterAddPicture => 'Add picture';
+
+  @override
+  String get characterPictureUrl => 'Image URL';
+
+  @override
+  String get characterPictureCaption => 'Caption (optional)';
+
+  @override
+  String get characterPictureRemove => 'Remove picture';
 
   @override
   String get sortManualDisplay => 'Вручную';
@@ -573,7 +594,7 @@ class SRu extends S {
   String get settingsWelcomeGuide => 'Вводный тур';
 
   @override
-  String get settingsWelcomeGuideSubtitle => 'Знакомство с Tonkatsu Box';
+  String get settingsWelcomeGuideSubtitle => 'Знакомство с Mediabox';
 
   @override
   String get settingsAbout => 'О приложении';
@@ -762,7 +783,7 @@ class SRu extends S {
   String get credentialsTitle => 'Учётные данные';
 
   @override
-  String get credentialsWelcome => 'Добро пожаловать в Tonkatsu Box!';
+  String get credentialsWelcome => 'Добро пожаловать в Mediabox!';
 
   @override
   String get credentialsWelcomeHint =>
@@ -1129,7 +1150,7 @@ class SRu extends S {
 
   @override
   String get storageLocationPermissionMessage =>
-      'Для своей папки Android требует разрешение «Доступ ко всем файлам». В открывшемся списке найдите Tonkatsu Box, включите доступ, затем вернитесь и выберите папку ещё раз.';
+      'Для своей папки Android требует разрешение «Доступ ко всем файлам». В открывшемся списке найдите Mediabox, включите доступ, затем вернитесь и выберите папку ещё раз.';
 
   @override
   String get storageLocationLegacyPermissionMessage =>
@@ -1563,7 +1584,7 @@ class SRu extends S {
 
   @override
   String get creditsOpenSourceDesc =>
-      'Tonkatsu Box — бесплатное ПО с открытым исходным кодом, распространяемое под лицензией MIT.';
+      'Mediabox — бесплатное ПО с открытым исходным кодом, распространяемое под лицензией MIT.';
 
   @override
   String get creditsViewLicenses => 'Посмотреть лицензии';
@@ -2100,6 +2121,9 @@ class SRu extends S {
   String get collectionFilterBooks => 'Книги';
 
   @override
+  String get collectionFilterCharacters => 'Characters';
+
+  @override
   String get searchHint => 'Поиск...';
 
   @override
@@ -2489,6 +2513,22 @@ class SRu extends S {
 
   @override
   String get searchHintMusic => 'Поиск альбомов...';
+
+  @override
+  String get searchHintCharacters => 'Search characters...';
+
+  @override
+  String get settingsFandomWiki => 'Fandom wiki';
+
+  @override
+  String get settingsFandomWikiSubtitle =>
+      'Which wiki the character search reads';
+
+  @override
+  String get settingsFandomWikiCustom => 'Custom wiki...';
+
+  @override
+  String get settingsFandomWikiCustomHint => 'e.g. naruto, or any wiki name';
 
   @override
   String get musicFilterAlbumsDefault => 'Альбомы';
@@ -2900,7 +2940,7 @@ class SRu extends S {
   String get welcomeLanguageSubtitle => 'Язык интерфейса приложения';
 
   @override
-  String get welcomeTitle => 'Добро пожаловать в Tonkatsu Box';
+  String get welcomeTitle => 'Добро пожаловать в Mediabox';
 
   @override
   String get welcomeSubtitle =>
@@ -5165,7 +5205,7 @@ class SRu extends S {
   String get moodGridCreateTitle => 'Новая mood-сетка';
 
   @override
-  String get moodGridPresetAboutMe => 'About Me: Tonkatsu Box';
+  String get moodGridPresetAboutMe => 'About Me: Mediabox';
 
   @override
   String get moodGridPresetAboutMeSubtitle =>

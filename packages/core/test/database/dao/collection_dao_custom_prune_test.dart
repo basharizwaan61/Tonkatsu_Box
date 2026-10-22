@@ -1,6 +1,7 @@
 import 'package:core/database/dao/audio_dao.dart';
 import 'package:core/database/dao/anime_dao.dart';
 import 'package:core/database/dao/book_dao.dart';
+import 'package:core/database/dao/character_dao.dart';
 import 'package:core/database/dao/collection_dao.dart';
 import 'package:core/database/dao/custom_media_dao.dart';
 import 'package:core/database/dao/game_dao.dart';
@@ -47,6 +48,7 @@ void main() {
       bookDao: BookDao(getDb),
       audioDao: AudioDao(getDb),
       customMediaDao: CustomMediaDao(getDb),
+      characterDao: CharacterDao(getDb),
     );
     for (final int id in <int>[1, 2]) {
       await db.insert('collections', <String, Object?>{

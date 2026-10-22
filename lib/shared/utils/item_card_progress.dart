@@ -51,6 +51,7 @@ ItemCardProgress? itemCardProgress(CollectionItem item) {
       // Music progress lives in listened_tracks, not the flat counter.
       case MediaType.audio:
       case MediaType.custom:
+      case MediaType.character:
         return null;
     }
   }

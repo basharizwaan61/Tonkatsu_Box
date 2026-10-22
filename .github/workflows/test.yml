@@ -77,7 +77,7 @@ jobs:
       # App tests still exercise core (DAOs, migrations), so both reports carry
       # core lines and have to be unioned, not concatenated.
       - name: Run tests with coverage
-        run: flutter test --coverage --coverage-package='tonkatsu_box|core'
+        run: flutter test --coverage --coverage-package='mediabox|core'
 
       # The selfhost server ships separately from the app bundle, so its lines
       # stay out of the app coverage report.
@@ -132,13 +132,15 @@ jobs:
       # Writes the coverage % to a public Gist; shields.io renders the README
       # badge from it. Requires repo secret GIST_TOKEN (PAT with `gist` scope)
       # and the real Gist id below.
+      # NOTE: the gist id still points at the upstream project's gist — replace
+      # it with this repository's own gist before the badge is meaningful.
       - name: Update coverage badge
         if: github.event_name == 'push'
         uses: schneegans/dynamic-badges-action@v1.7.0
         with:
           auth: ${{ secrets.GIST_TOKEN }}
           gistID: 7ed48e87a6bd59afeb08eaf656fd2adb
-          filename: tonkatsu-box-coverage.json
+          filename: mediabox-coverage.json
           label: coverage
           message: ${{ steps.cov.outputs.pct }}%
           valColorRange: ${{ steps.cov.outputs.pct }}

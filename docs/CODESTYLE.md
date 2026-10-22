@@ -1,6 +1,6 @@
-# Tonkatsu Box Coding Standards
+# Mediabox Coding Standards
 
-Mandatory rules for all code in the Tonkatsu Box project. `analysis_options.yaml` is the source of truth — this document explains intent and highlights load-bearing rules; for the full list, read the file.
+Mandatory rules for all code in the Mediabox project. `analysis_options.yaml` is the source of truth — this document explains intent and highlights load-bearing rules; for the full list, read the file.
 
 ---
 

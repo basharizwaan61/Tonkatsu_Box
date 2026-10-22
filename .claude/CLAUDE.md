@@ -1,4 +1,4 @@
-# Tonkatsu Box — project rules
+# Mediabox — project rules
 
 ## Language
 
@@ -28,7 +28,7 @@ powershell.exe -Command "cd '$(wslpath -w "$PWD")'; flutter run -d windows"
 ```
 
 `flutter.bat` goes through cmd, which eats an unquoted `|`. For arguments
-containing one (e.g. `--coverage-package="tonkatsu_box|core"`) write a `.ps1`
+containing one (e.g. `--coverage-package="mediabox|core"`) write a `.ps1`
 and use PowerShell's `--%` stop-parsing token.
 
 ### Workspace layout
@@ -55,14 +55,14 @@ dart pub get --directory server
 
 Coverage has the same trap: `flutter test --coverage` defaults
 `--coverage-package` to the current package only, silently dropping every
-`packages/core` line. Always pass `--coverage-package='tonkatsu_box|core'`.
+`packages/core` line. Always pass `--coverage-package='mediabox|core'`.
 
 ## Architecture
 
 ```
 lib/
 ├── main.dart              # Entry point, SQLite init, ProviderScope
-├── app.dart               # TonkatsuBoxApp — MaterialApp, dark theme, SplashScreen
+├── app.dart               # MediaboxApp — MaterialApp, dark theme, SplashScreen
 ├── l10n/                  # ARB sources + generated AppLocalizations
 ├── core/
 │   ├── api/               # One client per provider (igdb, tmdb, anilist, kitsu, …)
@@ -352,7 +352,7 @@ After writing any code:
 - Cover every branch (if/else/switch)
 - Cover edge cases (empty lists, null, boundaries)
 - Cover error handling
-- Run `flutter test --coverage --coverage-package='tonkatsu_box|core'`
+- Run `flutter test --coverage --coverage-package='mediabox|core'`
 
 ### 2. Double review
 

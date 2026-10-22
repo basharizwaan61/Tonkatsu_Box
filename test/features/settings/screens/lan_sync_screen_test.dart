@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:tonkatsu_box/core/database/database_service.dart';
-import 'package:tonkatsu_box/core/services/config_service.dart';
-import 'package:tonkatsu_box/core/services/db_sync_service.dart';
-import 'package:tonkatsu_box/core/services/lan_sync_service.dart';
-import 'package:tonkatsu_box/features/settings/screens/lan_sync_screen.dart';
+import 'package:mediabox/core/database/database_service.dart';
+import 'package:mediabox/core/services/config_service.dart';
+import 'package:mediabox/core/services/db_sync_service.dart';
+import 'package:mediabox/core/services/lan_sync_service.dart';
+import 'package:mediabox/features/settings/screens/lan_sync_screen.dart';
 
 import '../../../helpers/test_helpers.dart';
 

@@ -1,7 +1,7 @@
 import 'package:core/models/anime.dart';
 import 'package:core/testing/builders.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/features/showcase/models/showcase_item.dart';
+import 'package:mediabox/features/showcase/models/showcase_item.dart';
 
 void main() {
   group('ShowcaseItem', () {

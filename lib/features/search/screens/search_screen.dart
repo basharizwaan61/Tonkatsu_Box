@@ -220,6 +220,8 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
         collected = await ref.read(collectedAudioIdsProvider.future);
       case MediaType.custom:
         return <CollectedItemInfo>[];
+      case MediaType.character:
+        return <CollectedItemInfo>[];
     }
     // Narrowed by source so the placements match how the card's badge is
     // keyed: by (source, id), not by id alone.

@@ -1,10 +1,10 @@
 import 'package:core/models/media_type.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/features/search/models/common_filter.dart';
-import 'package:tonkatsu_box/features/search/models/search_source.dart';
-import 'package:tonkatsu_box/features/search/sources/search_sources.dart';
-import 'package:tonkatsu_box/l10n/app_localizations.dart';
+import 'package:mediabox/features/search/models/common_filter.dart';
+import 'package:mediabox/features/search/models/search_source.dart';
+import 'package:mediabox/features/search/sources/search_sources.dart';
+import 'package:mediabox/l10n/app_localizations.dart';
 
 import '../../../helpers/test_helpers.dart';
 

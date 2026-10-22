@@ -4,8 +4,8 @@ import 'package:test/test.dart';
 void main() {
   group('MediaType', () {
     group('значения enum', () {
-      test('should contain 10 values', () {
-        expect(MediaType.values.length, 10);
+      test('should contain 11 values', () {
+        expect(MediaType.values.length, 11);
       });
 
       test('should contain game', () {
@@ -53,7 +53,8 @@ void main() {
     });
 
     group('isMultiSource', () {
-      test('true only for manga, anime, tvShow, movie, book and audio', () {
+      test('true only for manga, anime, tvShow, movie, book, audio and character',
+          () {
         for (final MediaType type in MediaType.values) {
           expect(
             type.isMultiSource,
@@ -62,7 +63,8 @@ void main() {
                 type == MediaType.tvShow ||
                 type == MediaType.movie ||
                 type == MediaType.book ||
-                type == MediaType.audio,
+                type == MediaType.audio ||
+                type == MediaType.character,
             reason: type.name,
           );
         }

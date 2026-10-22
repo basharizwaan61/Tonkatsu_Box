@@ -16,14 +16,14 @@ import 'shared/theme/app_theme_id.dart';
 
 /// Root app widget. A top-level [Listener] watches mouse movement to switch
 /// [InputMode] (gamepad ↔ mouse).
-class TonkatsuBoxApp extends ConsumerStatefulWidget {
-  const TonkatsuBoxApp({super.key});
+class MediaboxApp extends ConsumerStatefulWidget {
+  const MediaboxApp({super.key});
 
   @override
-  ConsumerState<TonkatsuBoxApp> createState() => _TonkatsuBoxAppState();
+  ConsumerState<MediaboxApp> createState() => _MediaboxAppState();
 }
 
-class _TonkatsuBoxAppState extends ConsumerState<TonkatsuBoxApp> {
+class _MediaboxAppState extends ConsumerState<MediaboxApp> {
   late final AppLifecycleListener _lifecycleListener;
 
   @override
@@ -71,7 +71,7 @@ class _TonkatsuBoxAppState extends ConsumerState<TonkatsuBoxApp> {
       },
       child: MaterialApp(
         key: ValueKey<AppThemeId>(themeId),
-        title: 'Tonkatsu Box',
+        title: 'Mediabox',
         debugShowCheckedModeBanner: false,
         theme: theme,
         locale: Locale(appLanguage),

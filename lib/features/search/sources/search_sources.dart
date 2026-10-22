@@ -6,10 +6,14 @@ import '../models/search_source.dart';
 import 'anilist_anime_source.dart';
 import 'anilist_manga_source.dart';
 import 'comicvine_source.dart';
+import 'disney_characters_source.dart';
+import 'fandom_characters_source.dart';
 import 'fantlab_source.dart';
 import 'google_books_source.dart';
 import 'hardcover_source.dart';
+import 'igdb_characters_source.dart';
 import 'igdb_games_source.dart';
+import 'jikan_characters_source.dart';
 import 'kitsu_anime_source.dart';
 import 'kitsu_manga_source.dart';
 import 'mangabaka_source.dart';
@@ -17,13 +21,16 @@ import 'mangadex_source.dart';
 import 'musicbrainz_albums_source.dart';
 import 'podcast_index_source.dart';
 import 'openlibrary_source.dart';
+import 'superhero_characters_source.dart';
 import 'tmdb_anime_source.dart';
 import 'tmdb_movies_source.dart';
+import 'tmdb_people_source.dart';
 import 'tmdb_tv_source.dart';
 import 'tvdb_movies_source.dart';
 import 'tvdb_series_source.dart';
 import 'tvmaze_tv_source.dart';
 import 'vndb_source.dart';
+import 'wikidata_characters_source.dart';
 
 /// All registered search sources. List order drives per-type primary /
 /// fallback resolution below; register a new source next to its provider.
@@ -62,6 +69,14 @@ final List<SearchSource> searchSources = List<SearchSource>.unmodifiable(
     // Audio: albums + podcasts
     MusicBrainzAlbumsSource(),
     PodcastIndexSource(),
+    // Characters
+    JikanCharactersSource(),
+    DisneyCharactersSource(),
+    FandomCharactersSource(),
+    WikidataCharactersSource(),
+    TmdbPeopleSource(),
+    SuperHeroCharactersSource(),
+    IgdbCharactersSource(),
   ],
 );
 

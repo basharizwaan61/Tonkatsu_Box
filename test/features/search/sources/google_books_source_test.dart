@@ -1,9 +1,9 @@
 import 'package:core/models/media_type.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/features/search/models/search_source.dart';
-import 'package:tonkatsu_box/features/search/sources/google_books_source.dart';
-import 'package:tonkatsu_box/shared/theme/app_assets.dart';
+import 'package:mediabox/features/search/models/search_source.dart';
+import 'package:mediabox/features/search/sources/google_books_source.dart';
+import 'package:mediabox/shared/theme/app_assets.dart';
 
 void main() {
   group('GoogleBooksSource', () {

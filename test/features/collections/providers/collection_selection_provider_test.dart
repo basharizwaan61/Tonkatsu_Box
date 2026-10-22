@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/features/collections/providers/collection_selection_provider.dart';
+import 'package:mediabox/features/collections/providers/collection_selection_provider.dart';
 
 void main() {
   ProviderContainer makeContainer() {

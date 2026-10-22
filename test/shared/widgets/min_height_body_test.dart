@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/shared/widgets/min_height_body.dart';
+import 'package:mediabox/shared/widgets/min_height_body.dart';
 
 void main() {
   group('MinHeightBody', () {

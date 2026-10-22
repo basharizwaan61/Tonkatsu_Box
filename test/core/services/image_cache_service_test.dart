@@ -5,7 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:path/path.dart' as p;
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:tonkatsu_box/core/services/image_cache_service.dart';
+import 'package:mediabox/core/services/image_cache_service.dart';
 
 import '../../helpers/test_helpers.dart';
 

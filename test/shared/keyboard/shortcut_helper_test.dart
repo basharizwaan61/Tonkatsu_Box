@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/shared/keyboard/shortcut_helper.dart';
+import 'package:mediabox/shared/keyboard/shortcut_helper.dart';
 
 void main() {
   group('wrapWithScreenShortcuts', () {

@@ -2,8 +2,8 @@ import 'dart:ui';
 
 import 'package:core/models/profile.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/shared/constants/profile_ui.dart';
-import 'package:tonkatsu_box/shared/utils/color_hex.dart';
+import 'package:mediabox/shared/constants/profile_ui.dart';
+import 'package:mediabox/shared/utils/color_hex.dart';
 
 import '../../helpers/test_helpers.dart';
 

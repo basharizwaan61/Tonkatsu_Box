@@ -2,10 +2,10 @@ import 'package:core/models/anime.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:tonkatsu_box/core/api/anilist_api.dart';
-import 'package:tonkatsu_box/features/search/filters/anilist_studio_filter.dart';
-import 'package:tonkatsu_box/features/search/models/search_source.dart';
-import 'package:tonkatsu_box/features/search/sources/anilist_anime_source.dart';
+import 'package:mediabox/core/api/anilist_api.dart';
+import 'package:mediabox/features/search/filters/anilist_studio_filter.dart';
+import 'package:mediabox/features/search/models/search_source.dart';
+import 'package:mediabox/features/search/sources/anilist_anime_source.dart';
 
 import '../../../helpers/test_helpers.dart';
 

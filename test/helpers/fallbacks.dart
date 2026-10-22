@@ -23,7 +23,7 @@ import 'package:core/models/tv_show.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/widgets.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:tonkatsu_box/core/services/image_cache_service.dart';
+import 'package:mediabox/core/services/image_cache_service.dart';
 
 import 'mocks.dart';
 

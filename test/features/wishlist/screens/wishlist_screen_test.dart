@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:tonkatsu_box/data/repositories/wishlist_repository.dart';
-import 'package:tonkatsu_box/features/wishlist/screens/wishlist_screen.dart';
-import 'package:tonkatsu_box/l10n/app_localizations.dart';
-import 'package:tonkatsu_box/shared/widgets/mini_markdown_text.dart';
+import 'package:mediabox/data/repositories/wishlist_repository.dart';
+import 'package:mediabox/features/wishlist/screens/wishlist_screen.dart';
+import 'package:mediabox/l10n/app_localizations.dart';
+import 'package:mediabox/shared/widgets/mini_markdown_text.dart';
 
 import '../../../helpers/test_helpers.dart';
 

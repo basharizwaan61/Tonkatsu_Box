@@ -1,8 +1,8 @@
 import 'package:core/models/canvas_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/features/collections/widgets/canvas_context_menu.dart';
-import 'package:tonkatsu_box/l10n/app_localizations.dart';
+import 'package:mediabox/features/collections/widgets/canvas_context_menu.dart';
+import 'package:mediabox/l10n/app_localizations.dart';
 
 void main() {
   group('CanvasContextMenu', () {

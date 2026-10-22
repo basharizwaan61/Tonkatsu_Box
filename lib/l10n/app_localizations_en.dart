@@ -9,7 +9,7 @@ class SEn extends S {
   SEn([String locale = 'en']) : super(locale);
 
   @override
-  String get appName => 'Tonkatsu Box';
+  String get appName => 'Mediabox';
 
   @override
   String get navMain => 'Main';
@@ -174,6 +174,27 @@ class SEn extends S {
 
   @override
   String get mediaTypeCustom => 'Custom';
+
+  @override
+  String get mediaTypeCharacter => 'Character';
+
+  @override
+  String get characterAppearsIn => 'Appears in';
+
+  @override
+  String get characterPictures => 'Pictures';
+
+  @override
+  String get characterAddPicture => 'Add picture';
+
+  @override
+  String get characterPictureUrl => 'Image URL';
+
+  @override
+  String get characterPictureCaption => 'Caption (optional)';
+
+  @override
+  String get characterPictureRemove => 'Remove picture';
 
   @override
   String get sortManualDisplay => 'Manual';
@@ -560,8 +581,7 @@ class SEn extends S {
   String get settingsWelcomeGuide => 'Welcome Guide';
 
   @override
-  String get settingsWelcomeGuideSubtitle =>
-      'Getting started with Tonkatsu Box';
+  String get settingsWelcomeGuideSubtitle => 'Getting started with Mediabox';
 
   @override
   String get settingsAbout => 'About';
@@ -752,7 +772,7 @@ class SEn extends S {
   String get credentialsTitle => 'Credentials';
 
   @override
-  String get credentialsWelcome => 'Welcome to Tonkatsu Box!';
+  String get credentialsWelcome => 'Welcome to Mediabox!';
 
   @override
   String get credentialsWelcomeHint =>
@@ -1110,7 +1130,7 @@ class SEn extends S {
 
   @override
   String get storageLocationPermissionMessage =>
-      'Android requires the \"All files access\" permission for a custom data folder. In the list that opens, find Tonkatsu Box, enable the access, then come back and pick the folder again.';
+      'Android requires the \"All files access\" permission for a custom data folder. In the list that opens, find Mediabox, enable the access, then come back and pick the folder again.';
 
   @override
   String get storageLocationLegacyPermissionMessage =>
@@ -1536,7 +1556,7 @@ class SEn extends S {
 
   @override
   String get creditsOpenSourceDesc =>
-      'Tonkatsu Box is free and open source software, released under the MIT License.';
+      'Mediabox is free and open source software, released under the MIT License.';
 
   @override
   String get creditsViewLicenses => 'View Open Source Licenses';
@@ -2056,6 +2076,9 @@ class SEn extends S {
   String get collectionFilterBooks => 'Books';
 
   @override
+  String get collectionFilterCharacters => 'Characters';
+
+  @override
   String get searchHint => 'Search...';
 
   @override
@@ -2444,6 +2467,22 @@ class SEn extends S {
 
   @override
   String get searchHintMusic => 'Search albums...';
+
+  @override
+  String get searchHintCharacters => 'Search characters...';
+
+  @override
+  String get settingsFandomWiki => 'Fandom wiki';
+
+  @override
+  String get settingsFandomWikiSubtitle =>
+      'Which wiki the character search reads';
+
+  @override
+  String get settingsFandomWikiCustom => 'Custom wiki...';
+
+  @override
+  String get settingsFandomWikiCustomHint => 'e.g. naruto, or any wiki name';
 
   @override
   String get musicFilterAlbumsDefault => 'Albums';
@@ -2838,7 +2877,7 @@ class SEn extends S {
   String get welcomeLanguageSubtitle => 'Select the app interface language';
 
   @override
-  String get welcomeTitle => 'Welcome to Tonkatsu Box';
+  String get welcomeTitle => 'Welcome to Mediabox';
 
   @override
   String get welcomeSubtitle =>
@@ -4694,7 +4733,7 @@ class SEn extends S {
   String get kodiEnableSync => 'Enable Kodi sync';
 
   @override
-  String get kodiEnableSyncActiveSubtitle => 'Active while Tonkatsu is running';
+  String get kodiEnableSyncActiveSubtitle => 'Active while Mediabox is running';
 
   @override
   String get kodiEnableSyncDisabledSubtitle =>
@@ -5073,7 +5112,7 @@ class SEn extends S {
   String get moodGridCreateTitle => 'New Mood Grid';
 
   @override
-  String get moodGridPresetAboutMe => 'About Me: Tonkatsu Box';
+  String get moodGridPresetAboutMe => 'About Me: Mediabox';
 
   @override
   String get moodGridPresetAboutMeSubtitle =>

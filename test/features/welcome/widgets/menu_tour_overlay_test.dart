@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/features/welcome/providers/menu_tour_provider.dart';
-import 'package:tonkatsu_box/features/welcome/widgets/menu_tour_overlay.dart';
-import 'package:tonkatsu_box/l10n/app_localizations.dart';
-import 'package:tonkatsu_box/shared/navigation/nav_tab.dart';
-import 'package:tonkatsu_box/shared/navigation/nav_tour_keys.dart';
-import 'package:tonkatsu_box/shared/theme/app_theme.dart';
+import 'package:mediabox/features/welcome/providers/menu_tour_provider.dart';
+import 'package:mediabox/features/welcome/widgets/menu_tour_overlay.dart';
+import 'package:mediabox/l10n/app_localizations.dart';
+import 'package:mediabox/shared/navigation/nav_tab.dart';
+import 'package:mediabox/shared/navigation/nav_tour_keys.dart';
+import 'package:mediabox/shared/theme/app_theme.dart';
 
 /// Tour controller that starts already active, so the overlay shows on pump.
 class _ActiveTourController extends MenuTourController {

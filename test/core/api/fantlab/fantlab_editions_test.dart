@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/core/api/fantlab/fantlab_editions.dart';
+import 'package:mediabox/core/api/fantlab/fantlab_editions.dart';
 
 void main() {
   group('parseFantlabEditionBlocks', () {

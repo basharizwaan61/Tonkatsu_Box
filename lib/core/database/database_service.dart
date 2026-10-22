@@ -6,6 +6,7 @@ import 'package:core/database/dao/anime_dao.dart';
 import 'package:core/database/dao/book_dao.dart';
 import 'package:core/database/dao/calendar_entry_dao.dart';
 import 'package:core/database/dao/canvas_dao.dart';
+import 'package:core/database/dao/character_dao.dart';
 import 'package:core/database/dao/collection_dao.dart';
 import 'package:core/database/dao/custom_media_dao.dart';
 import 'package:core/database/dao/game_dao.dart';
@@ -28,6 +29,7 @@ import 'package:core/database/database_opener.dart';
 import 'package:core/database/migrations/migration.dart';
 import 'package:core/database/migrations/migration_runner.dart';
 import 'package:core/rpc/generated/remote_daos.rpc.dart';
+import 'package:core/models/character_image.dart';
 import 'package:core/models/collected_item_info.dart';
 import 'package:core/models/collection.dart';
 import 'package:core/models/collection_item.dart';
@@ -86,6 +88,11 @@ final Provider<AudioDao> audioDaoProvider = Provider<AudioDao>((Ref ref) {
 
 final Provider<AnimeDao> animeDaoProvider = Provider<AnimeDao>((Ref ref) {
   return ref.watch(databaseServiceProvider).animeDao;
+});
+
+final Provider<CharacterDao> characterDaoProvider =
+    Provider<CharacterDao>((Ref ref) {
+  return ref.watch(databaseServiceProvider).characterDao;
 });
 
 final Provider<CollectionDao> collectionDaoProvider =
@@ -216,6 +223,9 @@ class DatabaseService {
   late final CustomMediaDao customMediaDao =
       _remote?.customMediaDao ?? CustomMediaDao(() => database);
 
+  late final CharacterDao characterDao =
+      _remote?.characterDao ?? CharacterDao(() => database);
+
   late final CollectionDao collectionDao =
       _remote?.collectionDao ??
           CollectionDao(
@@ -229,6 +239,7 @@ class DatabaseService {
             bookDao: bookDao,
             audioDao: audioDao,
             customMediaDao: customMediaDao,
+            characterDao: characterDao,
           );
 
   late final CanvasDao canvasDao =
@@ -455,6 +466,7 @@ class DatabaseService {
     required int externalId,
     int? platformId,
     DataSource? source,
+    String? sourceVariant,
     String? authorComment,
     ItemStatus status = ItemStatus.notStarted,
     DateTime? addedAt,
@@ -465,6 +477,7 @@ class DatabaseService {
         externalId: externalId,
         platformId: platformId,
         source: source,
+        sourceVariant: sourceVariant,
         authorComment: authorComment,
         status: status,
         addedAt: addedAt,
@@ -550,6 +563,12 @@ class DatabaseService {
 
   Future<void> setItemOverrideCoverUrl(int id, String? url) =>
       collectionDao.setItemOverrideCoverUrl(id, url);
+
+  Future<void> setItemCharacterImages(
+    int id,
+    List<CharacterImage> images,
+  ) =>
+      collectionDao.setItemCharacterImages(id, images);
 
   Future<int> countItemsWithOverrideCover(String url) =>
       collectionDao.countItemsWithOverrideCover(url);

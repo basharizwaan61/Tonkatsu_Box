@@ -1,7 +1,7 @@
 import 'package:core/models/item_status.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/shared/constants/item_status_ui.dart';
+import 'package:mediabox/shared/constants/item_status_ui.dart';
 
 void main() {
   group('ItemStatusUi', () {

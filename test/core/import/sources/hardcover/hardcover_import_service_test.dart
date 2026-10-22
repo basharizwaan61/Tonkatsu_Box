@@ -6,11 +6,11 @@ import 'package:core/models/media_type.dart';
 import 'package:core/models/universal_import_result.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:tonkatsu_box/core/api/hardcover_api.dart';
-import 'package:tonkatsu_box/core/import/sources/anilist/anilist_import_service.dart'
+import 'package:mediabox/core/api/hardcover_api.dart';
+import 'package:mediabox/core/import/sources/anilist/anilist_import_service.dart'
     show ImportMode;
-import 'package:tonkatsu_box/core/import/sources/hardcover/hardcover_import_service.dart';
-import 'package:tonkatsu_box/core/services/import_service.dart';
+import 'package:mediabox/core/import/sources/hardcover/hardcover_import_service.dart';
+import 'package:mediabox/core/services/import_service.dart';
 
 import '../../../../helpers/test_helpers.dart';
 

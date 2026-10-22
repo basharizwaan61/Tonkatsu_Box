@@ -7,9 +7,9 @@ import 'package:core/models/tier_list_entry.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:tonkatsu_box/core/database/database_service.dart';
-import 'package:tonkatsu_box/features/tier_lists/providers/tier_list_detail_provider.dart';
-import 'package:tonkatsu_box/shared/constants/tier_definition_ui.dart';
+import 'package:mediabox/core/database/database_service.dart';
+import 'package:mediabox/features/tier_lists/providers/tier_list_detail_provider.dart';
+import 'package:mediabox/shared/constants/tier_definition_ui.dart';
 
 import '../../../helpers/test_helpers.dart';
 

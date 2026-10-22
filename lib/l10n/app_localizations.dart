@@ -108,7 +108,7 @@ abstract class S {
   /// No description provided for @appName.
   ///
   /// In en, this message translates to:
-  /// **'Tonkatsu Box'**
+  /// **'Mediabox'**
   String get appName;
 
   /// No description provided for @navMain.
@@ -428,6 +428,48 @@ abstract class S {
   /// In en, this message translates to:
   /// **'Custom'**
   String get mediaTypeCustom;
+
+  /// No description provided for @mediaTypeCharacter.
+  ///
+  /// In en, this message translates to:
+  /// **'Character'**
+  String get mediaTypeCharacter;
+
+  /// No description provided for @characterAppearsIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Appears in'**
+  String get characterAppearsIn;
+
+  /// No description provided for @characterPictures.
+  ///
+  /// In en, this message translates to:
+  /// **'Pictures'**
+  String get characterPictures;
+
+  /// No description provided for @characterAddPicture.
+  ///
+  /// In en, this message translates to:
+  /// **'Add picture'**
+  String get characterAddPicture;
+
+  /// No description provided for @characterPictureUrl.
+  ///
+  /// In en, this message translates to:
+  /// **'Image URL'**
+  String get characterPictureUrl;
+
+  /// No description provided for @characterPictureCaption.
+  ///
+  /// In en, this message translates to:
+  /// **'Caption (optional)'**
+  String get characterPictureCaption;
+
+  /// No description provided for @characterPictureRemove.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove picture'**
+  String get characterPictureRemove;
 
   /// No description provided for @sortManualDisplay.
   ///
@@ -1062,7 +1104,7 @@ abstract class S {
   /// No description provided for @settingsWelcomeGuideSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Getting started with Tonkatsu Box'**
+  /// **'Getting started with Mediabox'**
   String get settingsWelcomeGuideSubtitle;
 
   /// No description provided for @settingsAbout.
@@ -1404,7 +1446,7 @@ abstract class S {
   /// No description provided for @credentialsWelcome.
   ///
   /// In en, this message translates to:
-  /// **'Welcome to Tonkatsu Box!'**
+  /// **'Welcome to Mediabox!'**
   String get credentialsWelcome;
 
   /// No description provided for @credentialsWelcomeHint.
@@ -2010,7 +2052,7 @@ abstract class S {
   /// No description provided for @storageLocationPermissionMessage.
   ///
   /// In en, this message translates to:
-  /// **'Android requires the \"All files access\" permission for a custom data folder. In the list that opens, find Tonkatsu Box, enable the access, then come back and pick the folder again.'**
+  /// **'Android requires the \"All files access\" permission for a custom data folder. In the list that opens, find Mediabox, enable the access, then come back and pick the folder again.'**
   String get storageLocationPermissionMessage;
 
   /// No description provided for @storageLocationLegacyPermissionMessage.
@@ -2753,7 +2795,7 @@ abstract class S {
   /// No description provided for @creditsOpenSourceDesc.
   ///
   /// In en, this message translates to:
-  /// **'Tonkatsu Box is free and open source software, released under the MIT License.'**
+  /// **'Mediabox is free and open source software, released under the MIT License.'**
   String get creditsOpenSourceDesc;
 
   /// No description provided for @creditsViewLicenses.
@@ -3680,6 +3722,12 @@ abstract class S {
   /// **'Books'**
   String get collectionFilterBooks;
 
+  /// No description provided for @collectionFilterCharacters.
+  ///
+  /// In en, this message translates to:
+  /// **'Characters'**
+  String get collectionFilterCharacters;
+
   /// No description provided for @searchHint.
   ///
   /// In en, this message translates to:
@@ -4382,6 +4430,36 @@ abstract class S {
   /// **'Search albums...'**
   String get searchHintMusic;
 
+  /// No description provided for @searchHintCharacters.
+  ///
+  /// In en, this message translates to:
+  /// **'Search characters...'**
+  String get searchHintCharacters;
+
+  /// No description provided for @settingsFandomWiki.
+  ///
+  /// In en, this message translates to:
+  /// **'Fandom wiki'**
+  String get settingsFandomWiki;
+
+  /// No description provided for @settingsFandomWikiSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Which wiki the character search reads'**
+  String get settingsFandomWikiSubtitle;
+
+  /// No description provided for @settingsFandomWikiCustom.
+  ///
+  /// In en, this message translates to:
+  /// **'Custom wiki...'**
+  String get settingsFandomWikiCustom;
+
+  /// No description provided for @settingsFandomWikiCustomHint.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. naruto, or any wiki name'**
+  String get settingsFandomWikiCustomHint;
+
   /// No description provided for @musicFilterAlbumsDefault.
   ///
   /// In en, this message translates to:
@@ -5027,7 +5105,7 @@ abstract class S {
   /// No description provided for @welcomeTitle.
   ///
   /// In en, this message translates to:
-  /// **'Welcome to Tonkatsu Box'**
+  /// **'Welcome to Mediabox'**
   String get welcomeTitle;
 
   /// No description provided for @welcomeSubtitle.
@@ -8369,7 +8447,7 @@ abstract class S {
   /// No description provided for @kodiEnableSyncActiveSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Active while Tonkatsu is running'**
+  /// **'Active while Mediabox is running'**
   String get kodiEnableSyncActiveSubtitle;
 
   /// No description provided for @kodiEnableSyncDisabledSubtitle.
@@ -8975,7 +9053,7 @@ abstract class S {
   /// No description provided for @moodGridPresetAboutMe.
   ///
   /// In en, this message translates to:
-  /// **'About Me: Tonkatsu Box'**
+  /// **'About Me: Mediabox'**
   String get moodGridPresetAboutMe;
 
   /// No description provided for @moodGridPresetAboutMeSubtitle.

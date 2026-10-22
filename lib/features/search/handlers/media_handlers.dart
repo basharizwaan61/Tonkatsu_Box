@@ -2,6 +2,7 @@ import 'package:core/models/audio_item.dart';
 import 'package:core/models/audio_track.dart';
 import 'package:core/models/anime.dart';
 import 'package:core/models/book.dart';
+import 'package:core/models/character.dart';
 import 'package:core/models/data_source.dart';
 import 'package:core/models/game.dart';
 import 'package:core/models/manga.dart';
@@ -269,6 +270,29 @@ class MediaHandlers {
           pending != null && pending.albumMbid == a.nativeId ? pending : null,
         );
       },
+    );
+    _byType[Character] = SimpleMediaHandler<Character>(
+      ref: ref,
+      adder: adder,
+      targetCollections: targetCollections,
+      mediaType: MediaType.character,
+      imageType: ImageType.characterCover,
+      collectedProvider: collectedCharacterIdsProvider,
+      externalIdOf: (Character c) => c.id,
+      imageIdOf: (Character c) => coverImageId(
+        mediaType: MediaType.character,
+        externalId: c.id,
+        source: c.source,
+        sourceVariant: c.variant,
+      ),
+      titleOf: (Character c) => c.name,
+      imageUrlOf: (Character c) => c.imageUrl,
+      upsert: (Character c) =>
+          ref.read(characterDaoProvider).upsertCharacter(c),
+      sourceOf: (Character c) => c.source,
+      sourceVariantOf: (Character c) => c.variant,
+      sheetBuilder: (Character c, VoidCallback onAdd) =>
+          ItemDetailsSheet.character(c, onAddToCollection: onAdd),
     );
   }
 

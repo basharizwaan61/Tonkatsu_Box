@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/core/logging/startup_error.dart';
-import 'package:tonkatsu_box/shared/theme/app_theme.dart';
+import 'package:mediabox/core/logging/startup_error.dart';
+import 'package:mediabox/shared/theme/app_theme.dart';
 
 void main() {
   const StartupErrorInfo info = StartupErrorInfo(
     source: 'zone',
     error: 'Boom',
-    stack: '#0 main (package:tonkatsu_box/main.dart:1:1)',
+    stack: '#0 main (package:mediabox/main.dart:1:1)',
   );
 
   group('StartupErrorInfo', () {

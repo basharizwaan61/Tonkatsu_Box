@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/features/welcome/widgets/menu_tour_items.dart';
-import 'package:tonkatsu_box/l10n/app_localizations.dart';
-import 'package:tonkatsu_box/shared/navigation/nav_tab.dart';
+import 'package:mediabox/features/welcome/widgets/menu_tour_items.dart';
+import 'package:mediabox/l10n/app_localizations.dart';
+import 'package:mediabox/shared/navigation/nav_tab.dart';
 
 void main() {
   Future<List<MenuTourItem>> buildItems(WidgetTester tester) async {

@@ -2,7 +2,7 @@ import 'package:core/models/anilist_studio.dart';
 import 'package:core/models/anime.dart';
 import 'package:core/models/manga.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/core/api/anilist/anilist_media_parser.dart';
+import 'package:mediabox/core/api/anilist/anilist_media_parser.dart';
 
 Map<String, dynamic> _page({
   List<Map<String, dynamic>> media = const <Map<String, dynamic>>[],

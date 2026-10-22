@@ -2,8 +2,8 @@ import 'package:core/models/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/features/collections/providers/collections_provider.dart';
-import 'package:tonkatsu_box/features/settings/content/custom_cards_import_content.dart';
+import 'package:mediabox/features/collections/providers/collections_provider.dart';
+import 'package:mediabox/features/settings/content/custom_cards_import_content.dart';
 
 import '../../../helpers/test_helpers.dart';
 

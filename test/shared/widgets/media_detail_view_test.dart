@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:tonkatsu_box/core/services/api_key_initializer.dart';
-import 'package:tonkatsu_box/features/settings/providers/settings_provider.dart';
-import 'package:tonkatsu_box/l10n/app_localizations.dart';
-import 'package:tonkatsu_box/shared/widgets/media_detail_view.dart';
-import 'package:tonkatsu_box/shared/widgets/mini_markdown_text.dart';
-import 'package:tonkatsu_box/shared/widgets/source_badge.dart';
+import 'package:mediabox/core/services/api_key_initializer.dart';
+import 'package:mediabox/features/settings/providers/settings_provider.dart';
+import 'package:mediabox/l10n/app_localizations.dart';
+import 'package:mediabox/shared/widgets/media_detail_view.dart';
+import 'package:mediabox/shared/widgets/mini_markdown_text.dart';
+import 'package:mediabox/shared/widgets/source_badge.dart';
 
 class _DefaultSettingsNotifier extends SettingsNotifier {
   @override

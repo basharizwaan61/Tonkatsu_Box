@@ -4,9 +4,9 @@ import 'package:core/models/canvas_viewport.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:tonkatsu_box/data/repositories/canvas_repository.dart';
-import 'package:tonkatsu_box/features/collections/providers/canvas_provider.dart';
-import 'package:tonkatsu_box/features/collections/providers/collections_provider.dart';
+import 'package:mediabox/data/repositories/canvas_repository.dart';
+import 'package:mediabox/features/collections/providers/canvas_provider.dart';
+import 'package:mediabox/features/collections/providers/collections_provider.dart';
 
 import '../../../helpers/test_helpers.dart';
 

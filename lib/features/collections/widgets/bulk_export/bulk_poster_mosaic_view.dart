@@ -82,7 +82,7 @@ class BulkPosterMosaicView extends StatelessWidget {
                 Image.asset(AppAssets.logo, width: 16, height: 16),
                 const SizedBox(width: 4),
                 Text(
-                  'made by Tonkatsu Box',
+                  'made by Mediabox',
                   style: AppTypography.caption.copyWith(
                     color: AppColors.textTertiary,
                     fontSize: 10,

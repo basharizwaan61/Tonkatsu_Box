@@ -29,6 +29,11 @@ extension DataSourceUi on DataSource {
         DataSource.musicBrainz => AppAssets.iconMusicBrainzColor,
         DataSource.podcastIndex => AppAssets.iconPodcastIndexColor,
         DataSource.vgMaps => null,
+        DataSource.jikan => null,
+        DataSource.disney => null,
+        DataSource.fandom => null,
+        DataSource.superHero => null,
+        DataSource.wikidata => null,
         DataSource.local => null,
       };
 }

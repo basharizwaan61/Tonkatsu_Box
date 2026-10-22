@@ -6,11 +6,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:tonkatsu_box/core/services/image_cache_service.dart';
-import 'package:tonkatsu_box/shared/theme/app_colors.dart';
-import 'package:tonkatsu_box/shared/theme/app_typography.dart';
-import 'package:tonkatsu_box/shared/widgets/card_link_chip.dart';
-import 'package:tonkatsu_box/shared/widgets/mini_markdown_text.dart';
+import 'package:mediabox/core/services/image_cache_service.dart';
+import 'package:mediabox/shared/theme/app_colors.dart';
+import 'package:mediabox/shared/theme/app_typography.dart';
+import 'package:mediabox/shared/widgets/card_link_chip.dart';
+import 'package:mediabox/shared/widgets/mini_markdown_text.dart';
 
 import '../../helpers/test_helpers.dart';
 

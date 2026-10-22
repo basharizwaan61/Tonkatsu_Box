@@ -7,7 +7,7 @@ import 'package:core/models/media_type.dart';
 import 'package:core/models/movie.dart';
 import 'package:core/models/platform.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/core/services/text_export_service.dart';
+import 'package:mediabox/core/services/text_export_service.dart';
 
 TextExportService _service() => TextExportService();
 

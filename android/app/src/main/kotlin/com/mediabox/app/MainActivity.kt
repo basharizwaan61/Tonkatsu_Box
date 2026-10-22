@@ -1,4 +1,4 @@
-package com.hacan359.tonkatsubox
+package com.mediabox.app
 
 import io.flutter.embedding.android.FlutterActivity
 

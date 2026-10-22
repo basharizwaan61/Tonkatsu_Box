@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:tonkatsu_box/features/settings/providers/settings_provider.dart';
-import 'package:tonkatsu_box/features/welcome/screens/welcome_screen.dart';
-import 'package:tonkatsu_box/features/welcome/widgets/step_indicator.dart';
-import 'package:tonkatsu_box/features/welcome/widgets/welcome_step_intro.dart';
-import 'package:tonkatsu_box/features/welcome/widgets/welcome_step_language.dart';
-import 'package:tonkatsu_box/features/welcome/widgets/welcome_step_menu_tour.dart';
-import 'package:tonkatsu_box/features/welcome/widgets/welcome_step_name.dart';
-import 'package:tonkatsu_box/features/welcome/widgets/welcome_step_sources.dart';
-import 'package:tonkatsu_box/l10n/app_localizations.dart';
+import 'package:mediabox/features/settings/providers/settings_provider.dart';
+import 'package:mediabox/features/welcome/screens/welcome_screen.dart';
+import 'package:mediabox/features/welcome/widgets/step_indicator.dart';
+import 'package:mediabox/features/welcome/widgets/welcome_step_intro.dart';
+import 'package:mediabox/features/welcome/widgets/welcome_step_language.dart';
+import 'package:mediabox/features/welcome/widgets/welcome_step_menu_tour.dart';
+import 'package:mediabox/features/welcome/widgets/welcome_step_name.dart';
+import 'package:mediabox/features/welcome/widgets/welcome_step_sources.dart';
+import 'package:mediabox/l10n/app_localizations.dart';
 
 void main() {
   late SharedPreferences prefs;

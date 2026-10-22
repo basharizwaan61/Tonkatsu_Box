@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/shared/theme/app_colors.dart';
-import 'package:tonkatsu_box/shared/theme/app_theme.dart';
-import 'package:tonkatsu_box/shared/theme/app_typography.dart';
+import 'package:mediabox/shared/theme/app_colors.dart';
+import 'package:mediabox/shared/theme/app_theme.dart';
+import 'package:mediabox/shared/theme/app_typography.dart';
 
 void main() {
   // Other suites assume the default dark palette — always restore it.

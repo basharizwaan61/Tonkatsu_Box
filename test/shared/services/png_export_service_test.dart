@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/shared/services/png_export_service.dart';
+import 'package:mediabox/shared/services/png_export_service.dart';
 
 void main() {
   group('sanitizeFileName', () {

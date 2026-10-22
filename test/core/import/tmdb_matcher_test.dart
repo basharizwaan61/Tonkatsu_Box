@@ -3,8 +3,8 @@ import 'package:core/models/movie.dart';
 import 'package:core/models/tv_show.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:tonkatsu_box/core/import/rate_limited_retry.dart';
-import 'package:tonkatsu_box/core/import/tmdb_matcher.dart';
+import 'package:mediabox/core/import/rate_limited_retry.dart';
+import 'package:mediabox/core/import/tmdb_matcher.dart';
 
 import '../../helpers/test_helpers.dart';
 

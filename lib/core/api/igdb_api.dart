@@ -1,3 +1,4 @@
+import 'package:core/models/character.dart';
 import 'package:core/models/game.dart';
 import 'package:core/models/game_time_to_beat.dart';
 import 'package:core/models/platform.dart';
@@ -5,12 +6,17 @@ import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../services/api_key_initializer.dart';
+import 'tmdb/tmdb_types.dart';
+import 'igdb/igdb_characters_api.dart';
 import 'igdb/igdb_games_api.dart';
 import 'igdb/igdb_genres_api.dart';
 import 'igdb/igdb_http_client.dart';
 import 'igdb/igdb_platforms_api.dart';
 import 'igdb/igdb_types.dart';
 export 'igdb/igdb_types.dart';
+// The paged result is shared with the other clients, so the character search
+// answers the same shape.
+export 'tmdb/tmdb_types.dart' show TmdbPagedResult;
 
 // Credentials seeded from apiKeysProvider loaded in main() before runApp().
 final Provider<IgdbApi> igdbApiProvider = Provider<IgdbApi>((Ref ref) {
@@ -32,12 +38,14 @@ class IgdbApi {
     _games = IgdbGamesApi(_client);
     _platforms = IgdbPlatformsApi(_client);
     _genres = IgdbGenresApi(_client);
+    _characters = IgdbCharactersApi(_client);
   }
 
   final IgdbHttpClient _client;
   late final IgdbGamesApi _games;
   late final IgdbPlatformsApi _platforms;
   late final IgdbGenresApi _genres;
+  late final IgdbCharactersApi _characters;
 
   static const int maxMultiQueryBatch = IgdbGamesApi.maxMultiQueryBatch;
 
@@ -170,6 +178,21 @@ class IgdbApi {
       _games.getUpcomingGames(days: days, limit: limit);
 
   Future<List<Map<String, dynamic>>> fetchGenres() => _genres.fetchGenres();
+
+  /// Page of characters matching [query]. [page] is 1-based.
+  Future<TmdbPagedResult<Character>> searchCharacters({
+    required String query,
+    int page = 1,
+    int limit = 20,
+  }) =>
+      _characters.searchCharacters(
+        query: query,
+        page: page,
+        limit: limit,
+      );
+
+  /// Full character record. Null when not found.
+  Future<Character?> getCharacter(int id) => _characters.getCharacter(id);
 
   void dispose() => _client.dispose();
 }

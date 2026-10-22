@@ -47,7 +47,7 @@ class ComicVineApi {
             );
 
   static const String _baseUrl = 'https://comicvine.gamespot.com/api';
-  static const String _userAgent = 'TonkatsuBox/1.0 (Flutter app)';
+  static const String _userAgent = 'Mediabox/1.0 (Flutter app)';
   static const Duration _timeout = Duration(seconds: 8);
 
   /// Volume fields shared by search / browse / detail responses.

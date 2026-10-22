@@ -11,13 +11,13 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:core/models/data_source.dart';
 import 'package:core/models/movie.dart';
-import 'package:tonkatsu_box/core/import/import_writer.dart';
-import 'package:tonkatsu_box/core/import/sources/custom_file/custom_card_entry.dart';
-import 'package:tonkatsu_box/core/import/sources/custom_file/custom_cards_import_service.dart';
-import 'package:tonkatsu_box/core/import/title_lookup/lookup_candidate.dart';
-import 'package:tonkatsu_box/core/import/title_lookup/title_resolver.dart';
-import 'package:tonkatsu_box/core/services/image_cache_service.dart';
-import 'package:tonkatsu_box/core/services/import_service.dart';
+import 'package:mediabox/core/import/import_writer.dart';
+import 'package:mediabox/core/import/sources/custom_file/custom_card_entry.dart';
+import 'package:mediabox/core/import/sources/custom_file/custom_cards_import_service.dart';
+import 'package:mediabox/core/import/title_lookup/lookup_candidate.dart';
+import 'package:mediabox/core/import/title_lookup/title_resolver.dart';
+import 'package:mediabox/core/services/image_cache_service.dart';
+import 'package:mediabox/core/services/import_service.dart';
 
 import '../../../../helpers/test_helpers.dart';
 

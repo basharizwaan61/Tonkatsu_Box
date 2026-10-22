@@ -28,7 +28,7 @@ class CreditsContent extends StatelessWidget {
   const CreditsContent({super.key});
 
   static const String _githubUrl =
-      'https://github.com/hacan359/tonkatsu_box';
+      'https://github.com/basharizwaan61/Tonkatsu_Box';
   static const String _discordUrl = 'https://discord.gg/JZVNPF7cS2';
 
   @override
@@ -181,7 +181,7 @@ class CreditsContent extends StatelessWidget {
             ),
             _buildLinkRow(
               label: 'GitHub',
-              linkLabel: 'hacan359/tonkatsu_box',
+              linkLabel: 'basharizwaan61/Tonkatsu_Box',
               url: _githubUrl,
             ),
             _buildLinkRow(
@@ -198,7 +198,7 @@ class CreditsContent extends StatelessWidget {
                 onPressed: () {
                   showLicensePage(
                     context: context,
-                    applicationName: 'Tonkatsu Box',
+                    applicationName: 'Mediabox',
                   );
                 },
                 icon: const Icon(Icons.description_outlined, size: 18),

@@ -7,13 +7,13 @@ import 'package:core/models/tag.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/features/collections/providers/collections_provider.dart';
-import 'package:tonkatsu_box/features/collections/providers/item_tags_provider.dart';
-import 'package:tonkatsu_box/features/home/providers/all_items_provider.dart';
-import 'package:tonkatsu_box/features/likes/providers/marked_units_provider.dart';
-import 'package:tonkatsu_box/features/likes/screens/likes_screen.dart';
-import 'package:tonkatsu_box/features/likes/widgets/marked_group_tile.dart';
-import 'package:tonkatsu_box/shared/navigation/search_providers.dart';
+import 'package:mediabox/features/collections/providers/collections_provider.dart';
+import 'package:mediabox/features/collections/providers/item_tags_provider.dart';
+import 'package:mediabox/features/home/providers/all_items_provider.dart';
+import 'package:mediabox/features/likes/providers/marked_units_provider.dart';
+import 'package:mediabox/features/likes/screens/likes_screen.dart';
+import 'package:mediabox/features/likes/widgets/marked_group_tile.dart';
+import 'package:mediabox/shared/navigation/search_providers.dart';
 
 import '../../../helpers/test_helpers.dart';
 

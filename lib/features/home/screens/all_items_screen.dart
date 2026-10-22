@@ -209,6 +209,11 @@ class _AllItemsScreenState extends ConsumerState<AllItemsScreen> {
         count: counts[MediaType.audio] ?? 0,
       ),
       _MediaTypeEntry(
+        type: MediaType.character,
+        label: l.collectionFilterCharacters,
+        count: counts[MediaType.character] ?? 0,
+      ),
+      _MediaTypeEntry(
         type: MediaType.custom,
         label: l.mediaTypeCustom,
         count: counts[MediaType.custom] ?? 0,
@@ -828,6 +833,8 @@ class _AllItemsScreenState extends ConsumerState<AllItemsScreen> {
         return item.audioItem?.releaseYear;
       case MediaType.custom:
         return item.customMedia?.year;
+      case MediaType.character:
+        return null;
     }
   }
 }

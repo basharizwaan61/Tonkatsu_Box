@@ -26,6 +26,7 @@ class SimpleMediaHandler<T extends Object> implements MediaActionHandler {
     required this.upsert,
     required this.sheetBuilder,
     this.sourceOf,
+    this.sourceVariantOf,
     this.enrich,
     this.enrichBeforeDetails,
   })  : _ref = ref,
@@ -50,6 +51,11 @@ class SimpleMediaHandler<T extends Object> implements MediaActionHandler {
   /// Narrows "already collected" lookups for multi-source types, whose
   /// providers share a numeric id space; null for single-source ones.
   final DataSource? Function(T item)? sourceOf;
+
+  /// Narrows the source further, for a provider whose ids are only unique
+  /// inside a sub-scope — a Fandom character's wiki. Null for every other
+  /// type.
+  final String? Function(T item)? sourceVariantOf;
 
   /// Fills in detail a search row lacks; applied on add-to-collection and,
   /// when [enrichBeforeDetails] flags it, before the sheet. Failure = no-op.
@@ -97,6 +103,7 @@ class SimpleMediaHandler<T extends Object> implements MediaActionHandler {
     final Set<int?> alreadyIn = await _collectedCollectionIds(
       externalIdOf(item0),
       sourceOf?.call(item0),
+      sourceVariantOf?.call(item0),
     );
     if (!context.mounted) return;
 
@@ -117,6 +124,7 @@ class SimpleMediaHandler<T extends Object> implements MediaActionHandler {
       mediaType: this.mediaType,
       externalId: externalIdOf(typed),
       source: sourceOf?.call(typed),
+      sourceVariant: sourceVariantOf?.call(typed),
       title: titleOf(typed),
       upsert: () => upsert(typed),
       imageType: imageType,
@@ -151,6 +159,7 @@ class SimpleMediaHandler<T extends Object> implements MediaActionHandler {
       mediaType: mediaType,
       externalId: externalIdOf(typed),
       source: sourceOf?.call(typed),
+      sourceVariant: sourceVariantOf?.call(typed),
       title: titleOf(typed),
       upsert: () => upsert(typed),
       imageType: imageType,
@@ -160,12 +169,17 @@ class SimpleMediaHandler<T extends Object> implements MediaActionHandler {
   }
 
   /// Placements of [id]; [source] narrows them for multi-source types, whose
-  /// providers hand out colliding numeric ids.
-  Future<Set<int?>> _collectedCollectionIds(int id, DataSource? source) async {
+  /// providers hand out colliding numeric ids, and [sourceVariant] narrows
+  /// further for a provider whose ids repeat inside a sub-scope.
+  Future<Set<int?>> _collectedCollectionIds(
+    int id,
+    DataSource? source,
+    String? sourceVariant,
+  ) async {
     final Map<int, List<CollectedItemInfo>> collected =
         await _ref.read(collectedProvider.future);
     return (collected[id] ?? <CollectedItemInfo>[])
-        .forSource(mediaType, source)
+        .forSource(mediaType, source, sourceVariant)
         .map((CollectedItemInfo i) => i.collectionId)
         .toSet();
   }

@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:tonkatsu_box/core/database/database_service.dart';
-import 'package:tonkatsu_box/data/repositories/collection_repository.dart';
-import 'package:tonkatsu_box/features/tier_lists/widgets/create_tier_list_dialog.dart';
+import 'package:mediabox/core/database/database_service.dart';
+import 'package:mediabox/data/repositories/collection_repository.dart';
+import 'package:mediabox/features/tier_lists/widgets/create_tier_list_dialog.dart';
 
 import '../../../helpers/test_helpers.dart';
 

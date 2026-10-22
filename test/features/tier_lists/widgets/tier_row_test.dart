@@ -3,8 +3,8 @@ import 'package:core/models/tier_definition.dart';
 import 'package:core/models/tier_list_entry.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/features/tier_lists/widgets/tier_item_card.dart';
-import 'package:tonkatsu_box/features/tier_lists/widgets/tier_row.dart';
+import 'package:mediabox/features/tier_lists/widgets/tier_item_card.dart';
+import 'package:mediabox/features/tier_lists/widgets/tier_row.dart';
 
 import '../../../helpers/test_helpers.dart';
 

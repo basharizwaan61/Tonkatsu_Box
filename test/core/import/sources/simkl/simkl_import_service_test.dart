@@ -9,12 +9,12 @@ import 'package:core/models/universal_import_result.dart';
 import 'package:core/models/wishlist_item.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:tonkatsu_box/core/api/kitsu_api.dart';
-import 'package:tonkatsu_box/core/api/simkl_api.dart';
-import 'package:tonkatsu_box/core/import/import_progress.dart';
-import 'package:tonkatsu_box/core/import/sources/anilist/anilist_import_service.dart'
+import 'package:mediabox/core/api/kitsu_api.dart';
+import 'package:mediabox/core/api/simkl_api.dart';
+import 'package:mediabox/core/import/import_progress.dart';
+import 'package:mediabox/core/import/sources/anilist/anilist_import_service.dart'
     show ImportMode;
-import 'package:tonkatsu_box/core/import/sources/simkl/simkl_import_service.dart';
+import 'package:mediabox/core/import/sources/simkl/simkl_import_service.dart';
 
 import '../../../../helpers/test_helpers.dart';
 

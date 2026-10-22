@@ -162,7 +162,7 @@ class StatsShareCard extends StatelessWidget {
                     child: Row(
                       children: <Widget>[
                         Text(
-                          'Tonkatsu Box',
+                          'Mediabox',
                           style: AppTypography.caption
                               .copyWith(color: AppColors.textTertiary),
                         ),

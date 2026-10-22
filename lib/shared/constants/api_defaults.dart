@@ -23,7 +23,7 @@ abstract final class ApiDefaults {
       String.fromEnvironment('SCREENSCRAPER_DEV_PASSWORD');
 
   /// `softname` is sent with every ScreenScraper request to identify the app.
-  static const String screenScraperSoftname = 'tonkatsuBox';
+  static const String screenScraperSoftname = 'mediabox';
 
   /// Simkl OAuth client id (PIN flow needs no secret in the build).
   static const String simklClientId = String.fromEnvironment('SIMKL_CLIENT_ID');

@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:tonkatsu_box/features/collections/widgets/collection_table/row_drag_handle.dart';
+import 'package:mediabox/features/collections/widgets/collection_table/row_drag_handle.dart';
 import 'package:trina_grid/trina_grid.dart';
 
 import '../../../../helpers/test_helpers.dart';

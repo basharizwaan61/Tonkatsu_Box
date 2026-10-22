@@ -4,7 +4,7 @@ import 'dart:io';
 /// one is installed via [HttpOverrides.global] to cover every transport.
 class AppHttpOverrides extends HttpOverrides {
   static const String userAgent =
-      'TonkatsuBox (https://github.com/hacan359/tonkatsu_box)';
+      'Mediabox (https://github.com/basharizwaan61/Tonkatsu_Box)';
 
   @override
   HttpClient createHttpClient(SecurityContext? context) {

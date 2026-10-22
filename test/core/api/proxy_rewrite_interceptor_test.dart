@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/core/api/proxy_rewrite_interceptor.dart';
+import 'package:mediabox/core/api/proxy_rewrite_interceptor.dart';
 
 /// Runs the interceptor the way Dio would and reports the URI that would go
 /// out, without opening a socket.

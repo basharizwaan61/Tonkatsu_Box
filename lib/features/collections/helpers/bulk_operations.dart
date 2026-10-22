@@ -231,6 +231,8 @@ class BulkOperations {
         ref.invalidate(collectedAudioIdsProvider);
       case MediaType.custom:
         break;
+      case MediaType.character:
+        break;
     }
   }
 }

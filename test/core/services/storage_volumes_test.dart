@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/core/services/storage_volumes.dart';
+import 'package:mediabox/core/services/storage_volumes.dart';
 
 void main() {
   tearDown(() {

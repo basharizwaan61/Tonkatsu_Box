@@ -42,8 +42,10 @@ class UpdateService {
   final Dio _dio;
   final String? _currentVersionOverride;
 
-  static const String _repoOwner = 'hacan359';
-  static const String _repoName = 'tonkatsu_box';
+  // The fork's own repository. Update both when the GitHub repository is
+  // renamed — the updater must never point at the upstream project.
+  static const String _repoOwner = 'basharizwaan61';
+  static const String _repoName = 'Tonkatsu_Box';
   static const String _apiUrl =
       'https://api.github.com/repos/$_repoOwner/$_repoName/releases/latest';
 

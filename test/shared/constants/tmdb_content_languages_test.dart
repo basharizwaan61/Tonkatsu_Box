@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/shared/constants/tmdb_content_languages.dart';
+import 'package:mediabox/shared/constants/tmdb_content_languages.dart';
 
 void main() {
   group('kTmdbContentLanguages', () {

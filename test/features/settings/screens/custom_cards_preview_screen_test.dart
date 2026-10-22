@@ -4,10 +4,10 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:core/models/universal_import_result.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:tonkatsu_box/core/import/sources/custom_file/custom_card_entry.dart';
-import 'package:tonkatsu_box/core/import/sources/custom_file/custom_cards_import_service.dart';
-import 'package:tonkatsu_box/features/settings/screens/custom_cards_preview_screen.dart';
-import 'package:tonkatsu_box/l10n/app_localizations.dart';
+import 'package:mediabox/core/import/sources/custom_file/custom_card_entry.dart';
+import 'package:mediabox/core/import/sources/custom_file/custom_cards_import_service.dart';
+import 'package:mediabox/features/settings/screens/custom_cards_preview_screen.dart';
+import 'package:mediabox/l10n/app_localizations.dart';
 
 import '../../../helpers/test_helpers.dart';
 

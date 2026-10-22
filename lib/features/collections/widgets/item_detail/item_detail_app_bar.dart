@@ -139,7 +139,10 @@ class ItemDetailAppBar extends StatelessWidget implements PreferredSizeWidget {
             onSelected: onMenuSelected,
             itemBuilder: (BuildContext context) =>
                 <PopupMenuEntry<ItemDetailMenuAction>>[
-              if (item.mediaType != MediaType.custom)
+              // Characters have no API refresh yet, so the entry stays
+              // hidden like a custom item's instead of failing on tap.
+              if (item.mediaType != MediaType.custom &&
+                  item.mediaType != MediaType.character)
                 _menuItem(
                   ItemDetailMenuAction.refresh,
                   Icons.refresh,

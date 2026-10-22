@@ -8,12 +8,12 @@ import 'package:core/models/tv_show.dart';
 import 'package:core/models/visual_novel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/features/search/handlers/game_handler.dart';
-import 'package:tonkatsu_box/features/search/handlers/media_action_handler.dart';
-import 'package:tonkatsu_box/features/search/handlers/media_handlers.dart';
-import 'package:tonkatsu_box/features/search/handlers/movie_handler.dart';
-import 'package:tonkatsu_box/features/search/handlers/simple_media_handler.dart';
-import 'package:tonkatsu_box/features/search/handlers/tv_show_handler.dart';
+import 'package:mediabox/features/search/handlers/game_handler.dart';
+import 'package:mediabox/features/search/handlers/media_action_handler.dart';
+import 'package:mediabox/features/search/handlers/media_handlers.dart';
+import 'package:mediabox/features/search/handlers/movie_handler.dart';
+import 'package:mediabox/features/search/handlers/simple_media_handler.dart';
+import 'package:mediabox/features/search/handlers/tv_show_handler.dart';
 
 import '../../../helpers/test_helpers.dart';
 

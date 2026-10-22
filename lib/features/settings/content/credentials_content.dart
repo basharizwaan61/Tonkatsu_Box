@@ -46,6 +46,7 @@ class _CredentialsContentState extends ConsumerState<CredentialsContent> {
 
   String _tvdbApiKey = '';
   String _comicVineApiKey = '';
+  String _superHeroToken = '';
   String _podcastIndexApiKey = '';
   String _podcastIndexApiSecret = '';
   String _googleBooksApiKey = '';
@@ -63,6 +64,7 @@ class _CredentialsContentState extends ConsumerState<CredentialsContent> {
 
   StatusType? _tvdbValidated;
   StatusType? _comicVineValidated;
+  StatusType? _superHeroValidated;
   StatusType? _podcastIndexValidated;
   StatusType? _googleBooksValidated;
   StatusType? _hardcoverValidated;
@@ -71,6 +73,7 @@ class _CredentialsContentState extends ConsumerState<CredentialsContent> {
 
   bool _tvdbValidating = false;
   bool _comicVineValidating = false;
+  bool _superHeroValidating = false;
   bool _podcastIndexValidating = false;
   bool _googleBooksValidating = false;
   bool _hardcoverValidating = false;
@@ -89,6 +92,7 @@ class _CredentialsContentState extends ConsumerState<CredentialsContent> {
     _tvdbApiKey =
         settings.isTvdbKeyBuiltIn ? '' : (settings.tvdbApiKey ?? '');
     _comicVineApiKey = settings.comicVineApiKey ?? '';
+    _superHeroToken = settings.superHeroApiToken ?? '';
     _podcastIndexApiKey = settings.podcastIndexApiKey ?? '';
     _podcastIndexApiSecret = settings.podcastIndexApiSecret ?? '';
     _googleBooksApiKey = settings.googleBooksApiKey ?? '';
@@ -126,6 +130,8 @@ class _CredentialsContentState extends ConsumerState<CredentialsContent> {
         _buildTvdbSection(settings, compact),
         const SizedBox(height: AppSpacing.md),
         _buildComicVineSection(settings, compact),
+        const SizedBox(height: AppSpacing.md),
+        _buildSuperHeroSection(settings, compact),
         const SizedBox(height: AppSpacing.md),
         _buildGoogleBooksSection(settings, compact),
         const SizedBox(height: AppSpacing.md),
@@ -515,6 +521,82 @@ class _CredentialsContentState extends ConsumerState<CredentialsContent> {
       valid
           ? S.of(context).credentialsComicVineKeyValid
           : S.of(context).credentialsComicVineKeyInvalid,
+      type: valid ? SnackType.success : SnackType.error,
+    );
+  }
+
+  Widget _buildSuperHeroSection(SettingsState settings, bool compact) {
+    final S l = S.of(context);
+    return SettingsGroup(
+      title: '${DataSource.superHero.label} API',
+      children: <Widget>[
+        _buildSourceHeader(
+          description: l.welcomeApiFreeHint,
+          sourceName: DataSource.superHero.label,
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: AppSpacing.md,
+            vertical: AppSpacing.sm,
+          ),
+          child: Column(
+            children: <Widget>[
+              InlineTextField(
+                label: l.credentialsApiKey,
+                value: _superHeroToken,
+                placeholder: l.credentialsNoApiKey,
+                obscureText: true,
+                compact: compact,
+                onChanged: (String value) {
+                  setState(() {
+                    _superHeroToken = value;
+                    _superHeroValidated = null;
+                  });
+                  ref
+                      .read(settingsNotifierProvider.notifier)
+                      .setSuperHeroApiToken(value.trim());
+                },
+              ),
+              const SizedBox(height: AppSpacing.sm),
+              _buildCredentialStatus(
+                compact: compact,
+                statusType: _keyStatusType(
+                  hasKey: settings.hasSuperHeroToken,
+                  isBuiltIn: false,
+                  validated: _superHeroValidated,
+                ),
+                statusLabel: _keyStatusLabel(
+                  hasKey: settings.hasSuperHeroToken,
+                  isBuiltIn: false,
+                  validated: _superHeroValidated,
+                ),
+                actionTooltip: l.test,
+                isLoading: _superHeroValidating,
+                onAction: settings.hasSuperHeroToken
+                    ? _validateSuperHeroToken
+                    : null,
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  Future<void> _validateSuperHeroToken() async {
+    setState(() => _superHeroValidating = true);
+    final SettingsNotifier notifier =
+        ref.read(settingsNotifierProvider.notifier);
+    final bool valid = await notifier.validateSuperHeroToken();
+    if (!mounted) return;
+    setState(() {
+      _superHeroValidating = false;
+      _superHeroValidated = valid ? StatusType.success : StatusType.error;
+    });
+    context.showSnack(
+      valid
+          ? S.of(context).credentialsConnected
+          : S.of(context).credentialsConnectionError,
       type: valid ? SnackType.success : SnackType.error,
     );
   }

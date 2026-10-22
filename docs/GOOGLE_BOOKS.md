@@ -1,6 +1,6 @@
 # Google Books API key
 
-Google Books is a book search source in Tonkatsu Box. Search works without a key, but
+Google Books is a book search source in Mediabox. Search works without a key, but
 Google throttles anonymous traffic to a small shared quota that everyone hits at
 once. Adding your own key gives you a private quota (about 1000 requests per day),
 which is plenty for browsing and adding books.
@@ -35,10 +35,10 @@ billing account.
    works for books. For a desktop app you can leave **Application restrictions**
    set to **None**.
 
-OAuth is not needed. It only covers a user's private bookshelves, which Tonkatsu Box
+OAuth is not needed. It only covers a user's private bookshelves, which Mediabox
 does not use.
 
-## Add it to Tonkatsu Box
+## Add it to Mediabox
 
 Paste the key into **Settings -> Credentials -> Google Books**, or into the
 Google Books card during the first-run wizard. It is stored locally with your

@@ -1,3 +1,5 @@
+import 'package:core/models/character.dart';
+import 'package:core/models/data_source.dart';
 import 'package:core/models/movie.dart';
 import 'package:core/models/tmdb_review.dart';
 import 'package:core/models/tv_episode.dart';
@@ -229,6 +231,100 @@ class TmdbApi {
         page: page,
       );
 
+  /// Page of people matching [query]. [page] is 1-based.
+  ///
+  /// The search rows carry neither picture nor biography, so every person is
+  /// fetched as well; a person whose detail call fails keeps its name.
+  Future<TmdbPagedResult<Character>> searchPeople({
+    required String query,
+    int page = 1,
+  }) async {
+    _client.ensureApiKey();
+
+    if (query.trim().isEmpty) {
+      return const TmdbPagedResult<Character>(
+        results: <Character>[],
+        page: 1,
+        totalPages: 0,
+        totalResults: 0,
+      );
+    }
+
+    try {
+      final Response<dynamic> response = await _client.get(
+        '/search/person',
+        queryParameters: <String, dynamic>{
+          'query': query.trim(),
+          'page': page,
+          // TMDB hides adult titles and people unless they are asked for.
+          'include_adult': true,
+        },
+      );
+
+      if (response.statusCode != 200 || response.data == null) {
+        throw TmdbApiException(
+          'Failed to search people',
+          statusCode: response.statusCode,
+        );
+      }
+
+      final Map<String, dynamic> data = response.data as Map<String, dynamic>;
+      final List<dynamic> results =
+          (data['results'] as List<dynamic>?) ?? const <dynamic>[];
+      final List<(int, String)> rows = <(int, String)>[];
+      for (final dynamic item in results) {
+        if (item is! Map<String, dynamic>) continue;
+        final int? id = (item['id'] as num?)?.toInt();
+        final String? name = _text(item['name']);
+        if (id == null || name == null) continue;
+        rows.add((id, name));
+      }
+
+      final List<Character> people = await Future.wait(
+        rows.map(((int, String) row) => _person(row.$1, row.$2)),
+      );
+
+      return TmdbPagedResult<Character>(
+        results: people,
+        page: (data['page'] as int?) ?? page,
+        totalPages: (data['total_pages'] as int?) ?? 0,
+        totalResults: (data['total_results'] as int?) ?? 0,
+      );
+    } on DioException catch (e) {
+      throw _client.handleDioException(e, 'Failed to search people');
+    }
+  }
+
+  /// Full person record. Null when not found.
+  Future<Character?> getPerson(int id) async {
+    _client.ensureApiKey();
+
+    try {
+      final Response<dynamic> response = await _client.get(
+        '/person/$id',
+        queryParameters: <String, dynamic>{
+          'append_to_response': 'images',
+          // TMDB hides adult titles and people unless they are asked for.
+          'include_adult': true,
+        },
+      );
+
+      if (response.statusCode != 200 || response.data == null) {
+        throw TmdbApiException(
+          'Failed to fetch person',
+          statusCode: response.statusCode,
+        );
+      }
+
+      return _personFromJson(response.data as Map<String, dynamic>);
+    } on DioException catch (e) {
+      if (e.response?.statusCode == 404) {
+        return null;
+      }
+      throw _client.handleDioException(e, 'Failed to fetch person');
+    }
+  }
+
   Future<TmdbFindResult> findByImdbId(String imdbId) =>
       _find.findByImdbId(imdbId);
 
@@ -247,6 +343,93 @@ class TmdbApi {
   Future<List<TmdbGenre>> getMovieGenres() => _genres.getMovieGenres();
 
   Future<List<TmdbGenre>> getTvGenres() => _genres.getTvGenres();
+
+  /// The person behind one search row. The row itself is kept when the
+  /// detail call fails, so a flaky person does not vanish from the list.
+  Future<Character> _person(int id, String name) async {
+    try {
+      final Character? person = await getPerson(id);
+      return person ?? _barePerson(id, name);
+    } on TmdbApiException {
+      return _barePerson(id, name);
+    }
+  }
+
+  Character? _personFromJson(Map<String, dynamic> json) {
+    final int? id = (json['id'] as num?)?.toInt();
+    if (id == null) return null;
+    final String? name = _text(json['name']);
+    if (name == null) return null;
+    return Character(
+      id: id,
+      source: DataSource.tmdb,
+      name: name,
+      description: _text(json['biography']),
+      imageUrl: _personImage(json),
+      aliases: _alsoKnownAs(json['also_known_as']),
+      gender: _personGender(json['gender']),
+      affiliation: _text(json['known_for_department']),
+      externalUrl: 'https://www.themoviedb.org/person/$id',
+      popularity: (json['popularity'] as num?)?.round(),
+      updatedAt: _now(),
+    );
+  }
+
+  /// The person without the detail call — a name and a link, nothing more.
+  Character _barePerson(int id, String name) {
+    return Character(
+      id: id,
+      source: DataSource.tmdb,
+      name: name,
+      externalUrl: 'https://www.themoviedb.org/person/$id',
+      updatedAt: _now(),
+    );
+  }
+
+  /// The profile picture. The uploaded profile is more detailed than the
+  /// flat one the person carries.
+  String? _personImage(Map<String, dynamic> json) {
+    String? path = _text(json['profile_path']);
+    final Object? images = json['images'];
+    if (images is Map<String, dynamic>) {
+      final Object? profiles = images['profiles'];
+      if (profiles is List<dynamic> && profiles.isNotEmpty) {
+        final Object? first = profiles.first;
+        if (first is Map<String, dynamic>) {
+          path = _text(first['file_path']) ?? path;
+        }
+      }
+    }
+    if (path == null) return null;
+    return 'https://image.tmdb.org/t/p/w500$path';
+  }
+
+  List<String>? _alsoKnownAs(Object? value) {
+    if (value is! List<dynamic>) return null;
+    final List<String> names = <String>[];
+    for (final Object? item in value) {
+      final String? name = _text(item);
+      if (name != null) names.add(name);
+    }
+    return names.isEmpty ? null : names;
+  }
+
+  /// TMDB's gender code: 1 female, 2 male, 0 unknown.
+  String? _personGender(Object? value) {
+    final int? code = (value as num?)?.toInt();
+    if (code == 1) return 'Female';
+    if (code == 2) return 'Male';
+    return null;
+  }
+
+  /// Null for anything that is not a non-empty string.
+  String? _text(Object? value) {
+    if (value is! String) return null;
+    final String trimmed = value.trim();
+    return trimmed.isEmpty ? null : trimmed;
+  }
+
+  int _now() => DateTime.now().millisecondsSinceEpoch ~/ 1000;
 
   void dispose() => _client.dispose();
 }

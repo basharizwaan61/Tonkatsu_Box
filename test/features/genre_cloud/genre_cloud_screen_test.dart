@@ -3,10 +3,10 @@ import 'package:core/models/media_type.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/features/genre_cloud/providers/genre_cloud_provider.dart';
-import 'package:tonkatsu_box/features/genre_cloud/screens/genre_cloud_screen.dart';
-import 'package:tonkatsu_box/features/genre_cloud/widgets/genre_cloud_export_view.dart';
-import 'package:tonkatsu_box/features/genre_cloud/widgets/genre_cloud_view.dart';
+import 'package:mediabox/features/genre_cloud/providers/genre_cloud_provider.dart';
+import 'package:mediabox/features/genre_cloud/screens/genre_cloud_screen.dart';
+import 'package:mediabox/features/genre_cloud/widgets/genre_cloud_export_view.dart';
+import 'package:mediabox/features/genre_cloud/widgets/genre_cloud_view.dart';
 
 import '../../helpers/test_helpers.dart';
 

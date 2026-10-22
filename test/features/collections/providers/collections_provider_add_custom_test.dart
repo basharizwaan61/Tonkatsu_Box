@@ -6,11 +6,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:tonkatsu_box/core/database/database_service.dart';
-import 'package:tonkatsu_box/core/services/image_cache_service.dart';
-import 'package:tonkatsu_box/data/repositories/collection_repository.dart';
-import 'package:tonkatsu_box/features/collections/providers/collections_provider.dart';
-import 'package:tonkatsu_box/features/settings/providers/settings_provider.dart';
+import 'package:mediabox/core/database/database_service.dart';
+import 'package:mediabox/core/services/image_cache_service.dart';
+import 'package:mediabox/data/repositories/collection_repository.dart';
+import 'package:mediabox/features/collections/providers/collections_provider.dart';
+import 'package:mediabox/features/settings/providers/settings_provider.dart';
 
 import '../../../helpers/test_helpers.dart';
 

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/features/search/filters/anilist_genre_filter.dart';
-import 'package:tonkatsu_box/features/search/filters/anilist_manga_status_filter.dart';
-import 'package:tonkatsu_box/features/search/filters/anilist_tag_filter.dart';
-import 'package:tonkatsu_box/features/search/filters/manga_format_filter.dart';
-import 'package:tonkatsu_box/features/search/filters/year_filter.dart';
-import 'package:tonkatsu_box/features/search/models/search_source.dart';
-import 'package:tonkatsu_box/features/search/sources/anilist_manga_source.dart';
+import 'package:mediabox/features/search/filters/anilist_genre_filter.dart';
+import 'package:mediabox/features/search/filters/anilist_manga_status_filter.dart';
+import 'package:mediabox/features/search/filters/anilist_tag_filter.dart';
+import 'package:mediabox/features/search/filters/manga_format_filter.dart';
+import 'package:mediabox/features/search/filters/year_filter.dart';
+import 'package:mediabox/features/search/models/search_source.dart';
+import 'package:mediabox/features/search/sources/anilist_manga_source.dart';
 
 void main() {
   group('AniListMangaSource', () {

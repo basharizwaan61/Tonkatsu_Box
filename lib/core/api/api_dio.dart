@@ -11,7 +11,7 @@ const Duration _kWebTimeoutFloor = Duration(seconds: 60);
 /// Keyless services (MusicBrainz, Cover Art Archive) throttle or refuse
 /// clients without a meaningful User-Agent.
 const String kAppUserAgent =
-    'TonkatsuBox/1.0 (+https://github.com/hacan359/tonkatsu_box)';
+    'Mediabox/1.0 (+https://github.com/basharizwaan61/Tonkatsu_Box)';
 
 /// The single place every API client gets its [Dio] from — the one seam where
 /// the web build routes calls through the selfhost server's proxy.

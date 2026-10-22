@@ -231,7 +231,7 @@ Future<void> main(List<String> args) async {
     'version': 2,
     'format': 'full',
     'name': 'All Platform $platformId Games',
-    'author': 'Tonkatsu Box',
+    'author': 'Mediabox',
     'created': DateTime.now().toUtc().toIso8601String(),
     'description': 'Complete platform $platformId library — ${allGames.length} games from IGDB',
     'items': items,

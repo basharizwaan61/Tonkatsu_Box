@@ -20,10 +20,10 @@ import 'package:core/models/tv_show.dart';
 import 'package:core/models/xcoll_file.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:tonkatsu_box/core/api/igdb_api.dart';
-import 'package:tonkatsu_box/core/api/tmdb_api.dart';
-import 'package:tonkatsu_box/core/services/image_cache_service.dart';
-import 'package:tonkatsu_box/core/services/import_service.dart';
+import 'package:mediabox/core/api/igdb_api.dart';
+import 'package:mediabox/core/api/tmdb_api.dart';
+import 'package:mediabox/core/services/image_cache_service.dart';
+import 'package:mediabox/core/services/import_service.dart';
 
 import '../../helpers/test_helpers.dart';
 

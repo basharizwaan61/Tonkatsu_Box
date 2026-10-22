@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/l10n/app_localizations.dart';
-import 'package:tonkatsu_box/shared/widgets/type_to_filter_overlay.dart';
+import 'package:mediabox/l10n/app_localizations.dart';
+import 'package:mediabox/shared/widgets/type_to_filter_overlay.dart';
 
 void main() {
   Widget buildWidget({

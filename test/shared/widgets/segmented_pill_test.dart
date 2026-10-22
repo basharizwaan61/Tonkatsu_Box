@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/shared/widgets/segmented_pill.dart';
+import 'package:mediabox/shared/widgets/segmented_pill.dart';
 
 import '../../helpers/test_helpers.dart';
 

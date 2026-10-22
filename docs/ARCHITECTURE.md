@@ -70,7 +70,7 @@ Dependencies flow strictly top to bottom: `features → data → core`, with `sh
 ```
 lib/
 ├── main.dart                 Entry point: SQLite init, ProviderScope overrides
-├── app.dart                  TonkatsuBoxApp — MaterialApp, theme, _AppRouter
+├── app.dart                  MediaboxApp — MaterialApp, theme, _AppRouter
 ├── core/                     Depends on nothing but shared/
 ├── data/                     Repositories: coordinate core APIs and DAOs
 ├── features/                 Screens, providers, widgets — one folder per feature

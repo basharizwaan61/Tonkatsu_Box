@@ -1,8 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:tonkatsu_box/core/database/database_service.dart';
-import 'package:tonkatsu_box/features/collections/providers/item_tags_provider.dart';
+import 'package:mediabox/core/database/database_service.dart';
+import 'package:mediabox/features/collections/providers/item_tags_provider.dart';
 
 import '../../../helpers/test_helpers.dart';
 

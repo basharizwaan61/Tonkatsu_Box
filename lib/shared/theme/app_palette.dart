@@ -32,6 +32,7 @@ class AppPalette {
     required this.animeAccent,
     required this.bookAccent,
     required this.audioAccent,
+    required this.characterAccent,
     required this.customAccent,
     required this.success,
     required this.warning,
@@ -90,6 +91,7 @@ class AppPalette {
   final Color animeAccent;
   final Color bookAccent;
   final Color audioAccent;
+  final Color characterAccent;
   final Color customAccent;
 
   final Color success;

@@ -3,9 +3,9 @@ import 'package:core/models/marked_unit.dart';
 import 'package:core/models/media_type.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/features/likes/providers/marked_units_provider.dart';
-import 'package:tonkatsu_box/features/personalization/widgets/hub_likes_preview.dart';
-import 'package:tonkatsu_box/l10n/app_localizations.dart';
+import 'package:mediabox/features/likes/providers/marked_units_provider.dart';
+import 'package:mediabox/features/personalization/widgets/hub_likes_preview.dart';
+import 'package:mediabox/l10n/app_localizations.dart';
 
 import '../../../helpers/test_helpers.dart';
 

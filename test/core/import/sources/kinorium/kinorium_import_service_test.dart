@@ -9,8 +9,8 @@ import 'package:core/models/universal_import_result.dart';
 import 'package:core/models/wishlist_item.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:tonkatsu_box/core/api/tmdb_api.dart';
-import 'package:tonkatsu_box/core/import/sources/kinorium/kinorium_import_service.dart';
+import 'package:mediabox/core/api/tmdb_api.dart';
+import 'package:mediabox/core/import/sources/kinorium/kinorium_import_service.dart';
 
 import '../../../../helpers/test_helpers.dart';
 

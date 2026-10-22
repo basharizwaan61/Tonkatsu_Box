@@ -9,6 +9,7 @@ abstract final class CredentialNames {
   static const String raUsername = 'ra_username';
   static const String ra = 'ra';
   static const String comicVine = 'comicvine';
+  static const String superHero = 'superhero';
   static const String googleBooks = 'googlebooks';
   static const String hardcover = 'hardcover';
   static const String simklClientId = 'simkl_client_id';
@@ -31,6 +32,7 @@ abstract final class CredentialNames {
     raUsername,
     ra,
     comicVine,
+    superHero,
     googleBooks,
     hardcover,
     simklClientId,

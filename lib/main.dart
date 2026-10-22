@@ -52,7 +52,7 @@ Future<void> main() async {
         return;
       }
 
-      runApp(const AppRestartScope(child: TonkatsuBoxApp()));
+      runApp(const AppRestartScope(child: MediaboxApp()));
     },
     (Object error, StackTrace stack) {
       Logger('main').severe('Unhandled exception', error, stack);

@@ -5,6 +5,8 @@ import 'package:core/database/dao/collection_dao.dart';
 import 'package:core/models/anime.dart';
 import 'package:core/models/audio_item.dart';
 import 'package:core/models/book.dart';
+import 'package:core/models/character.dart';
+import 'package:core/models/character_image.dart';
 import 'package:core/models/collected_item_info.dart';
 import 'package:core/models/collection.dart';
 import 'package:core/models/collection_item.dart';
@@ -36,6 +38,7 @@ Future<Object?> dispatchCollectionDao(
         externalId: decodeInt(args['externalId']),
         platformId: decodeIntOrNull(args['platformId']),
         source: decodeEnumOrNull<DataSource>(args['source'], DataSource.values),
+        sourceVariant: args['sourceVariant'] as String?,
         authorComment: args['authorComment'] as String?,
         status: args.containsKey('status')
             ? decodeEnum<ItemStatus>(args['status'], ItemStatus.values)
@@ -132,6 +135,7 @@ Future<Object?> dispatchCollectionDao(
               'lastActivityAt': encodeDateTimeOrNull(e.lastActivityAt),
               'platformId': encodeIntOrNull(e.platformId),
               'source': e.source?.name,
+              'sourceVariant': e.sourceVariant,
               'tagId': encodeIntOrNull(e.tagId),
               'currentSeason': encodeInt(e.currentSeason),
               'currentEpisode': encodeInt(e.currentEpisode),
@@ -143,6 +147,14 @@ Future<Object?> dispatchCollectionDao(
               'userRating': e.userRating,
               'overrideName': e.overrideName,
               'overrideCoverUrl': e.overrideCoverUrl,
+              'characterImages': e.characterImages
+                  .map(
+                    (CharacterImage e) => <String, Object?>{
+                      'url': e.url,
+                      'caption': e.caption,
+                    },
+                  )
+                  .toList(),
               'isFavorite': e.isFavorite,
               'game': encodeNullable<Game>(
                 e.game,
@@ -375,6 +387,33 @@ Future<Object?> dispatchCollectionDao(
                   'unitGroupTotal': encodeIntOrNull(v.unitGroupTotal),
                   'externalUrl': v.externalUrl,
                   'cachedAt': encodeIntOrNull(v.cachedAt),
+                },
+              ),
+              'character': encodeNullable<Character>(
+                e.character,
+                (Character v) => <String, Object?>{
+                  'id': encodeInt(v.id),
+                  'source': encodeEnum(v.source),
+                  'name': v.name,
+                  'variant': v.variant,
+                  'nameNative': v.nameNative,
+                  'description': v.description,
+                  'imageUrl': v.imageUrl,
+                  'aliases': v.aliases?.map((String e) => e).toList(),
+                  'franchise': v.franchise,
+                  'firstAppearance': v.firstAppearance,
+                  'species': v.species,
+                  'gender': v.gender,
+                  'affiliation': v.affiliation,
+                  'abilities': v.abilities,
+                  'publisher': v.publisher,
+                  'alignment': v.alignment,
+                  'appearsIn': v.appearsIn?.map(
+                    (String k, String v) => MapEntry<String, Object?>(k, v),
+                  ),
+                  'externalUrl': v.externalUrl,
+                  'popularity': encodeIntOrNull(v.popularity),
+                  'updatedAt': encodeIntOrNull(v.updatedAt),
                 },
               ),
               'platform': encodeNullable<Platform>(
@@ -432,6 +471,7 @@ Future<Object?> dispatchCollectionDao(
           'lastActivityAt': encodeDateTimeOrNull(v.lastActivityAt),
           'platformId': encodeIntOrNull(v.platformId),
           'source': v.source?.name,
+          'sourceVariant': v.sourceVariant,
           'tagId': encodeIntOrNull(v.tagId),
           'currentSeason': encodeInt(v.currentSeason),
           'currentEpisode': encodeInt(v.currentEpisode),
@@ -443,6 +483,14 @@ Future<Object?> dispatchCollectionDao(
           'userRating': v.userRating,
           'overrideName': v.overrideName,
           'overrideCoverUrl': v.overrideCoverUrl,
+          'characterImages': v.characterImages
+              .map(
+                (CharacterImage e) => <String, Object?>{
+                  'url': e.url,
+                  'caption': e.caption,
+                },
+              )
+              .toList(),
           'isFavorite': v.isFavorite,
           'game': encodeNullable<Game>(
             v.game,
@@ -673,6 +721,33 @@ Future<Object?> dispatchCollectionDao(
               'unitGroupTotal': encodeIntOrNull(v.unitGroupTotal),
               'externalUrl': v.externalUrl,
               'cachedAt': encodeIntOrNull(v.cachedAt),
+            },
+          ),
+          'character': encodeNullable<Character>(
+            v.character,
+            (Character v) => <String, Object?>{
+              'id': encodeInt(v.id),
+              'source': encodeEnum(v.source),
+              'name': v.name,
+              'variant': v.variant,
+              'nameNative': v.nameNative,
+              'description': v.description,
+              'imageUrl': v.imageUrl,
+              'aliases': v.aliases?.map((String e) => e).toList(),
+              'franchise': v.franchise,
+              'firstAppearance': v.firstAppearance,
+              'species': v.species,
+              'gender': v.gender,
+              'affiliation': v.affiliation,
+              'abilities': v.abilities,
+              'publisher': v.publisher,
+              'alignment': v.alignment,
+              'appearsIn': v.appearsIn?.map(
+                (String k, String v) => MapEntry<String, Object?>(k, v),
+              ),
+              'externalUrl': v.externalUrl,
+              'popularity': encodeIntOrNull(v.popularity),
+              'updatedAt': encodeIntOrNull(v.updatedAt),
             },
           ),
           'platform': encodeNullable<Platform>(
@@ -708,6 +783,7 @@ Future<Object?> dispatchCollectionDao(
           'lastActivityAt': encodeDateTimeOrNull(v.lastActivityAt),
           'platformId': encodeIntOrNull(v.platformId),
           'source': v.source?.name,
+          'sourceVariant': v.sourceVariant,
           'tagId': encodeIntOrNull(v.tagId),
           'currentSeason': encodeInt(v.currentSeason),
           'currentEpisode': encodeInt(v.currentEpisode),
@@ -719,6 +795,14 @@ Future<Object?> dispatchCollectionDao(
           'userRating': v.userRating,
           'overrideName': v.overrideName,
           'overrideCoverUrl': v.overrideCoverUrl,
+          'characterImages': v.characterImages
+              .map(
+                (CharacterImage e) => <String, Object?>{
+                  'url': e.url,
+                  'caption': e.caption,
+                },
+              )
+              .toList(),
           'isFavorite': v.isFavorite,
           'game': encodeNullable<Game>(
             v.game,
@@ -951,6 +1035,33 @@ Future<Object?> dispatchCollectionDao(
               'cachedAt': encodeIntOrNull(v.cachedAt),
             },
           ),
+          'character': encodeNullable<Character>(
+            v.character,
+            (Character v) => <String, Object?>{
+              'id': encodeInt(v.id),
+              'source': encodeEnum(v.source),
+              'name': v.name,
+              'variant': v.variant,
+              'nameNative': v.nameNative,
+              'description': v.description,
+              'imageUrl': v.imageUrl,
+              'aliases': v.aliases?.map((String e) => e).toList(),
+              'franchise': v.franchise,
+              'firstAppearance': v.firstAppearance,
+              'species': v.species,
+              'gender': v.gender,
+              'affiliation': v.affiliation,
+              'abilities': v.abilities,
+              'publisher': v.publisher,
+              'alignment': v.alignment,
+              'appearsIn': v.appearsIn?.map(
+                (String k, String v) => MapEntry<String, Object?>(k, v),
+              ),
+              'externalUrl': v.externalUrl,
+              'popularity': encodeIntOrNull(v.popularity),
+              'updatedAt': encodeIntOrNull(v.updatedAt),
+            },
+          ),
           'platform': encodeNullable<Platform>(
             v.platform,
             (Platform v) => <String, Object?>{
@@ -983,6 +1094,7 @@ Future<Object?> dispatchCollectionDao(
               'lastActivityAt': encodeDateTimeOrNull(e.lastActivityAt),
               'platformId': encodeIntOrNull(e.platformId),
               'source': e.source?.name,
+              'sourceVariant': e.sourceVariant,
               'tagId': encodeIntOrNull(e.tagId),
               'currentSeason': encodeInt(e.currentSeason),
               'currentEpisode': encodeInt(e.currentEpisode),
@@ -994,6 +1106,14 @@ Future<Object?> dispatchCollectionDao(
               'userRating': e.userRating,
               'overrideName': e.overrideName,
               'overrideCoverUrl': e.overrideCoverUrl,
+              'characterImages': e.characterImages
+                  .map(
+                    (CharacterImage e) => <String, Object?>{
+                      'url': e.url,
+                      'caption': e.caption,
+                    },
+                  )
+                  .toList(),
               'isFavorite': e.isFavorite,
               'game': encodeNullable<Game>(
                 e.game,
@@ -1226,6 +1346,33 @@ Future<Object?> dispatchCollectionDao(
                   'unitGroupTotal': encodeIntOrNull(v.unitGroupTotal),
                   'externalUrl': v.externalUrl,
                   'cachedAt': encodeIntOrNull(v.cachedAt),
+                },
+              ),
+              'character': encodeNullable<Character>(
+                e.character,
+                (Character v) => <String, Object?>{
+                  'id': encodeInt(v.id),
+                  'source': encodeEnum(v.source),
+                  'name': v.name,
+                  'variant': v.variant,
+                  'nameNative': v.nameNative,
+                  'description': v.description,
+                  'imageUrl': v.imageUrl,
+                  'aliases': v.aliases?.map((String e) => e).toList(),
+                  'franchise': v.franchise,
+                  'firstAppearance': v.firstAppearance,
+                  'species': v.species,
+                  'gender': v.gender,
+                  'affiliation': v.affiliation,
+                  'abilities': v.abilities,
+                  'publisher': v.publisher,
+                  'alignment': v.alignment,
+                  'appearsIn': v.appearsIn?.map(
+                    (String k, String v) => MapEntry<String, Object?>(k, v),
+                  ),
+                  'externalUrl': v.externalUrl,
+                  'popularity': encodeIntOrNull(v.popularity),
+                  'updatedAt': encodeIntOrNull(v.updatedAt),
                 },
               ),
               'platform': encodeNullable<Platform>(
@@ -1262,6 +1409,7 @@ Future<Object?> dispatchCollectionDao(
               'lastActivityAt': encodeDateTimeOrNull(e.lastActivityAt),
               'platformId': encodeIntOrNull(e.platformId),
               'source': e.source?.name,
+              'sourceVariant': e.sourceVariant,
               'tagId': encodeIntOrNull(e.tagId),
               'currentSeason': encodeInt(e.currentSeason),
               'currentEpisode': encodeInt(e.currentEpisode),
@@ -1273,6 +1421,14 @@ Future<Object?> dispatchCollectionDao(
               'userRating': e.userRating,
               'overrideName': e.overrideName,
               'overrideCoverUrl': e.overrideCoverUrl,
+              'characterImages': e.characterImages
+                  .map(
+                    (CharacterImage e) => <String, Object?>{
+                      'url': e.url,
+                      'caption': e.caption,
+                    },
+                  )
+                  .toList(),
               'isFavorite': e.isFavorite,
               'game': encodeNullable<Game>(
                 e.game,
@@ -1505,6 +1661,33 @@ Future<Object?> dispatchCollectionDao(
                   'unitGroupTotal': encodeIntOrNull(v.unitGroupTotal),
                   'externalUrl': v.externalUrl,
                   'cachedAt': encodeIntOrNull(v.cachedAt),
+                },
+              ),
+              'character': encodeNullable<Character>(
+                e.character,
+                (Character v) => <String, Object?>{
+                  'id': encodeInt(v.id),
+                  'source': encodeEnum(v.source),
+                  'name': v.name,
+                  'variant': v.variant,
+                  'nameNative': v.nameNative,
+                  'description': v.description,
+                  'imageUrl': v.imageUrl,
+                  'aliases': v.aliases?.map((String e) => e).toList(),
+                  'franchise': v.franchise,
+                  'firstAppearance': v.firstAppearance,
+                  'species': v.species,
+                  'gender': v.gender,
+                  'affiliation': v.affiliation,
+                  'abilities': v.abilities,
+                  'publisher': v.publisher,
+                  'alignment': v.alignment,
+                  'appearsIn': v.appearsIn?.map(
+                    (String k, String v) => MapEntry<String, Object?>(k, v),
+                  ),
+                  'externalUrl': v.externalUrl,
+                  'popularity': encodeIntOrNull(v.popularity),
+                  'updatedAt': encodeIntOrNull(v.updatedAt),
                 },
               ),
               'platform': encodeNullable<Platform>(
@@ -1555,6 +1738,7 @@ Future<Object?> dispatchCollectionDao(
                   'collectionName': e.collectionName,
                   'platformId': encodeIntOrNull(e.platformId),
                   'source': encodeEnum(e.source),
+                  'sourceVariant': e.sourceVariant,
                 },
               )
               .toList(),
@@ -1630,6 +1814,7 @@ Future<Object?> dispatchCollectionDao(
           'lastActivityAt': encodeDateTimeOrNull(v.lastActivityAt),
           'platformId': encodeIntOrNull(v.platformId),
           'source': v.source?.name,
+          'sourceVariant': v.sourceVariant,
           'tagId': encodeIntOrNull(v.tagId),
           'currentSeason': encodeInt(v.currentSeason),
           'currentEpisode': encodeInt(v.currentEpisode),
@@ -1641,6 +1826,14 @@ Future<Object?> dispatchCollectionDao(
           'userRating': v.userRating,
           'overrideName': v.overrideName,
           'overrideCoverUrl': v.overrideCoverUrl,
+          'characterImages': v.characterImages
+              .map(
+                (CharacterImage e) => <String, Object?>{
+                  'url': e.url,
+                  'caption': e.caption,
+                },
+              )
+              .toList(),
           'isFavorite': v.isFavorite,
           'game': encodeNullable<Game>(
             v.game,
@@ -1873,6 +2066,33 @@ Future<Object?> dispatchCollectionDao(
               'cachedAt': encodeIntOrNull(v.cachedAt),
             },
           ),
+          'character': encodeNullable<Character>(
+            v.character,
+            (Character v) => <String, Object?>{
+              'id': encodeInt(v.id),
+              'source': encodeEnum(v.source),
+              'name': v.name,
+              'variant': v.variant,
+              'nameNative': v.nameNative,
+              'description': v.description,
+              'imageUrl': v.imageUrl,
+              'aliases': v.aliases?.map((String e) => e).toList(),
+              'franchise': v.franchise,
+              'firstAppearance': v.firstAppearance,
+              'species': v.species,
+              'gender': v.gender,
+              'affiliation': v.affiliation,
+              'abilities': v.abilities,
+              'publisher': v.publisher,
+              'alignment': v.alignment,
+              'appearsIn': v.appearsIn?.map(
+                (String k, String v) => MapEntry<String, Object?>(k, v),
+              ),
+              'externalUrl': v.externalUrl,
+              'popularity': encodeIntOrNull(v.popularity),
+              'updatedAt': encodeIntOrNull(v.updatedAt),
+            },
+          ),
           'platform': encodeNullable<Platform>(
             v.platform,
             (Platform v) => <String, Object?>{
@@ -1924,6 +2144,7 @@ Future<Object?> dispatchCollectionDao(
               'lastActivityAt': encodeDateTimeOrNull(e.lastActivityAt),
               'platformId': encodeIntOrNull(e.platformId),
               'source': e.source?.name,
+              'sourceVariant': e.sourceVariant,
               'tagId': encodeIntOrNull(e.tagId),
               'currentSeason': encodeInt(e.currentSeason),
               'currentEpisode': encodeInt(e.currentEpisode),
@@ -1935,6 +2156,14 @@ Future<Object?> dispatchCollectionDao(
               'userRating': e.userRating,
               'overrideName': e.overrideName,
               'overrideCoverUrl': e.overrideCoverUrl,
+              'characterImages': e.characterImages
+                  .map(
+                    (CharacterImage e) => <String, Object?>{
+                      'url': e.url,
+                      'caption': e.caption,
+                    },
+                  )
+                  .toList(),
               'isFavorite': e.isFavorite,
               'game': encodeNullable<Game>(
                 e.game,
@@ -2167,6 +2396,33 @@ Future<Object?> dispatchCollectionDao(
                   'unitGroupTotal': encodeIntOrNull(v.unitGroupTotal),
                   'externalUrl': v.externalUrl,
                   'cachedAt': encodeIntOrNull(v.cachedAt),
+                },
+              ),
+              'character': encodeNullable<Character>(
+                e.character,
+                (Character v) => <String, Object?>{
+                  'id': encodeInt(v.id),
+                  'source': encodeEnum(v.source),
+                  'name': v.name,
+                  'variant': v.variant,
+                  'nameNative': v.nameNative,
+                  'description': v.description,
+                  'imageUrl': v.imageUrl,
+                  'aliases': v.aliases?.map((String e) => e).toList(),
+                  'franchise': v.franchise,
+                  'firstAppearance': v.firstAppearance,
+                  'species': v.species,
+                  'gender': v.gender,
+                  'affiliation': v.affiliation,
+                  'abilities': v.abilities,
+                  'publisher': v.publisher,
+                  'alignment': v.alignment,
+                  'appearsIn': v.appearsIn?.map(
+                    (String k, String v) => MapEntry<String, Object?>(k, v),
+                  ),
+                  'externalUrl': v.externalUrl,
+                  'popularity': encodeIntOrNull(v.popularity),
+                  'updatedAt': encodeIntOrNull(v.updatedAt),
                 },
               ),
               'platform': encodeNullable<Platform>(
@@ -2203,6 +2459,7 @@ Future<Object?> dispatchCollectionDao(
               'lastActivityAt': encodeDateTimeOrNull(e.lastActivityAt),
               'platformId': encodeIntOrNull(e.platformId),
               'source': e.source?.name,
+              'sourceVariant': e.sourceVariant,
               'tagId': encodeIntOrNull(e.tagId),
               'currentSeason': encodeInt(e.currentSeason),
               'currentEpisode': encodeInt(e.currentEpisode),
@@ -2214,6 +2471,14 @@ Future<Object?> dispatchCollectionDao(
               'userRating': e.userRating,
               'overrideName': e.overrideName,
               'overrideCoverUrl': e.overrideCoverUrl,
+              'characterImages': e.characterImages
+                  .map(
+                    (CharacterImage e) => <String, Object?>{
+                      'url': e.url,
+                      'caption': e.caption,
+                    },
+                  )
+                  .toList(),
               'isFavorite': e.isFavorite,
               'game': encodeNullable<Game>(
                 e.game,
@@ -2446,6 +2711,33 @@ Future<Object?> dispatchCollectionDao(
                   'unitGroupTotal': encodeIntOrNull(v.unitGroupTotal),
                   'externalUrl': v.externalUrl,
                   'cachedAt': encodeIntOrNull(v.cachedAt),
+                },
+              ),
+              'character': encodeNullable<Character>(
+                e.character,
+                (Character v) => <String, Object?>{
+                  'id': encodeInt(v.id),
+                  'source': encodeEnum(v.source),
+                  'name': v.name,
+                  'variant': v.variant,
+                  'nameNative': v.nameNative,
+                  'description': v.description,
+                  'imageUrl': v.imageUrl,
+                  'aliases': v.aliases?.map((String e) => e).toList(),
+                  'franchise': v.franchise,
+                  'firstAppearance': v.firstAppearance,
+                  'species': v.species,
+                  'gender': v.gender,
+                  'affiliation': v.affiliation,
+                  'abilities': v.abilities,
+                  'publisher': v.publisher,
+                  'alignment': v.alignment,
+                  'appearsIn': v.appearsIn?.map(
+                    (String k, String v) => MapEntry<String, Object?>(k, v),
+                  ),
+                  'externalUrl': v.externalUrl,
+                  'popularity': encodeIntOrNull(v.popularity),
+                  'updatedAt': encodeIntOrNull(v.updatedAt),
                 },
               ),
               'platform': encodeNullable<Platform>(
@@ -2521,6 +2813,7 @@ Future<Object?> dispatchCollectionDao(
               'lastActivityAt': encodeDateTimeOrNull(e.lastActivityAt),
               'platformId': encodeIntOrNull(e.platformId),
               'source': e.source?.name,
+              'sourceVariant': e.sourceVariant,
               'tagId': encodeIntOrNull(e.tagId),
               'currentSeason': encodeInt(e.currentSeason),
               'currentEpisode': encodeInt(e.currentEpisode),
@@ -2532,6 +2825,14 @@ Future<Object?> dispatchCollectionDao(
               'userRating': e.userRating,
               'overrideName': e.overrideName,
               'overrideCoverUrl': e.overrideCoverUrl,
+              'characterImages': e.characterImages
+                  .map(
+                    (CharacterImage e) => <String, Object?>{
+                      'url': e.url,
+                      'caption': e.caption,
+                    },
+                  )
+                  .toList(),
               'isFavorite': e.isFavorite,
               'game': encodeNullable<Game>(
                 e.game,
@@ -2764,6 +3065,33 @@ Future<Object?> dispatchCollectionDao(
                   'unitGroupTotal': encodeIntOrNull(v.unitGroupTotal),
                   'externalUrl': v.externalUrl,
                   'cachedAt': encodeIntOrNull(v.cachedAt),
+                },
+              ),
+              'character': encodeNullable<Character>(
+                e.character,
+                (Character v) => <String, Object?>{
+                  'id': encodeInt(v.id),
+                  'source': encodeEnum(v.source),
+                  'name': v.name,
+                  'variant': v.variant,
+                  'nameNative': v.nameNative,
+                  'description': v.description,
+                  'imageUrl': v.imageUrl,
+                  'aliases': v.aliases?.map((String e) => e).toList(),
+                  'franchise': v.franchise,
+                  'firstAppearance': v.firstAppearance,
+                  'species': v.species,
+                  'gender': v.gender,
+                  'affiliation': v.affiliation,
+                  'abilities': v.abilities,
+                  'publisher': v.publisher,
+                  'alignment': v.alignment,
+                  'appearsIn': v.appearsIn?.map(
+                    (String k, String v) => MapEntry<String, Object?>(k, v),
+                  ),
+                  'externalUrl': v.externalUrl,
+                  'popularity': encodeIntOrNull(v.popularity),
+                  'updatedAt': encodeIntOrNull(v.updatedAt),
                 },
               ),
               'platform': encodeNullable<Platform>(
@@ -2833,6 +3161,7 @@ Future<Object?> dispatchCollectionDao(
               'lastActivityAt': encodeDateTimeOrNull(e.lastActivityAt),
               'platformId': encodeIntOrNull(e.platformId),
               'source': e.source?.name,
+              'sourceVariant': e.sourceVariant,
               'tagId': encodeIntOrNull(e.tagId),
               'currentSeason': encodeInt(e.currentSeason),
               'currentEpisode': encodeInt(e.currentEpisode),
@@ -2844,6 +3173,14 @@ Future<Object?> dispatchCollectionDao(
               'userRating': e.userRating,
               'overrideName': e.overrideName,
               'overrideCoverUrl': e.overrideCoverUrl,
+              'characterImages': e.characterImages
+                  .map(
+                    (CharacterImage e) => <String, Object?>{
+                      'url': e.url,
+                      'caption': e.caption,
+                    },
+                  )
+                  .toList(),
               'isFavorite': e.isFavorite,
               'game': encodeNullable<Game>(
                 e.game,
@@ -3078,6 +3415,33 @@ Future<Object?> dispatchCollectionDao(
                   'cachedAt': encodeIntOrNull(v.cachedAt),
                 },
               ),
+              'character': encodeNullable<Character>(
+                e.character,
+                (Character v) => <String, Object?>{
+                  'id': encodeInt(v.id),
+                  'source': encodeEnum(v.source),
+                  'name': v.name,
+                  'variant': v.variant,
+                  'nameNative': v.nameNative,
+                  'description': v.description,
+                  'imageUrl': v.imageUrl,
+                  'aliases': v.aliases?.map((String e) => e).toList(),
+                  'franchise': v.franchise,
+                  'firstAppearance': v.firstAppearance,
+                  'species': v.species,
+                  'gender': v.gender,
+                  'affiliation': v.affiliation,
+                  'abilities': v.abilities,
+                  'publisher': v.publisher,
+                  'alignment': v.alignment,
+                  'appearsIn': v.appearsIn?.map(
+                    (String k, String v) => MapEntry<String, Object?>(k, v),
+                  ),
+                  'externalUrl': v.externalUrl,
+                  'popularity': encodeIntOrNull(v.popularity),
+                  'updatedAt': encodeIntOrNull(v.updatedAt),
+                },
+              ),
               'platform': encodeNullable<Platform>(
                 e.platform,
                 (Platform v) => <String, Object?>{
@@ -3089,6 +3453,20 @@ Future<Object?> dispatchCollectionDao(
             },
           )
           .toList();
+
+    case 'setItemCharacterImages':
+      await dao.setItemCharacterImages(
+        decodeInt(args['id']),
+        asList(args['images'])
+            .map(
+              (Object? e) => CharacterImage(
+                url: asObject(e)['url'] as String,
+                caption: asObject(e)['caption'] as String?,
+              ),
+            )
+            .toList(),
+      );
+      return null;
 
     case 'setItemFavorite':
       await dao.setItemFavorite(

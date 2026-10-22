@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/features/statistics/layout/stats_layout.dart';
-import 'package:tonkatsu_box/features/statistics/layout/stats_layout_desktop.dart';
-import 'package:tonkatsu_box/features/statistics/layout/stats_layout_mobile.dart';
-import 'package:tonkatsu_box/features/statistics/layout/stats_layout_scope.dart';
+import 'package:mediabox/features/statistics/layout/stats_layout.dart';
+import 'package:mediabox/features/statistics/layout/stats_layout_desktop.dart';
+import 'package:mediabox/features/statistics/layout/stats_layout_mobile.dart';
+import 'package:mediabox/features/statistics/layout/stats_layout_scope.dart';
 
 void main() {
   group('StatsLayoutScope', () {

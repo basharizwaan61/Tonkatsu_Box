@@ -1,8 +1,8 @@
 import 'dart:typed_data';
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/core/import/sources/kinorium/kinorium_csv_parser.dart';
-import 'package:tonkatsu_box/core/import/sources/kinorium/kinorium_entry.dart';
+import 'package:mediabox/core/import/sources/kinorium/kinorium_csv_parser.dart';
+import 'package:mediabox/core/import/sources/kinorium/kinorium_entry.dart';
 
 /// Builds one tab-separated, quoted row like Kinorium exports.
 String _row(List<String> cells) =>

@@ -24,6 +24,9 @@ enum ImageType {
 
   customCover('custom_covers'),
 
+  /// Character portraits, re-downloadable from the provider.
+  characterCover('character_covers'),
+
   /// Collection hero backgrounds; on web they live in the server cache
   /// because the browser has no filesystem for the desktop's hero folder.
   collectionHero('collection_heroes'),

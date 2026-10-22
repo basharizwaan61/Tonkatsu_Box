@@ -2,14 +2,14 @@ import 'package:core/models/steamgriddb_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/features/collections/providers/canvas_provider.dart';
-import 'package:tonkatsu_box/features/collections/providers/steamgriddb_panel_provider.dart';
-import 'package:tonkatsu_box/features/collections/providers/vgmaps_panel_provider.dart';
-import 'package:tonkatsu_box/features/collections/widgets/canvas_view.dart';
-import 'package:tonkatsu_box/features/collections/widgets/collection_canvas_layout.dart';
-import 'package:tonkatsu_box/features/collections/widgets/steamgriddb_panel.dart';
-import 'package:tonkatsu_box/features/settings/providers/settings_provider.dart';
-import 'package:tonkatsu_box/l10n/app_localizations.dart';
+import 'package:mediabox/features/collections/providers/canvas_provider.dart';
+import 'package:mediabox/features/collections/providers/steamgriddb_panel_provider.dart';
+import 'package:mediabox/features/collections/providers/vgmaps_panel_provider.dart';
+import 'package:mediabox/features/collections/widgets/canvas_view.dart';
+import 'package:mediabox/features/collections/widgets/collection_canvas_layout.dart';
+import 'package:mediabox/features/collections/widgets/steamgriddb_panel.dart';
+import 'package:mediabox/features/settings/providers/settings_provider.dart';
+import 'package:mediabox/l10n/app_localizations.dart';
 
 class _TestCanvasNotifier extends CanvasNotifier {
   _TestCanvasNotifier(this._testState);

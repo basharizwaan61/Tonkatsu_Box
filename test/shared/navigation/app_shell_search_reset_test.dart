@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:tonkatsu_box/features/search/providers/browse_provider.dart';
-import 'package:tonkatsu_box/features/settings/providers/settings_provider.dart';
-import 'package:tonkatsu_box/shared/navigation/app_shell.dart';
-import 'package:tonkatsu_box/shared/navigation/search_providers.dart';
+import 'package:mediabox/features/search/providers/browse_provider.dart';
+import 'package:mediabox/features/settings/providers/settings_provider.dart';
+import 'package:mediabox/shared/navigation/app_shell.dart';
+import 'package:mediabox/shared/navigation/search_providers.dart';
 
 /// Exposes a real [WidgetRef] so the test drives [resetSearchTabState] exactly
 /// as [AppShell] does when the Search tab is entered.

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/l10n/app_localizations.dart';
-import 'package:tonkatsu_box/l10n/app_localizations_ru.dart';
-import 'package:tonkatsu_box/shared/keyboard/keyboard_shortcuts.dart';
+import 'package:mediabox/l10n/app_localizations.dart';
+import 'package:mediabox/l10n/app_localizations_ru.dart';
+import 'package:mediabox/shared/keyboard/keyboard_shortcuts.dart';
 
 void main() {
   group('buildGlobalShortcuts', () {

@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:tonkatsu_box/core/services/update_service.dart';
+import 'package:mediabox/core/services/update_service.dart';
 
 import '../../helpers/test_helpers.dart';
 
@@ -13,7 +13,7 @@ void main() {
   late MockDio mockDio;
 
   const String latestVersion = '0.10.0';
-  const String releaseUrl = 'https://github.com/hacan359/tonkatsu_box/releases/tag/v0.10.0';
+  const String releaseUrl = 'https://github.com/basharizwaan61/Tonkatsu_Box/releases/tag/v0.10.0';
   const String releaseNotes = 'New features and bug fixes';
 
   final Map<String, dynamic> successResponse = <String, dynamic>{
@@ -184,7 +184,7 @@ void main() {
         await sut.checkForUpdate();
 
         verify(() => mockDio.get<Map<String, dynamic>>(
-              'https://api.github.com/repos/hacan359/tonkatsu_box/releases/latest',
+              'https://api.github.com/repos/basharizwaan61/Tonkatsu_Box/releases/latest',
               options: any(named: 'options'),
             )).called(1);
       });

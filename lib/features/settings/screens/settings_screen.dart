@@ -60,6 +60,7 @@ import 'gamepad_debug_screen.dart';
 import 'kodi_screen.dart';
 import 'profiles_screen.dart';
 import '../providers/profile_provider.dart';
+import '../providers/fandom_wiki_provider.dart';
 import '../../../shared/constants/rich_hero_style.dart';
 import '../../../shared/constants/rich_hero_style_ui.dart';
 
@@ -586,6 +587,15 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                 : null,
             onTap: () => _pushScreen(const CredentialsScreen()),
           ),
+          SettingsTile(
+            leadingIcon: Icons.groups_outlined,
+            leadingColor: _kApiKeysColor,
+            title: l.settingsFandomWiki,
+            subtitle: l.settingsFandomWikiSubtitle,
+            value: ref.watch(fandomWikiProvider).valueOrNull ??
+                FandomWikiNotifier.defaultWiki,
+            onTap: _showFandomWikiPicker,
+          ),
         ],
       ),
       gap,
@@ -854,6 +864,94 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
         AppThemeId.dark => l.settingsThemeDark,
         AppThemeId.sakura => l.settingsThemeSakura,
       };
+
+  /// Fandom has no cross-wiki character search, so the user picks the one
+  /// wiki the character search reads.
+  void _showFandomWikiPicker() {
+    final S l = S.of(context);
+    final String current =
+        ref.read(fandomWikiProvider).valueOrNull ?? FandomWikiNotifier.defaultWiki;
+    showDialog<void>(
+      context: context,
+      builder: (BuildContext dialogContext) => SimpleDialog(
+        title: Text(l.settingsFandomWiki),
+        children: <Widget>[
+          SimpleDialogOption(
+            onPressed: () {
+              Navigator.pop(dialogContext);
+              _showCustomFandomWiki(current);
+            },
+            child: Row(
+              children: <Widget>[
+                if (current.isEmpty ||
+                    !kPopularFandomWikis.contains(current))
+                  Icon(Icons.check, size: 18, color: AppColors.brand)
+                else
+                  const SizedBox(width: 18),
+                const SizedBox(width: AppSpacing.sm),
+                Text(l.settingsFandomWikiCustom),
+              ],
+            ),
+          ),
+          for (final String wiki in kPopularFandomWikis)
+            SimpleDialogOption(
+              onPressed: () {
+                Navigator.pop(dialogContext);
+                ref
+                    .read(fandomWikiProvider.notifier)
+                    .setWiki(wiki);
+              },
+              child: Row(
+                children: <Widget>[
+                  if (wiki == current)
+                    Icon(Icons.check, size: 18, color: AppColors.brand)
+                  else
+                    const SizedBox(width: 18),
+                  const SizedBox(width: AppSpacing.sm),
+                  Text(wiki),
+                ],
+              ),
+            ),
+        ],
+      ),
+    );
+  }
+
+  /// Any wiki can be typed in — the catalogue is long and the user knows
+  /// which one holds the characters they collect.
+  Future<void> _showCustomFandomWiki(String current) async {
+    final S l = S.of(context);
+    final TextEditingController controller =
+        TextEditingController(text: current);
+    final String? wiki = await showDialog<String>(
+      context: context,
+      builder: (BuildContext dialogContext) => AlertDialog(
+        title: Text(l.settingsFandomWiki),
+        content: TextField(
+          controller: controller,
+          autofocus: true,
+          decoration: InputDecoration(
+            labelText: l.settingsFandomWikiCustom,
+            hintText: l.settingsFandomWikiCustomHint,
+          ),
+          onSubmitted: (String value) => Navigator.pop(dialogContext, value),
+        ),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () => Navigator.pop(dialogContext),
+            child: Text(l.cancel),
+          ),
+          TextButton(
+            onPressed: () => Navigator.pop(dialogContext, controller.text),
+            child: Text(l.save),
+          ),
+        ],
+      ),
+    );
+    controller.dispose();
+    if (wiki == null) return;
+    await ref.read(fandomWikiProvider.notifier).setWiki(wiki);
+  }
 
   void _showThemePicker(SettingsState settings) {
     final S l = S.of(context);

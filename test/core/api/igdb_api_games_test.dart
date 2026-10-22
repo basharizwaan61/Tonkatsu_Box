@@ -3,7 +3,7 @@ import 'package:core/models/game_time_to_beat.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:tonkatsu_box/core/api/igdb_api.dart';
+import 'package:mediabox/core/api/igdb_api.dart';
 
 import '../../helpers/test_helpers.dart';
 

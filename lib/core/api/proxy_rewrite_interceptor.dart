@@ -24,10 +24,16 @@ class ProxyRewriteInterceptor extends Interceptor {
 
     // `uri` has queryParameters merged in already, so baking the whole thing
     // into an absolute path and clearing them avoids a doubled query.
+    // A family upstream names its member in the path: `/proxy/fandom/marvel/…`.
+    final String member = target.family
+        ? (familyLabelForHost(uri.host) ?? '')
+        : '';
     final Uri server = Uri.parse(_baseUrl ?? serverBaseUrl());
     options.path = server
         .replace(
-          path: '$kProxyPathPrefix/${target.slug}${uri.path}',
+          path: '$kProxyPathPrefix/${target.slug}'
+              '${member.isEmpty ? '' : '/$member'}'
+              '${uri.path}',
           query: uri.query.isEmpty ? null : uri.query,
         )
         .toString();

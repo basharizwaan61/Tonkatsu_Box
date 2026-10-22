@@ -1,8 +1,8 @@
 import 'package:core/models/data_source.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/features/search/models/search_source.dart';
-import 'package:tonkatsu_box/features/search/sources/search_sources.dart';
-import 'package:tonkatsu_box/shared/constants/source_catalog.dart';
+import 'package:mediabox/features/search/models/search_source.dart';
+import 'package:mediabox/features/search/sources/search_sources.dart';
+import 'package:mediabox/shared/constants/source_catalog.dart';
 
 void main() {
   group('kDataSourceCatalog', () {
@@ -27,8 +27,8 @@ void main() {
       }
     });
 
-    test('only IGDB, TMDB, TheTVDB, ComicVine, Google Books, Hardcover '
-        'and Podcast Index prompt for a key', () {
+    test('only IGDB, TMDB, TheTVDB, ComicVine, Google Books, Hardcover, '
+        'Podcast Index and SuperHero prompt for a key', () {
       final Set<DataSource> needKey = kDataSourceCatalog
           .where((SourceInfo i) =>
               i.keyRequirement != SourceKeyRequirement.none)
@@ -45,6 +45,7 @@ void main() {
           DataSource.googleBooks,
           DataSource.hardcover,
           DataSource.podcastIndex,
+          DataSource.superHero,
         },
       );
     });

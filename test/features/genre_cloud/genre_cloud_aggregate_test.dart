@@ -2,9 +2,9 @@ import 'package:core/models/collection_item.dart';
 import 'package:core/models/media_type.dart';
 import 'package:core/models/platform.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/features/genre_cloud/facet.dart';
-import 'package:tonkatsu_box/features/genre_cloud/facet_value.dart';
-import 'package:tonkatsu_box/features/genre_cloud/genre_cloud_aggregate.dart';
+import 'package:mediabox/features/genre_cloud/facet.dart';
+import 'package:mediabox/features/genre_cloud/facet_value.dart';
+import 'package:mediabox/features/genre_cloud/genre_cloud_aggregate.dart';
 
 import '../../helpers/test_helpers.dart';
 

@@ -3,7 +3,7 @@ import 'package:core/models/game.dart';
 import 'package:core/models/movie.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:tonkatsu_box/core/import/media_cache_writer.dart';
+import 'package:mediabox/core/import/media_cache_writer.dart';
 
 import '../../helpers/test_helpers.dart';
 

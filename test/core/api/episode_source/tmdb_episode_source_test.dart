@@ -5,9 +5,9 @@ import 'package:core/models/tv_show.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:tonkatsu_box/core/api/episode_source/tmdb_episode_source.dart';
-import 'package:tonkatsu_box/core/api/episode_source/tv_episode_source.dart';
-import 'package:tonkatsu_box/core/api/tmdb_api.dart';
+import 'package:mediabox/core/api/episode_source/tmdb_episode_source.dart';
+import 'package:mediabox/core/api/episode_source/tv_episode_source.dart';
+import 'package:mediabox/core/api/tmdb_api.dart';
 
 import '../../../helpers/test_helpers.dart';
 

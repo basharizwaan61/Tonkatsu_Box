@@ -1,8 +1,8 @@
 import 'package:core/models/media_type.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/features/collections/widgets/media_type_dots.dart';
-import 'package:tonkatsu_box/shared/constants/media_type_theme.dart';
+import 'package:mediabox/features/collections/widgets/media_type_dots.dart';
+import 'package:mediabox/shared/constants/media_type_theme.dart';
 
 import '../../../helpers/test_helpers.dart';
 
@@ -63,9 +63,9 @@ void main() {
         MediaTypeDots(types: MediaType.values.toList()),
       );
 
-      // 10 types: 4 dots + one "+6" badge, so a single type is never
+      // 11 types: 4 dots + one "+7" badge, so a single type is never
       // replaced by the counter alone.
-      expect(find.text('+6'), findsOneWidget);
+      expect(find.text('+7'), findsOneWidget);
     });
 
     testWidgets('should render without exceptions', (WidgetTester tester) async {

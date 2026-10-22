@@ -5,9 +5,9 @@ import 'package:core/models/movie.dart';
 import 'package:core/models/tv_show.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:tonkatsu_box/core/api/tmdb_api.dart';
-import 'package:tonkatsu_box/core/import/title_lookup/lookup_candidate.dart';
-import 'package:tonkatsu_box/core/import/title_lookup/lookup_chains.dart';
+import 'package:mediabox/core/api/tmdb_api.dart';
+import 'package:mediabox/core/import/title_lookup/lookup_candidate.dart';
+import 'package:mediabox/core/import/title_lookup/lookup_chains.dart';
 
 import '../../../helpers/test_helpers.dart';
 

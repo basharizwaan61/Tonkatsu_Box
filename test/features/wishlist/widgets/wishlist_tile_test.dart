@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/features/wishlist/widgets/wishlist_tile.dart';
+import 'package:mediabox/features/wishlist/widgets/wishlist_tile.dart';
 
 import '../../../helpers/test_helpers.dart';
 

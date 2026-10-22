@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/features/collections/widgets/context_menu_item.dart';
+import 'package:mediabox/features/collections/widgets/context_menu_item.dart';
 
 void main() {
   group('contextMenuItem', () {

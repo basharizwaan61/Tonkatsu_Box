@@ -2,7 +2,7 @@
 
 # 📁 Custom Cards Import
 
-Bring your own list into Tonkatsu Box from a JSON or CSV file. Each row becomes
+Bring your own list into Mediabox from a JSON or CSV file. Each row becomes
 a card. With the source lookup switch on, a row that matches exactly one record
 in a catalog (TMDB, IGDB, Kitsu and others) becomes a real card instead of a
 custom one.

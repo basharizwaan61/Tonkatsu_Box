@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/features/search/filters/anilist_studio_filter.dart';
-import 'package:tonkatsu_box/features/search/filters/anilist_tag_filter.dart';
-import 'package:tonkatsu_box/features/search/utils/filter_ui.dart';
-import 'package:tonkatsu_box/l10n/app_localizations.dart';
+import 'package:mediabox/features/search/filters/anilist_studio_filter.dart';
+import 'package:mediabox/features/search/filters/anilist_tag_filter.dart';
+import 'package:mediabox/features/search/utils/filter_ui.dart';
+import 'package:mediabox/l10n/app_localizations.dart';
 
 void main() {
   late S l;

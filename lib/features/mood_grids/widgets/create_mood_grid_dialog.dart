@@ -18,7 +18,7 @@ class CreateMoodGridDialog extends ConsumerStatefulWidget {
 class _CreateMoodGridDialogState extends ConsumerState<CreateMoodGridDialog> {
   final TextEditingController _nameController =
       TextEditingController(text: kDefaultMoodGridTitle);
-  MoodGridPreset _preset = MoodGridPreset.aboutMeTonkatsuBox;
+  MoodGridPreset _preset = MoodGridPreset.aboutMeMediabox;
   int _rows = 3;
   int _cols = 3;
 
@@ -61,7 +61,7 @@ class _CreateMoodGridDialogState extends ConsumerState<CreateMoodGridDialog> {
                     title: Text(l.moodGridPresetAboutMe),
                     subtitle: Text(l.moodGridPresetAboutMeSubtitle),
                     leading: const Radio<MoodGridPreset>(
-                      value: MoodGridPreset.aboutMeTonkatsuBox,
+                      value: MoodGridPreset.aboutMeMediabox,
                     ),
                   ),
                   ListTile(

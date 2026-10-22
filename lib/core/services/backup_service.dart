@@ -486,7 +486,7 @@ class BackupService {
 
       final String dateSuffix = _dateSuffix();
       final String downloadName =
-          'tonkatsu-backup-v$appVersion-$dateSuffix.zip';
+          'mediabox-backup-v$appVersion-$dateSuffix.zip';
 
       // Web: saveFile hands the bytes to the browser as a download and
       // returns null — there is no cancel to observe.
@@ -505,7 +505,7 @@ class BackupService {
       final bool useAny = Platform.isAndroid || Platform.isIOS;
       final String? outputPath = await FilePicker.platform.saveFile(
         dialogTitle: 'Save Backup',
-        fileName: 'tonkatsu-backup-v$appVersion-$dateSuffix.zip',
+        fileName: 'mediabox-backup-v$appVersion-$dateSuffix.zip',
         type: useAny ? FileType.any : FileType.custom,
         allowedExtensions: useAny ? null : <String>['zip'],
         bytes: Uint8List.fromList(zipBytes),

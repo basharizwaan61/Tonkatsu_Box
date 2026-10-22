@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:sensors_plus/sensors_plus.dart';
-import 'package:tonkatsu_box/shared/widgets/gyroscope_parallax_image.dart';
+import 'package:mediabox/shared/widgets/gyroscope_parallax_image.dart';
 
 void main() {
   group('GyroscopeParallaxImage', () {

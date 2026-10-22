@@ -16,7 +16,7 @@ import 'package:core/models/tv_show.dart';
 import 'package:core/models/visual_novel.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:tonkatsu_box/data/repositories/canvas_repository.dart';
+import 'package:mediabox/data/repositories/canvas_repository.dart';
 
 import '../../helpers/test_helpers.dart';
 

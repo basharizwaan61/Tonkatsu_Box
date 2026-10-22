@@ -134,11 +134,11 @@ class DiscordRpcService {
             coverUrl,
             text: item.displayName(animeMangaTitleLanguage),
           )
-        : const DiscordAsset(key: 'logo', text: 'Tonkatsu Box');
+        : const DiscordAsset(key: 'logo', text: 'Mediabox');
     final DiscordAsset? smallAsset = raData != null
         ? DiscordAsset(key: 'ra', text: _buildRaTooltip(raData))
         : coverUrl != null
-            ? const DiscordAsset(key: 'logo', text: 'Tonkatsu Box')
+            ? const DiscordAsset(key: 'logo', text: 'Mediabox')
             : null;
 
     try {
@@ -222,7 +222,7 @@ class DiscordRpcService {
         ),
         largeAsset: const DiscordAsset(
           key: 'logo',
-          text: 'Tonkatsu Box',
+          text: 'Mediabox',
         ),
         smallAsset: const DiscordAsset(
           key: 'ra',
@@ -315,6 +315,7 @@ class DiscordRpcService {
           (false, _) => 'Album$yearSuffix',
         },
       MediaType.custom => 'Custom$yearSuffix',
+      MediaType.character => 'Character$yearSuffix',
     };
 
     if (raData != null &&
@@ -359,6 +360,7 @@ class DiscordRpcService {
         MediaType.manga || MediaType.visualNovel || MediaType.book => 'Reading',
         MediaType.audio => 'Listening to',
         MediaType.custom => 'Browsing',
+        MediaType.character => 'Browsing',
       };
 }
 

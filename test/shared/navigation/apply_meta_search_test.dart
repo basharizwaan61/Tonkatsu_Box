@@ -2,7 +2,7 @@ import 'package:core/utils/meta_search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/shared/navigation/search_providers.dart';
+import 'package:mediabox/shared/navigation/search_providers.dart';
 
 import '../../helpers/test_helpers.dart';
 

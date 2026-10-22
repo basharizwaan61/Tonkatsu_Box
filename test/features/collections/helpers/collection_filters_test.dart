@@ -4,7 +4,7 @@ import 'package:core/models/media_type.dart';
 import 'package:core/models/tag.dart';
 import 'package:core/utils/meta_search.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/features/collections/helpers/collection_filters.dart';
+import 'package:mediabox/features/collections/helpers/collection_filters.dart';
 
 import '../../../helpers/test_helpers.dart';
 

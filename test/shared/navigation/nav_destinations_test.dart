@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/shared/navigation/nav_destinations.dart';
-import 'package:tonkatsu_box/shared/navigation/nav_tab.dart';
+import 'package:mediabox/shared/navigation/nav_destinations.dart';
+import 'package:mediabox/shared/navigation/nav_tab.dart';
 
 void main() {
   group('navSelectedSlot', () {

@@ -6,6 +6,7 @@ import 'package:core/database/dao/anime_dao.dart';
 import 'package:core/database/dao/book_dao.dart';
 import 'package:core/database/dao/calendar_entry_dao.dart';
 import 'package:core/database/dao/canvas_dao.dart';
+import 'package:core/database/dao/character_dao.dart';
 import 'package:core/database/dao/collection_dao.dart';
 import 'package:core/database/dao/custom_media_dao.dart';
 import 'package:core/database/dao/game_dao.dart';
@@ -32,48 +33,48 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gamepads/gamepads.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
-import 'package:tonkatsu_box/core/api/anilist/anilist_graphql_client.dart';
-import 'package:tonkatsu_box/core/api/anilist_api.dart';
-import 'package:tonkatsu_box/core/api/fantlab_api.dart';
-import 'package:tonkatsu_box/core/api/google_books_api.dart';
-import 'package:tonkatsu_box/core/api/hardcover_api.dart';
-import 'package:tonkatsu_box/core/api/igdb_api.dart';
-import 'package:tonkatsu_box/core/api/kitsu_api.dart';
-import 'package:tonkatsu_box/core/api/kodi_api.dart';
-import 'package:tonkatsu_box/core/api/mangabaka_api.dart';
-import 'package:tonkatsu_box/core/api/mangadex_api.dart';
-import 'package:tonkatsu_box/core/api/openlibrary_api.dart';
-import 'package:tonkatsu_box/core/api/ra_api.dart';
-import 'package:tonkatsu_box/core/api/simkl_api.dart';
-import 'package:tonkatsu_box/core/api/steam_api.dart';
-import 'package:tonkatsu_box/core/api/steamgriddb_api.dart';
-import 'package:tonkatsu_box/core/api/tmdb_api.dart';
-import 'package:tonkatsu_box/core/api/tvdb_api.dart';
-import 'package:tonkatsu_box/core/api/tvmaze_api.dart';
-import 'package:tonkatsu_box/core/api/vndb_api.dart';
-import 'package:tonkatsu_box/core/database/database_service.dart';
-import 'package:tonkatsu_box/core/import/import_writer.dart';
-import 'package:tonkatsu_box/core/import/media_cache_writer.dart';
-import 'package:tonkatsu_box/core/import/sources/custom_file/custom_cards_import_service.dart';
-import 'package:tonkatsu_box/core/import/sources/kinorium/kinorium_import_service.dart';
-import 'package:tonkatsu_box/core/import/sources/steam/steam_import_service.dart';
-import 'package:tonkatsu_box/core/import/sources/trakt/trakt_import_service.dart';
-import 'package:tonkatsu_box/core/import/title_lookup/title_resolver.dart';
-import 'package:tonkatsu_box/core/services/config_service.dart';
-import 'package:tonkatsu_box/core/services/discord_rpc_service.dart';
-import 'package:tonkatsu_box/core/services/export_service.dart';
-import 'package:tonkatsu_box/core/services/gamepad_service.dart';
-import 'package:tonkatsu_box/core/services/image_cache_service.dart';
-import 'package:tonkatsu_box/core/services/import_service.dart';
-import 'package:tonkatsu_box/core/services/kodi_sync_service.dart';
-import 'package:tonkatsu_box/core/services/profile_service.dart';
-import 'package:tonkatsu_box/core/services/ra_to_igdb_mapper.dart';
-import 'package:tonkatsu_box/data/repositories/canvas_repository.dart';
-import 'package:tonkatsu_box/data/repositories/collection_repository.dart';
-import 'package:tonkatsu_box/data/repositories/game_repository.dart';
-import 'package:tonkatsu_box/data/repositories/wishlist_repository.dart';
-import 'package:tonkatsu_box/features/collections/providers/collections_provider.dart';
-import 'package:tonkatsu_box/l10n/app_localizations.dart';
+import 'package:mediabox/core/api/anilist/anilist_graphql_client.dart';
+import 'package:mediabox/core/api/anilist_api.dart';
+import 'package:mediabox/core/api/fantlab_api.dart';
+import 'package:mediabox/core/api/google_books_api.dart';
+import 'package:mediabox/core/api/hardcover_api.dart';
+import 'package:mediabox/core/api/igdb_api.dart';
+import 'package:mediabox/core/api/kitsu_api.dart';
+import 'package:mediabox/core/api/kodi_api.dart';
+import 'package:mediabox/core/api/mangabaka_api.dart';
+import 'package:mediabox/core/api/mangadex_api.dart';
+import 'package:mediabox/core/api/openlibrary_api.dart';
+import 'package:mediabox/core/api/ra_api.dart';
+import 'package:mediabox/core/api/simkl_api.dart';
+import 'package:mediabox/core/api/steam_api.dart';
+import 'package:mediabox/core/api/steamgriddb_api.dart';
+import 'package:mediabox/core/api/tmdb_api.dart';
+import 'package:mediabox/core/api/tvdb_api.dart';
+import 'package:mediabox/core/api/tvmaze_api.dart';
+import 'package:mediabox/core/api/vndb_api.dart';
+import 'package:mediabox/core/database/database_service.dart';
+import 'package:mediabox/core/import/import_writer.dart';
+import 'package:mediabox/core/import/media_cache_writer.dart';
+import 'package:mediabox/core/import/sources/custom_file/custom_cards_import_service.dart';
+import 'package:mediabox/core/import/sources/kinorium/kinorium_import_service.dart';
+import 'package:mediabox/core/import/sources/steam/steam_import_service.dart';
+import 'package:mediabox/core/import/sources/trakt/trakt_import_service.dart';
+import 'package:mediabox/core/import/title_lookup/title_resolver.dart';
+import 'package:mediabox/core/services/config_service.dart';
+import 'package:mediabox/core/services/discord_rpc_service.dart';
+import 'package:mediabox/core/services/export_service.dart';
+import 'package:mediabox/core/services/gamepad_service.dart';
+import 'package:mediabox/core/services/image_cache_service.dart';
+import 'package:mediabox/core/services/import_service.dart';
+import 'package:mediabox/core/services/kodi_sync_service.dart';
+import 'package:mediabox/core/services/profile_service.dart';
+import 'package:mediabox/core/services/ra_to_igdb_mapper.dart';
+import 'package:mediabox/data/repositories/canvas_repository.dart';
+import 'package:mediabox/data/repositories/collection_repository.dart';
+import 'package:mediabox/data/repositories/game_repository.dart';
+import 'package:mediabox/data/repositories/wishlist_repository.dart';
+import 'package:mediabox/features/collections/providers/collections_provider.dart';
+import 'package:mediabox/l10n/app_localizations.dart';
 
 class MockDio extends Mock implements Dio {}
 
@@ -136,6 +137,8 @@ class MockAnimeDao extends Mock implements AnimeDao {}
 class MockDiscordRpcService extends Mock implements DiscordRpcService {}
 
 class MockCustomMediaDao extends Mock implements CustomMediaDao {}
+
+class MockCharacterDao extends Mock implements CharacterDao {}
 
 class MockCollectionDao extends Mock implements CollectionDao {}
 

@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/features/recommendations/engine/recommendation_models.dart';
-import 'package:tonkatsu_box/features/recommendations/engine/recommender.dart';
+import 'package:mediabox/features/recommendations/engine/recommendation_models.dart';
+import 'package:mediabox/features/recommendations/engine/recommender.dart';
 
 TasteTitle _title(
   String id,

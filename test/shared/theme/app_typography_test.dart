@@ -1,6 +1,6 @@
 import 'package:flutter/painting.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/shared/theme/app_typography.dart';
+import 'package:mediabox/shared/theme/app_typography.dart';
 
 void main() {
   group('AppTypography', () {

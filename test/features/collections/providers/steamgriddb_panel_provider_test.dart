@@ -3,9 +3,9 @@ import 'package:core/models/steamgriddb_image.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:tonkatsu_box/core/api/steamgriddb_api.dart';
-import 'package:tonkatsu_box/features/collections/providers/steamgriddb_panel_provider.dart';
-import 'package:tonkatsu_box/features/settings/providers/settings_provider.dart';
+import 'package:mediabox/core/api/steamgriddb_api.dart';
+import 'package:mediabox/features/collections/providers/steamgriddb_panel_provider.dart';
+import 'package:mediabox/features/settings/providers/settings_provider.dart';
 
 import '../../../helpers/test_helpers.dart';
 

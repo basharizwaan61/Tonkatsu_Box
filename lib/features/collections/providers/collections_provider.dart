@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:core/database/dao/collection_dao.dart';
 import 'package:core/database/dao/global_tag_dao.dart';
 import 'package:core/database/dao/tier_list_dao.dart';
+import 'package:core/models/character_image.dart';
 import 'package:core/models/collected_item_info.dart';
 import 'package:core/models/collection.dart';
 import 'package:core/models/collection_item.dart';
@@ -641,6 +642,7 @@ class CollectionItemsNotifier
     required int externalId,
     int? platformId,
     DataSource? source,
+    String? sourceVariant,
     String? authorComment,
   }) async {
     final int? id = await _repository.addItem(
@@ -649,6 +651,7 @@ class CollectionItemsNotifier
       externalId: externalId,
       platformId: platformId,
       source: source,
+      sourceVariant: sourceVariant,
       authorComment: authorComment,
     );
 
@@ -865,6 +868,8 @@ class CollectionItemsNotifier
         ref.invalidate(collectedAudioIdsProvider);
       case MediaType.custom:
         break; // Custom items have no collected-IDs provider.
+      case MediaType.character:
+        break; // Characters have no collected-IDs provider either.
     }
   }
 
@@ -1299,6 +1304,20 @@ class CollectionItemsNotifier
     ref.invalidate(allItemsNotifierProvider);
   }
 
+  /// Replaces the pictures the user attached to a character. An empty list
+  /// clears them.
+  Future<void> setCharacterImages(
+    int id,
+    List<CharacterImage> images,
+  ) async {
+    await _repository.setItemCharacterImages(id, images);
+    _patchItem(
+      id,
+      (CollectionItem i) => i.copyWith(characterImages: images),
+    );
+    ref.invalidate(allItemsNotifierProvider);
+  }
+
   /// Uploaded [bytes] or a [url] become the item's cover; neither restores the
   /// API one. False when the uploaded file could not be stored.
   Future<bool> setCoverOverride(
@@ -1498,6 +1517,15 @@ final FutureProvider<Map<int, List<CollectedItemInfo>>>
     FutureProvider<Map<int, List<CollectedItemInfo>>>((Ref ref) async {
   final DatabaseService db = ref.watch(databaseServiceProvider);
   return db.getCollectedItemInfos(MediaType.book);
+});
+
+/// page_id -> collection entries. Fandom page ids repeat across wikis, so
+/// the source key carries the wiki.
+final FutureProvider<Map<int, List<CollectedItemInfo>>>
+    collectedCharacterIdsProvider =
+    FutureProvider<Map<int, List<CollectedItemInfo>>>((Ref ref) async {
+  final DatabaseService db = ref.watch(databaseServiceProvider);
+  return db.getCollectedItemInfos(MediaType.character);
 });
 
 /// fnv1a53(mbid) -> collection entries.

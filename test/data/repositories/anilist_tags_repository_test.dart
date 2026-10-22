@@ -1,7 +1,7 @@
 import 'package:core/models/anilist_tag.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:tonkatsu_box/data/repositories/anilist_tags_repository.dart';
+import 'package:mediabox/data/repositories/anilist_tags_repository.dart';
 
 import '../../helpers/mocks.dart';
 

@@ -1,9 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:tonkatsu_box/core/api/musicbrainz/musicbrainz_http_client.dart';
-import 'package:tonkatsu_box/core/api/musicbrainz/musicbrainz_release_group_api.dart';
-import 'package:tonkatsu_box/core/api/musicbrainz/musicbrainz_types.dart';
+import 'package:mediabox/core/api/musicbrainz/musicbrainz_http_client.dart';
+import 'package:mediabox/core/api/musicbrainz/musicbrainz_release_group_api.dart';
+import 'package:mediabox/core/api/musicbrainz/musicbrainz_types.dart';
 
 class _MockClient extends Mock implements MusicBrainzHttpClient {}
 

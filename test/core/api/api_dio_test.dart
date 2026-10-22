@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/core/api/api_dio.dart';
+import 'package:mediabox/core/api/api_dio.dart';
 
 void main() {
   group('createApiDio', () {
@@ -9,13 +9,13 @@ void main() {
         connectTimeout: const Duration(seconds: 3),
         receiveTimeout: const Duration(seconds: 7),
         baseUrl: 'https://example.test/api/',
-        headers: const <String, String>{'User-Agent': 'TonkatsuBox/test'},
+        headers: const <String, String>{'User-Agent': 'Mediabox/test'},
       );
 
       expect(dio.options.connectTimeout, const Duration(seconds: 3));
       expect(dio.options.receiveTimeout, const Duration(seconds: 7));
       expect(dio.options.baseUrl, 'https://example.test/api/');
-      expect(dio.options.headers['user-agent'], 'TonkatsuBox/test');
+      expect(dio.options.headers['user-agent'], 'Mediabox/test');
     });
 
     test('defaults to no base URL and JSON responses', () {

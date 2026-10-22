@@ -57,6 +57,7 @@ void main() {
   late MockAudioDao mockAudioDao;
   late MockAnimeDao mockAnimeDao;
   late MockCustomMediaDao mockCustomMediaDao;
+  late MockCharacterDao mockCharacterDao;
   late CollectionDao dao;
 
   setUp(() {
@@ -70,6 +71,7 @@ void main() {
     mockBookDao = MockBookDao();
     mockAudioDao = MockAudioDao();
     mockAnimeDao = MockAnimeDao();
+    mockCharacterDao = MockCharacterDao();
     mockCustomMediaDao = MockCustomMediaDao();
     dao = CollectionDao(
       () async => mockDb,
@@ -82,6 +84,7 @@ void main() {
       bookDao: mockBookDao,
       audioDao: mockAudioDao,
       customMediaDao: mockCustomMediaDao,
+      characterDao: mockCharacterDao,
     );
   });
 

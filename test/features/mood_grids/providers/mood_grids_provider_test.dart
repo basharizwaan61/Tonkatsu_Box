@@ -1,11 +1,11 @@
 import 'package:core/database/dao/mood_grid_dao.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/features/mood_grids/providers/mood_grids_provider.dart';
+import 'package:mediabox/features/mood_grids/providers/mood_grids_provider.dart';
 
 void main() {
-  group('aboutMeTonkatsuBoxCells', () {
+  group('aboutMeMediaboxCells', () {
     test('returns 5 cells matching the documented preset', () {
-      final List<String?> labels = aboutMeTonkatsuBoxCells()
+      final List<String?> labels = aboutMeMediaboxCells()
           .map((MoodGridCellSpec spec) => spec.label)
           .toList();
 
@@ -19,7 +19,7 @@ void main() {
     });
   });
 
-  test('kDefaultMoodGridTitle is "About Me: Tonkatsu Box"', () {
-    expect(kDefaultMoodGridTitle, 'About Me: Tonkatsu Box');
+  test('kDefaultMoodGridTitle is "About Me: Mediabox"', () {
+    expect(kDefaultMoodGridTitle, 'About Me: Mediabox');
   });
 }

@@ -9,6 +9,7 @@ class CollectedItemInfo {
     required this.collectionName,
     this.platformId,
     this.source = DataSource.tmdb,
+    this.sourceVariant,
   });
 
   /// Row id in the collection_items table.
@@ -25,6 +26,10 @@ class CollectedItemInfo {
 
   /// Provider the item came from (disambiguates a shared external_id).
   final DataSource source;
+
+  /// Narrows [source] to one of its sub-scopes — the wiki a Fandom character
+  /// came from. Null for every other type.
+  final String? sourceVariant;
 
   @override
   String toString() =>
@@ -51,11 +56,32 @@ extension CollectedPlacementIndex on Map<int, List<CollectedItemInfo>> {
       };
 }
 
+extension CollectedVariantIndex on Map<int, List<CollectedItemInfo>> {
+  /// `(sourceKey, externalId)` of every placement. The source key carries a
+  /// variant, so a Fandom page id stays distinct across wikis.
+  Set<(String, int)> get variantSourceKeys => <(String, int)>{
+        for (final MapEntry<int, List<CollectedItemInfo>> entry in entries)
+          for (final CollectedItemInfo info in entry.value)
+            (DataSource.sourceKey(info.source, info.sourceVariant), entry.key),
+      };
+}
+
 extension CollectedPlacements on List<CollectedItemInfo> {
   /// Keeps only the placements of [source]. Providers reuse numeric ids, so a
   /// multi-source lookup by id alone also returns another title's placements.
-  List<CollectedItemInfo> forSource(MediaType mediaType, DataSource? source) {
+  ///
+  /// [sourceVariant] narrows further, for a provider whose ids repeat inside
+  /// a sub-scope — a Fandom page id belongs to one wiki only.
+  List<CollectedItemInfo> forSource(
+    MediaType mediaType,
+    DataSource? source, [
+    String? sourceVariant,
+  ]) {
     if (!mediaType.isMultiSource || source == null) return this;
-    return where((CollectedItemInfo info) => info.source == source).toList();
+    return where(
+      (CollectedItemInfo info) =>
+          info.source == source &&
+          (sourceVariant == null || info.sourceVariant == sourceVariant),
+    ).toList();
   }
 }

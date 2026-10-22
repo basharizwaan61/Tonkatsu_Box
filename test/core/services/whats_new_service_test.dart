@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:tonkatsu_box/core/services/whats_new_service.dart';
+import 'package:mediabox/core/services/whats_new_service.dart';
 
 const String _notes = '''
 # 0.40.0

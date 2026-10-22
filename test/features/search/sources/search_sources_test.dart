@@ -1,14 +1,14 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/features/search/models/search_source.dart';
-import 'package:tonkatsu_box/features/search/sources/igdb_games_source.dart';
-import 'package:tonkatsu_box/features/search/sources/search_sources.dart';
-import 'package:tonkatsu_box/features/search/sources/tmdb_anime_source.dart';
-import 'package:tonkatsu_box/features/search/sources/tmdb_movies_source.dart';
-import 'package:tonkatsu_box/features/search/sources/tmdb_tv_source.dart';
-import 'package:tonkatsu_box/features/search/sources/anilist_manga_source.dart';
-import 'package:tonkatsu_box/features/search/sources/comicvine_source.dart';
-import 'package:tonkatsu_box/features/search/sources/hardcover_source.dart';
-import 'package:tonkatsu_box/features/search/sources/vndb_source.dart';
+import 'package:mediabox/features/search/models/search_source.dart';
+import 'package:mediabox/features/search/sources/igdb_games_source.dart';
+import 'package:mediabox/features/search/sources/search_sources.dart';
+import 'package:mediabox/features/search/sources/tmdb_anime_source.dart';
+import 'package:mediabox/features/search/sources/tmdb_movies_source.dart';
+import 'package:mediabox/features/search/sources/tmdb_tv_source.dart';
+import 'package:mediabox/features/search/sources/anilist_manga_source.dart';
+import 'package:mediabox/features/search/sources/comicvine_source.dart';
+import 'package:mediabox/features/search/sources/hardcover_source.dart';
+import 'package:mediabox/features/search/sources/vndb_source.dart';
 
 void main() {
   group('searchSources', () {
@@ -45,6 +45,13 @@ void main() {
         'comicvine',
         'musicbrainz',
         'podcastindex',
+        'jikan_characters',
+        'disney_characters',
+        'fandom_characters',
+        'wikidata_characters',
+        'tmdb_people',
+        'superhero_characters',
+        'igdb_characters',
       ]);
     });
   });

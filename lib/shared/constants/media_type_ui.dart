@@ -44,6 +44,8 @@ extension MediaTypeUi on MediaType {
         return l.mediaTypeAudio;
       case MediaType.custom:
         return l.mediaTypeCustom;
+      case MediaType.character:
+        return l.mediaTypeCharacter;
     }
   }
 }

@@ -6,8 +6,8 @@ import 'package:core/models/universal_import_result.dart';
 import 'package:core/models/wishlist_item.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:tonkatsu_box/core/api/anilist_api.dart';
-import 'package:tonkatsu_box/core/import/sources/mal/mal_import_service.dart';
+import 'package:mediabox/core/api/anilist_api.dart';
+import 'package:mediabox/core/import/sources/mal/mal_import_service.dart';
 
 import '../../../../helpers/test_helpers.dart';
 

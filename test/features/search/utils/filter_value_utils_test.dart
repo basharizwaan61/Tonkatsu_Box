@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/features/search/utils/filter_value_utils.dart';
+import 'package:mediabox/features/search/utils/filter_value_utils.dart';
 
 void main() {
   group('readFilterStringList', () {

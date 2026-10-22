@@ -3,13 +3,13 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:tonkatsu_box/core/services/api_key_initializer.dart';
-import 'package:tonkatsu_box/features/settings/providers/settings_provider.dart';
-import 'package:tonkatsu_box/features/settings/screens/credentials_screen.dart';
-import 'package:tonkatsu_box/features/settings/widgets/inline_text_field.dart';
-import 'package:tonkatsu_box/features/settings/widgets/settings_group.dart';
-import 'package:tonkatsu_box/features/settings/widgets/status_dot.dart';
-import 'package:tonkatsu_box/l10n/app_localizations.dart';
+import 'package:mediabox/core/services/api_key_initializer.dart';
+import 'package:mediabox/features/settings/providers/settings_provider.dart';
+import 'package:mediabox/features/settings/screens/credentials_screen.dart';
+import 'package:mediabox/features/settings/widgets/inline_text_field.dart';
+import 'package:mediabox/features/settings/widgets/settings_group.dart';
+import 'package:mediabox/features/settings/widgets/status_dot.dart';
+import 'package:mediabox/l10n/app_localizations.dart';
 
 void main() {
   group('CredentialsScreen', () {
@@ -176,7 +176,7 @@ void main() {
         await tester.pumpAndSettle();
 
         expect(
-          find.text('WELCOME TO TONKATSU BOX!'),
+          find.text('WELCOME TO MEDIABOX!'),
           findsOneWidget,
         );
       });
@@ -186,7 +186,7 @@ void main() {
         await tester.pumpWidget(createWidget(isInitialSetup: false));
         await tester.pumpAndSettle();
 
-        expect(find.text('WELCOME TO TONKATSU BOX!'), findsNothing);
+        expect(find.text('WELCOME TO MEDIABOX!'), findsNothing);
       });
 
       testWidgets('should show Copy Twitch Console URL button',

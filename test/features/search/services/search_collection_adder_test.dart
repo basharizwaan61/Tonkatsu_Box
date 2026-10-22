@@ -5,9 +5,9 @@ import 'package:core/models/media_type.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/core/services/image_cache_service.dart';
-import 'package:tonkatsu_box/features/collections/providers/collections_provider.dart';
-import 'package:tonkatsu_box/features/search/services/search_collection_adder.dart';
+import 'package:mediabox/core/services/image_cache_service.dart';
+import 'package:mediabox/features/collections/providers/collections_provider.dart';
+import 'package:mediabox/features/search/services/search_collection_adder.dart';
 
 import '../../../helpers/test_helpers.dart';
 
@@ -44,6 +44,7 @@ class _FakeItemsNotifier extends CollectionItemsNotifier {
     required int externalId,
     int? platformId,
     DataSource? source,
+    String? sourceVariant,
     String? authorComment,
   }) async {
     _calls.add(arg);

@@ -6,16 +6,16 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:tonkatsu_box/core/api/kodi_api.dart';
-import 'package:tonkatsu_box/core/services/kodi_sync_service.dart';
-import 'package:tonkatsu_box/features/collections/providers/collections_provider.dart';
-import 'package:tonkatsu_box/features/settings/providers/kodi_settings_provider.dart';
-import 'package:tonkatsu_box/features/settings/providers/profile_provider.dart';
-import 'package:tonkatsu_box/features/settings/providers/settings_provider.dart';
-import 'package:tonkatsu_box/features/settings/screens/kodi_screen.dart';
-import 'package:tonkatsu_box/features/settings/widgets/settings_group.dart';
-import 'package:tonkatsu_box/features/settings/widgets/settings_tile.dart';
-import 'package:tonkatsu_box/l10n/app_localizations.dart';
+import 'package:mediabox/core/api/kodi_api.dart';
+import 'package:mediabox/core/services/kodi_sync_service.dart';
+import 'package:mediabox/features/collections/providers/collections_provider.dart';
+import 'package:mediabox/features/settings/providers/kodi_settings_provider.dart';
+import 'package:mediabox/features/settings/providers/profile_provider.dart';
+import 'package:mediabox/features/settings/providers/settings_provider.dart';
+import 'package:mediabox/features/settings/screens/kodi_screen.dart';
+import 'package:mediabox/features/settings/widgets/settings_group.dart';
+import 'package:mediabox/features/settings/widgets/settings_tile.dart';
+import 'package:mediabox/l10n/app_localizations.dart';
 
 import '../../../helpers/test_helpers.dart';
 

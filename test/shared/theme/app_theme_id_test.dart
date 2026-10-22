@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/shared/theme/app_palette.dart';
-import 'package:tonkatsu_box/shared/theme/app_theme_id.dart';
+import 'package:mediabox/shared/theme/app_palette.dart';
+import 'package:mediabox/shared/theme/app_theme_id.dart';
 
 void main() {
   group('AppThemeId', () {

@@ -2,8 +2,8 @@ import 'dart:convert';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:tonkatsu_box/core/services/config_service.dart';
-import 'package:tonkatsu_box/features/settings/providers/settings_provider.dart';
+import 'package:mediabox/core/services/config_service.dart';
+import 'package:mediabox/features/settings/providers/settings_provider.dart';
 
 void main() {
   group('ConfigResult', () {

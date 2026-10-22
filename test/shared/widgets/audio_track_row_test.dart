@@ -1,7 +1,7 @@
 import 'package:core/models/audio_track.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/shared/widgets/audio_track_row.dart';
+import 'package:mediabox/shared/widgets/audio_track_row.dart';
 
 import '../../helpers/test_helpers.dart';
 

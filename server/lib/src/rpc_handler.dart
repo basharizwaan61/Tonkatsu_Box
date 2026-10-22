@@ -28,6 +28,8 @@ class DaoRegistry {
 
   late final CanvasDao canvasDao = CanvasDao(_get);
 
+  late final CharacterDao characterDao = CharacterDao(_get);
+
   late final CollectionDao collectionDao = CollectionDao.withMediaDaos(_get);
 
   late final CustomMediaDao customMediaDao = CustomMediaDao(_get);
@@ -71,6 +73,7 @@ class DaoRegistry {
     bookDao: bookDao,
     calendarEntryDao: calendarEntryDao,
     canvasDao: canvasDao,
+    characterDao: characterDao,
     collectionDao: collectionDao,
     customMediaDao: customMediaDao,
     gameDao: gameDao,

@@ -2,9 +2,9 @@ import 'package:core/models/media_type.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/features/statistics/models/library_stats.dart';
-import 'package:tonkatsu_box/features/statistics/providers/statistics_provider.dart';
-import 'package:tonkatsu_box/features/statistics/widgets/stats_month_detail_dialog.dart';
+import 'package:mediabox/features/statistics/models/library_stats.dart';
+import 'package:mediabox/features/statistics/providers/statistics_provider.dart';
+import 'package:mediabox/features/statistics/widgets/stats_month_detail_dialog.dart';
 
 import '../../../helpers/test_helpers.dart';
 

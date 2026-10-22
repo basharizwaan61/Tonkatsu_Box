@@ -1,7 +1,7 @@
 import 'package:core/models/mangadex_tag.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:tonkatsu_box/data/repositories/mangadex_tags_repository.dart';
+import 'package:mediabox/data/repositories/mangadex_tags_repository.dart';
 
 import '../../helpers/mocks.dart';
 

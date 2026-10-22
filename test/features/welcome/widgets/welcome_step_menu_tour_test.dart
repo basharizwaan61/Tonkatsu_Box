@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/features/welcome/widgets/welcome_step_menu_tour.dart';
-import 'package:tonkatsu_box/l10n/app_localizations.dart';
-import 'package:tonkatsu_box/shared/theme/app_theme.dart';
+import 'package:mediabox/features/welcome/widgets/welcome_step_menu_tour.dart';
+import 'package:mediabox/l10n/app_localizations.dart';
+import 'package:mediabox/shared/theme/app_theme.dart';
 
 void main() {
   // Render with the real app theme: it makes FilledButtons full-width, the trap

@@ -6,6 +6,7 @@ import 'package:core/models/book.dart';
 import 'package:core/models/canvas_connection.dart';
 import 'package:core/models/canvas_item.dart';
 import 'package:core/models/canvas_viewport.dart';
+import 'package:core/models/character.dart';
 import 'package:core/models/collection_item.dart';
 import 'package:core/models/custom_media.dart';
 import 'package:core/models/data_source.dart';
@@ -230,6 +231,12 @@ class CanvasRepository {
         .map((CanvasItem item) => item.itemRefId!)
         .toList();
 
+    final List<int> characterIds = items
+        .where((CanvasItem item) =>
+            item.itemType == CanvasItemType.character && item.itemRefId != null)
+        .map((CanvasItem item) => item.itemRefId!)
+        .toList();
+
     if (gameIds.isEmpty &&
         movieTmdbIds.isEmpty &&
         tvShowTmdbIds.isEmpty &&
@@ -270,6 +277,9 @@ class CanvasRepository {
       albumIds.isNotEmpty
           ? _db.audioDao.getAudioItemsByIds(albumIds)
           : Future<List<AudioItem>>.value(<AudioItem>[]),
+      characterIds.isNotEmpty
+          ? _db.characterDao.getCharactersByIds(characterIds)
+          : Future<List<Character>>.value(<Character>[]),
     ]);
 
     final Map<int, Game> gamesMap = <int, Game>{
@@ -336,6 +346,12 @@ class CanvasRepository {
         albumMap[a.id] = a;
       }
     }
+    // A canvas item carries no source either, so a character id can match
+    // rows from several providers - and, for Fandom, from several wikis.
+    // The first row wins, like the other types do.
+    final Map<int, Character> characterMap = <int, Character>{
+      for (final Character c in results[9] as List<Character>) c.id: c,
+    };
 
     return items.map((CanvasItem item) {
       if (item.itemRefId == null) return item;
@@ -365,6 +381,8 @@ class CanvasRepository {
           return item.copyWith(book: bookMap[item.itemRefId]);
         case CanvasItemType.custom:
           return item.copyWith(customMedia: customMap[item.itemRefId]);
+        case CanvasItemType.character:
+          return item.copyWith(character: characterMap[item.itemRefId]);
         case CanvasItemType.text:
         case CanvasItemType.image:
         case CanvasItemType.link:

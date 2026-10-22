@@ -10,6 +10,7 @@ String coverImageId({
   required int externalId,
   DataSource? source,
   String? coverUrl,
+  String? sourceVariant,
 }) {
   if (mediaType == MediaType.custom) {
     // A custom cover is the one picture the user replaces in place; the token
@@ -20,7 +21,10 @@ String coverImageId({
 
   if (!mediaType.isMultiSource) return externalId.toString();
 
-  final String base = '${(source ?? mediaType.defaultSource).name}_$externalId';
+  // The variant narrows a provider to one of its sub-scopes — a Fandom
+  // character's wiki, whose page ids repeat across wikis.
+  final String base =
+      '${DataSource.sourceKey(source ?? mediaType.defaultSource, sourceVariant)}_$externalId';
   if (mediaType != MediaType.book) return base;
 
   // A Fantlab cover belongs to one edition, so key by it — otherwise picking a

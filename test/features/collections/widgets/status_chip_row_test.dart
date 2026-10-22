@@ -2,8 +2,8 @@ import 'package:core/models/item_status.dart';
 import 'package:core/models/media_type.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/features/collections/widgets/status_chip_row.dart';
-import 'package:tonkatsu_box/l10n/app_localizations.dart';
+import 'package:mediabox/features/collections/widgets/status_chip_row.dart';
+import 'package:mediabox/l10n/app_localizations.dart';
 
 void main() {
   Widget createWidget({

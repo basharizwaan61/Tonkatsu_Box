@@ -79,6 +79,7 @@ void main() {
           'books_cache',
           'visual_novels_cache',
           'custom_items',
+          'characters_cache',
           'canvas_items',
           'canvas_connections',
           'mood_grids',

@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/shared/constants/rich_hero_style.dart';
+import 'package:mediabox/shared/constants/rich_hero_style.dart';
 
 void main() {
   group('RichHeroStyle', () {

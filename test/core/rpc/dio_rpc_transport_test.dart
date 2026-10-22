@@ -5,7 +5,7 @@ import 'package:core/rpc/protocol.dart';
 import 'package:core/rpc/rpc_transport.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/core/rpc/dio_rpc_transport.dart';
+import 'package:mediabox/core/rpc/dio_rpc_transport.dart';
 
 /// Answers from a canned envelope, so the tests drive the wire format rather
 /// than a socket.

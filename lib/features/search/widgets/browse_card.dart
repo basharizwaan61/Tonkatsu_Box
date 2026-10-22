@@ -1,6 +1,7 @@
 import 'package:core/models/audio_item.dart';
 import 'package:core/models/anime.dart';
 import 'package:core/models/book.dart';
+import 'package:core/models/character.dart';
 import 'package:core/models/collected_item_info.dart';
 import 'package:core/models/data_source.dart';
 import 'package:core/models/game.dart';
@@ -15,6 +16,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/services/image_cache_service.dart';
+import '../../../shared/constants/media_type_theme.dart';
 import '../../../shared/utils/url_launch.dart';
 import '../../../shared/widgets/media_poster_card.dart';
 import '../../collections/providers/collections_provider.dart';
@@ -30,6 +32,7 @@ typedef CollectedIds = ({
   Set<(DataSource, int)> animeKeys,
   Set<(DataSource, int)> bookKeys,
   Set<(DataSource, int)> audioKeys,
+  Set<(String, int)> characterKeys,
 });
 
 const CollectedIds kNoCollected = (
@@ -41,6 +44,7 @@ const CollectedIds kNoCollected = (
   animeKeys: <(DataSource, int)>{},
   bookKeys: <(DataSource, int)>{},
   audioKeys: <(DataSource, int)>{},
+  characterKeys: <(String, int)>{},
 );
 
 final FutureProvider<CollectedIds> collectedIdsProvider =
@@ -63,6 +67,8 @@ final FutureProvider<CollectedIds> collectedIdsProvider =
       await ref.watch(collectedBookIdsProvider.future);
   final Map<int, List<CollectedItemInfo>> albums =
       await ref.watch(collectedAudioIdsProvider.future);
+  final Map<int, List<CollectedItemInfo>> characters =
+      await ref.watch(collectedCharacterIdsProvider.future);
 
   return (
     movieKeys: <(DataSource, int)>{
@@ -79,6 +85,7 @@ final FutureProvider<CollectedIds> collectedIdsProvider =
     animeKeys: animes.sourceKeys,
     bookKeys: books.sourceKeys,
     audioKeys: albums.sourceKeys,
+    characterKeys: characters.variantSourceKeys,
   );
 });
 
@@ -336,6 +343,31 @@ class BrowseCard extends StatelessWidget {
         onTap: () => onTap(entry, mediaType),
         onOpenInCollection:
             _openCallback(entry.id, inColl, source: entry.source),
+      );
+    }
+
+    if (entry is Character) {
+      // The source key carries the wiki, so two wikis' page ids stay apart.
+      final bool inColl = collected.characterKeys
+          .contains((entry.sourceKey, entry.id));
+      return MediaPosterCard(
+        variant: variant,
+        title: entry.name,
+        subtitle: entry.franchise,
+        imageUrl: entry.imageUrl ?? '',
+        cacheImageType: ImageType.characterCover,
+        cacheImageId: coverImageId(
+          mediaType: MediaType.character,
+          externalId: entry.id,
+          source: entry.source,
+          sourceVariant: entry.variant,
+        ),
+        mediaType: MediaType.character,
+        placeholderIcon: MediaTypeTheme.iconFor(MediaType.character),
+        isInCollection: inColl,
+        source: entry.source,
+        onSourceTap: openUrlCallback(entry.externalUrl),
+        onTap: () => onTap(entry, mediaType),
       );
     }
 

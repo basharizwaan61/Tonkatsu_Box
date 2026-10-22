@@ -1,18 +1,18 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/core/api/anilist_api.dart';
-import 'package:tonkatsu_box/core/api/api_error_extract.dart';
-import 'package:tonkatsu_box/core/api/comicvine_api.dart';
-import 'package:tonkatsu_box/core/api/fantlab_api.dart';
-import 'package:tonkatsu_box/core/api/google_books_api.dart';
-import 'package:tonkatsu_box/core/api/hardcover_api.dart';
-import 'package:tonkatsu_box/core/api/igdb_api.dart';
-import 'package:tonkatsu_box/core/api/kodi_api.dart';
-import 'package:tonkatsu_box/core/api/ra_api.dart';
-import 'package:tonkatsu_box/core/api/screenscraper_api.dart';
-import 'package:tonkatsu_box/core/api/steam_api.dart';
-import 'package:tonkatsu_box/core/api/steamgriddb_api.dart';
-import 'package:tonkatsu_box/core/api/tmdb_api.dart';
-import 'package:tonkatsu_box/core/api/vndb_api.dart';
+import 'package:mediabox/core/api/anilist_api.dart';
+import 'package:mediabox/core/api/api_error_extract.dart';
+import 'package:mediabox/core/api/comicvine_api.dart';
+import 'package:mediabox/core/api/fantlab_api.dart';
+import 'package:mediabox/core/api/google_books_api.dart';
+import 'package:mediabox/core/api/hardcover_api.dart';
+import 'package:mediabox/core/api/igdb_api.dart';
+import 'package:mediabox/core/api/kodi_api.dart';
+import 'package:mediabox/core/api/ra_api.dart';
+import 'package:mediabox/core/api/screenscraper_api.dart';
+import 'package:mediabox/core/api/steam_api.dart';
+import 'package:mediabox/core/api/steamgriddb_api.dart';
+import 'package:mediabox/core/api/tmdb_api.dart';
+import 'package:mediabox/core/api/vndb_api.dart';
 
 void main() {
   group('extractApiError', () {

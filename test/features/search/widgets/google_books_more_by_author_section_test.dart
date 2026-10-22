@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:tonkatsu_box/core/api/google_books_api.dart';
-import 'package:tonkatsu_box/features/search/widgets/google_books_more_by_author_section.dart';
-import 'package:tonkatsu_box/l10n/app_localizations.dart';
-import 'package:tonkatsu_box/shared/widgets/media_poster_card.dart';
+import 'package:mediabox/core/api/google_books_api.dart';
+import 'package:mediabox/features/search/widgets/google_books_more_by_author_section.dart';
+import 'package:mediabox/l10n/app_localizations.dart';
+import 'package:mediabox/shared/widgets/media_poster_card.dart';
 
 import '../../../helpers/test_helpers.dart';
 

@@ -13,8 +13,8 @@ import 'package:core/models/mood_grid_cell.dart';
 import 'package:core/models/xcoll_file.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:tonkatsu_box/core/services/backup_service.dart';
-import 'package:tonkatsu_box/core/services/import_service.dart';
+import 'package:mediabox/core/services/backup_service.dart';
+import 'package:mediabox/core/services/import_service.dart';
 
 import '../../helpers/test_helpers.dart';
 

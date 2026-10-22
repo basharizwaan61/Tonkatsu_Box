@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:core/models/tier_definition.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/shared/constants/tier_definition_ui.dart';
+import 'package:mediabox/shared/constants/tier_definition_ui.dart';
 
 void main() {
   group('TierDefinitionUi', () {

@@ -1,6 +1,6 @@
 name: core
 description: >-
-  Pure-Dart shared layer (models, migrations, DAOs) reused by the Tonkatsu Box
+  Pure-Dart shared layer (models, migrations, DAOs) reused by the Mediabox
   Flutter app and the selfhost server. No Flutter dependency.
 publish_to: 'none'
 version: 0.0.1

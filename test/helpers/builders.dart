@@ -1,9 +1,9 @@
 import 'package:core/models/collection_item.dart';
 import 'package:core/models/item_status.dart';
 import 'package:core/models/media_type.dart';
-import 'package:tonkatsu_box/core/api/steam_api.dart';
-import 'package:tonkatsu_box/data/repositories/collection_repository.dart';
-import 'package:tonkatsu_box/features/statistics/models/library_stats.dart';
+import 'package:mediabox/core/api/steam_api.dart';
+import 'package:mediabox/data/repositories/collection_repository.dart';
+import 'package:mediabox/features/statistics/models/library_stats.dart';
 
 // Model factories live in the core package so its own tests can use them too.
 export 'package:core/testing/builders.dart';

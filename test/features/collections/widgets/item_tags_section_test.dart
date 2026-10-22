@@ -2,8 +2,8 @@ import 'package:core/models/tag.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:tonkatsu_box/core/database/database_service.dart';
-import 'package:tonkatsu_box/features/collections/widgets/item_tags_section.dart';
+import 'package:mediabox/core/database/database_service.dart';
+import 'package:mediabox/features/collections/widgets/item_tags_section.dart';
 
 import '../../../helpers/test_helpers.dart';
 

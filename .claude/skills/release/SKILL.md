@@ -160,7 +160,7 @@ Create **user-facing release notes** in English from the CHANGELOG `[X.Y.Z]` sec
 - Russian section uses: `## Что нового`, `## Улучшения`, `## Исправления`
 - Use bullet points, no bold prefixes
 - Keep it concise: 1 line per feature, max 2 sentences for complex features
-- Add a footer: `**Full Changelog**: https://github.com/hacan359/tonkatsu_box/compare/vPREV...vX.Y.Z`
+- Add a footer: `**Full Changelog**: https://github.com/basharizwaan61/Tonkatsu_Box/compare/vPREV...vX.Y.Z`
 
 **Example transformation:**
 

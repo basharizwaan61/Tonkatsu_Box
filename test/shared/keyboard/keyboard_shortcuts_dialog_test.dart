@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/l10n/app_localizations.dart';
-import 'package:tonkatsu_box/shared/keyboard/keyboard_shortcuts.dart';
-import 'package:tonkatsu_box/shared/keyboard/keyboard_shortcuts_dialog.dart';
+import 'package:mediabox/l10n/app_localizations.dart';
+import 'package:mediabox/shared/keyboard/keyboard_shortcuts.dart';
+import 'package:mediabox/shared/keyboard/keyboard_shortcuts_dialog.dart';
 
 Widget _wrap(Widget home) => MaterialApp(
       localizationsDelegates: S.localizationsDelegates,

@@ -1,7 +1,7 @@
 import 'package:core/models/collection.dart';
 import 'package:core/models/collection_item.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/features/collections/helpers/item_editability.dart';
+import 'package:mediabox/features/collections/helpers/item_editability.dart';
 
 import '../../../helpers/test_helpers.dart';
 

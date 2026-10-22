@@ -1,14 +1,14 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/features/collections/screens/collection_screen.dart';
-import 'package:tonkatsu_box/features/collections/screens/home_screen.dart';
-import 'package:tonkatsu_box/features/collections/screens/item_detail_screen.dart';
-import 'package:tonkatsu_box/features/search/screens/search_screen.dart';
-import 'package:tonkatsu_box/features/tier_lists/screens/tier_list_detail_screen.dart';
-import 'package:tonkatsu_box/features/tier_lists/screens/tier_lists_screen.dart';
-import 'package:tonkatsu_box/features/wishlist/screens/wishlist_screen.dart';
-import 'package:tonkatsu_box/l10n/app_localizations.dart';
-import 'package:tonkatsu_box/l10n/app_localizations_ru.dart';
-import 'package:tonkatsu_box/shared/keyboard/keyboard_shortcuts.dart';
+import 'package:mediabox/features/collections/screens/collection_screen.dart';
+import 'package:mediabox/features/collections/screens/home_screen.dart';
+import 'package:mediabox/features/collections/screens/item_detail_screen.dart';
+import 'package:mediabox/features/search/screens/search_screen.dart';
+import 'package:mediabox/features/tier_lists/screens/tier_list_detail_screen.dart';
+import 'package:mediabox/features/tier_lists/screens/tier_lists_screen.dart';
+import 'package:mediabox/features/wishlist/screens/wishlist_screen.dart';
+import 'package:mediabox/l10n/app_localizations.dart';
+import 'package:mediabox/l10n/app_localizations_ru.dart';
+import 'package:mediabox/shared/keyboard/keyboard_shortcuts.dart';
 
 void main() {
   final S l = SRu();

@@ -181,6 +181,15 @@ Future<Map<int, MoodGridCellMedia>> resolveMoodGridCellMediaBatch(
         return _albumMedia(albums[(id, cell.source ?? DataSource.musicBrainz)]);
       case MediaType.custom:
         return _customMedia(customs[id]);
+      case MediaType.character:
+        // No character preview yet: a cell carries no wiki variant, so a
+        // fetched row could belong to another wiki with the same page id.
+        return const MoodGridCellMedia(
+          title: null,
+          coverUrl: null,
+          imageType: ImageType.characterCover,
+          placeholderIcon: Icons.face_outlined,
+        );
     }
   }
 

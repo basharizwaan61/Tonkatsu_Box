@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/features/showcase/utils/anime_season.dart';
+import 'package:mediabox/features/showcase/utils/anime_season.dart';
 
 void main() {
   group('animeSeasonFor', () {

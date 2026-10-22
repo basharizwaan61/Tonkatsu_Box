@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/core/import/sources/igdb_list/igdb_list_csv_parser.dart';
+import 'package:mediabox/core/import/sources/igdb_list/igdb_list_csv_parser.dart';
 
 void main() {
   const IgdbListCsvParser parser = IgdbListCsvParser();

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/features/statistics/models/library_stats.dart';
-import 'package:tonkatsu_box/features/statistics/widgets/stats_period_picker.dart';
+import 'package:mediabox/features/statistics/models/library_stats.dart';
+import 'package:mediabox/features/statistics/widgets/stats_period_picker.dart';
 
 import '../../../helpers/test_helpers.dart';
 

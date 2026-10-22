@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/core/import/rate_limited_retry.dart';
+import 'package:mediabox/core/import/rate_limited_retry.dart';
 
 class _RateLimit implements Exception {}
 

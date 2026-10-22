@@ -2,12 +2,12 @@ import 'package:core/models/tv_show.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:tonkatsu_box/core/api/tmdb_api.dart';
-import 'package:tonkatsu_box/features/search/providers/genre_provider.dart';
-import 'package:tonkatsu_box/features/settings/providers/settings_provider.dart';
-import 'package:tonkatsu_box/features/showcase/models/showcase_item.dart';
-import 'package:tonkatsu_box/features/showcase/providers/showcase_clock_provider.dart';
-import 'package:tonkatsu_box/features/showcase/providers/showcase_rows_provider.dart';
+import 'package:mediabox/core/api/tmdb_api.dart';
+import 'package:mediabox/features/search/providers/genre_provider.dart';
+import 'package:mediabox/features/settings/providers/settings_provider.dart';
+import 'package:mediabox/features/showcase/models/showcase_item.dart';
+import 'package:mediabox/features/showcase/providers/showcase_clock_provider.dart';
+import 'package:mediabox/features/showcase/providers/showcase_rows_provider.dart';
 
 import '../../../helpers/test_helpers.dart';
 

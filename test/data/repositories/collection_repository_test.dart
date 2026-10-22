@@ -2,7 +2,7 @@ import 'package:core/models/collection.dart';
 import 'package:core/models/media_type.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:tonkatsu_box/data/repositories/collection_repository.dart';
+import 'package:mediabox/data/repositories/collection_repository.dart';
 
 import '../../helpers/test_helpers.dart';
 
@@ -139,6 +139,7 @@ void main() {
           bookCount: 8,
           audioCount: 10,
           customCount: 9,
+          characterCount: 11,
         );
 
         expect(stats.mediaTypeCounts, <MediaType, int>{
@@ -152,6 +153,7 @@ void main() {
           MediaType.book: 8,
           MediaType.audio: 10,
           MediaType.custom: 9,
+          MediaType.character: 11,
         });
       });
 

@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tonkatsu_box/core/services/app_http_overrides.dart';
+import 'package:mediabox/core/services/app_http_overrides.dart';
 
 void main() {
   group('AppHttpOverrides', () {
@@ -14,7 +14,7 @@ void main() {
     });
 
     test('userAgent identifies the app and a contact URL', () {
-      expect(AppHttpOverrides.userAgent, contains('TonkatsuBox'));
+      expect(AppHttpOverrides.userAgent, contains('Mediabox'));
       expect(AppHttpOverrides.userAgent, contains('github.com'));
       expect(AppHttpOverrides.userAgent, isNot(contains('Dart/')));
     });
