@@ -136,6 +136,7 @@ class MoodGridDetailNotifier
     required int externalId,
     int? platformId,
     DataSource? source,
+    String? sourceVariant,
   }) async {
     await _dao.setCellItem(
       cellId: cellId,
@@ -143,6 +144,7 @@ class MoodGridDetailNotifier
       externalId: externalId,
       platformId: platformId,
       source: source,
+      sourceVariant: sourceVariant,
     );
     final MoodGridCellMedia? media = await _replaceCellAndMedia(
       cellId,
@@ -151,6 +153,7 @@ class MoodGridDetailNotifier
         externalId: externalId,
         platformId: platformId,
         source: source,
+        sourceVariant: sourceVariant,
       ),
     );
     if (media != null) {

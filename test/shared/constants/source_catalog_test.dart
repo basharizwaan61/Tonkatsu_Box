@@ -28,7 +28,7 @@ void main() {
     });
 
     test('only IGDB, TMDB, TheTVDB, ComicVine, Google Books, Hardcover, '
-        'Podcast Index and SuperHero prompt for a key', () {
+        'Podcast Index, SuperHero and PornDB prompt for a key', () {
       final Set<DataSource> needKey = kDataSourceCatalog
           .where((SourceInfo i) =>
               i.keyRequirement != SourceKeyRequirement.none)
@@ -46,6 +46,7 @@ void main() {
           DataSource.hardcover,
           DataSource.podcastIndex,
           DataSource.superHero,
+          DataSource.pornDb,
         },
       );
     });

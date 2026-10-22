@@ -109,6 +109,7 @@ class RemoteMoodGridDao implements MoodGridDao {
               asObject(e)['source'],
               DataSource.values,
             ),
+            sourceVariant: asObject(e)['sourceVariant'] as String?,
           ),
         )
         .toList();
@@ -176,6 +177,7 @@ class RemoteMoodGridDao implements MoodGridDao {
     required int externalId,
     int? platformId,
     DataSource? source,
+    String? sourceVariant,
   }) async {
     await _transport.call('MoodGridDao', 'setCellItem', <String, Object?>{
       'cellId': encodeInt(cellId),
@@ -183,6 +185,7 @@ class RemoteMoodGridDao implements MoodGridDao {
       'externalId': encodeInt(externalId),
       'platformId': encodeIntOrNull(platformId),
       'source': source?.name,
+      'sourceVariant': sourceVariant,
     });
     return;
   }

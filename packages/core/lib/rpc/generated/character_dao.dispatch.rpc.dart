@@ -3,6 +3,7 @@
 
 import 'package:core/database/dao/character_dao.dart';
 import 'package:core/models/character.dart';
+import 'package:core/models/character_appearance.dart';
 import 'package:core/models/data_source.dart';
 import 'package:core/rpc/rpc_codec.dart';
 
@@ -30,6 +31,7 @@ Future<Object?> dispatchCharacterDao(
           'source': encodeEnum(v.source),
           'name': v.name,
           'variant': v.variant,
+          'nativeId': v.nativeId,
           'nameNative': v.nameNative,
           'description': v.description,
           'imageUrl': v.imageUrl,
@@ -43,7 +45,13 @@ Future<Object?> dispatchCharacterDao(
           'publisher': v.publisher,
           'alignment': v.alignment,
           'appearsIn': v.appearsIn?.map(
-            (String k, String v) => MapEntry<String, Object?>(k, v),
+            (String k, CharacterAppearance v) =>
+                MapEntry<String, Object?>(k, <String, Object?>{
+                  'title': v.title,
+                  'url': v.url,
+                  'sourceId': encodeIntOrNull(v.sourceId),
+                  'mediaId': encodeIntOrNull(v.mediaId),
+                }),
           ),
           'externalUrl': v.externalUrl,
           'popularity': encodeIntOrNull(v.popularity),
@@ -62,6 +70,7 @@ Future<Object?> dispatchCharacterDao(
               'source': encodeEnum(e.source),
               'name': e.name,
               'variant': e.variant,
+              'nativeId': e.nativeId,
               'nameNative': e.nameNative,
               'description': e.description,
               'imageUrl': e.imageUrl,
@@ -75,7 +84,13 @@ Future<Object?> dispatchCharacterDao(
               'publisher': e.publisher,
               'alignment': e.alignment,
               'appearsIn': e.appearsIn?.map(
-                (String k, String v) => MapEntry<String, Object?>(k, v),
+                (String k, CharacterAppearance v) =>
+                    MapEntry<String, Object?>(k, <String, Object?>{
+                      'title': v.title,
+                      'url': v.url,
+                      'sourceId': encodeIntOrNull(v.sourceId),
+                      'mediaId': encodeIntOrNull(v.mediaId),
+                    }),
               ),
               'externalUrl': e.externalUrl,
               'popularity': encodeIntOrNull(e.popularity),
@@ -94,6 +109,7 @@ Future<Object?> dispatchCharacterDao(
           ),
           name: asObject(args['character'])['name'] as String,
           variant: asObject(args['character'])['variant'] as String?,
+          nativeId: asObject(args['character'])['nativeId'] as String?,
           nameNative: asObject(args['character'])['nameNative'] as String?,
           description: asObject(args['character'])['description'] as String?,
           imageUrl: asObject(args['character'])['imageUrl'] as String?,
@@ -115,7 +131,15 @@ Future<Object?> dispatchCharacterDao(
               ? null
               : asObject(asObject(args['character'])['appearsIn']).map(
                   (String k, Object? v) =>
-                      MapEntry<String, String>(k, v as String),
+                      MapEntry<String, CharacterAppearance>(
+                        k,
+                        CharacterAppearance(
+                          title: asObject(v)['title'] as String,
+                          url: asObject(v)['url'] as String?,
+                          sourceId: decodeIntOrNull(asObject(v)['sourceId']),
+                          mediaId: decodeIntOrNull(asObject(v)['mediaId']),
+                        ),
+                      ),
                 ),
           externalUrl: asObject(args['character'])['externalUrl'] as String?,
           popularity: decodeIntOrNull(
@@ -138,6 +162,7 @@ Future<Object?> dispatchCharacterDao(
                 ),
                 name: asObject(e)['name'] as String,
                 variant: asObject(e)['variant'] as String?,
+                nativeId: asObject(e)['nativeId'] as String?,
                 nameNative: asObject(e)['nameNative'] as String?,
                 description: asObject(e)['description'] as String?,
                 imageUrl: asObject(e)['imageUrl'] as String?,
@@ -157,8 +182,18 @@ Future<Object?> dispatchCharacterDao(
                 appearsIn: asObject(e)['appearsIn'] == null
                     ? null
                     : asObject(asObject(e)['appearsIn']).map(
-                        (String k, Object? v) =>
-                            MapEntry<String, String>(k, v as String),
+                        (
+                          String k,
+                          Object? v,
+                        ) => MapEntry<String, CharacterAppearance>(
+                          k,
+                          CharacterAppearance(
+                            title: asObject(v)['title'] as String,
+                            url: asObject(v)['url'] as String?,
+                            sourceId: decodeIntOrNull(asObject(v)['sourceId']),
+                            mediaId: decodeIntOrNull(asObject(v)['mediaId']),
+                          ),
+                        ),
                       ),
                 externalUrl: asObject(e)['externalUrl'] as String?,
                 popularity: decodeIntOrNull(asObject(e)['popularity']),

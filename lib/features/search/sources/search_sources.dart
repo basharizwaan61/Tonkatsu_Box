@@ -21,6 +21,7 @@ import 'mangadex_source.dart';
 import 'musicbrainz_albums_source.dart';
 import 'podcast_index_source.dart';
 import 'openlibrary_source.dart';
+import 'porndb_characters_source.dart';
 import 'superhero_characters_source.dart';
 import 'tmdb_anime_source.dart';
 import 'tmdb_movies_source.dart';
@@ -77,6 +78,7 @@ final List<SearchSource> searchSources = List<SearchSource>.unmodifiable(
     TmdbPeopleSource(),
     SuperHeroCharactersSource(),
     IgdbCharactersSource(),
+    PornDbCharactersSource(),
   ],
 );
 

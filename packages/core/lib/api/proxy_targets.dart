@@ -20,6 +20,7 @@ enum ProxyTarget {
   musicbrainz('musicbrainz.org'),
   openlibrary('openlibrary.org'),
   podcastindex('api.podcastindex.org'),
+  pornDb('api.theporndb.com'),
   ra('retroachievements.org'),
   screenscraper('api.screenscraper.fr'),
   simkl('api.simkl.com'),

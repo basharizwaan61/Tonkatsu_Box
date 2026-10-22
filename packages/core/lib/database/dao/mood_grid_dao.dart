@@ -285,6 +285,7 @@ class MoodGridDao {
     required int externalId,
     int? platformId,
     DataSource? source,
+    String? sourceVariant,
   }) async {
     final Database db = await _getDatabase();
     await db.update(
@@ -294,6 +295,7 @@ class MoodGridDao {
         'external_id': externalId,
         'platform_id': platformId,
         'source': source?.name,
+        'source_variant': sourceVariant,
       },
       where: 'id = ?',
       whereArgs: <Object?>[cellId],

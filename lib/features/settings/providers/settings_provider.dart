@@ -14,6 +14,7 @@ import '../../../core/api/google_books_api.dart';
 import '../../../core/api/hardcover_api.dart';
 import '../../../core/api/igdb_api.dart';
 import '../../../core/api/podcast_index_api.dart';
+import '../../../core/api/porndb_api.dart';
 import '../../../core/api/ra_api.dart';
 import '../../../core/api/screenscraper_api.dart';
 import '../../../core/api/steamgriddb_api.dart';
@@ -42,6 +43,9 @@ abstract class SettingsKeys {
 
   /// Free user token from superheroapi.com.
   static const String superHeroApiToken = 'superhero_api_token';
+
+  /// Free API token from theporndb.net, with the `read` permission.
+  static const String pornDbApiToken = 'porn_db_api_token';
 
   static const String podcastIndexApiKey = 'podcastindex_api_key';
 
@@ -188,6 +192,7 @@ class SettingsState {
     this.tvdbApiKey,
     this.comicVineApiKey,
     this.superHeroApiToken,
+    this.pornDbApiToken,
     this.googleBooksApiKey,
     this.hardcoverApiKey,
     this.podcastIndexApiKey,
@@ -243,6 +248,8 @@ class SettingsState {
   final String? comicVineApiKey;
 
   final String? superHeroApiToken;
+
+  final String? pornDbApiToken;
 
   final String? googleBooksApiKey;
 
@@ -353,6 +360,9 @@ class SettingsState {
   bool get hasSuperHeroToken =>
       superHeroApiToken != null && superHeroApiToken!.isNotEmpty;
 
+  bool get hasPornDbToken =>
+      pornDbApiToken != null && pornDbApiToken!.isNotEmpty;
+
   bool get hasPodcastIndexKeys =>
       podcastIndexApiKey != null &&
       podcastIndexApiKey!.isNotEmpty &&
@@ -422,6 +432,7 @@ class SettingsState {
     String? tvdbApiKey,
     String? comicVineApiKey,
     String? superHeroApiToken,
+    String? pornDbApiToken,
     String? googleBooksApiKey,
     String? hardcoverApiKey,
     String? podcastIndexApiKey,
@@ -463,6 +474,7 @@ class SettingsState {
       tvdbApiKey: tvdbApiKey ?? this.tvdbApiKey,
       comicVineApiKey: comicVineApiKey ?? this.comicVineApiKey,
       superHeroApiToken: superHeroApiToken ?? this.superHeroApiToken,
+      pornDbApiToken: pornDbApiToken ?? this.pornDbApiToken,
       podcastIndexApiKey: podcastIndexApiKey ?? this.podcastIndexApiKey,
       podcastIndexApiSecret:
           podcastIndexApiSecret ?? this.podcastIndexApiSecret,
@@ -536,6 +548,7 @@ class SettingsNotifier extends Notifier<SettingsState> {
   late TvdbApi _tvdbApi;
   late ComicVineApi _comicVineApi;
   late SuperHeroApi _superHeroApi;
+  late PornDbApi _pornDbApi;
   late PodcastIndexApi _podcastIndexApi;
   late GoogleBooksApi _googleBooksApi;
   late HardcoverApi _hardcoverApi;
@@ -566,6 +579,7 @@ class SettingsNotifier extends Notifier<SettingsState> {
     _tvdbApi = ref.watch(tvdbApiProvider);
     _comicVineApi = ref.watch(comicVineApiProvider);
     _superHeroApi = ref.watch(superHeroApiProvider);
+    _pornDbApi = ref.watch(pornDbApiProvider);
     _podcastIndexApi = ref.watch(podcastIndexApiProvider);
     _googleBooksApi = ref.watch(googleBooksApiProvider);
     _hardcoverApi = ref.watch(hardcoverApiProvider);
@@ -628,6 +642,9 @@ class SettingsNotifier extends Notifier<SettingsState> {
     // SuperHero: user token from prefs only, no built-in.
     final String? superHeroApiToken =
         _prefs.getString(SettingsKeys.superHeroApiToken);
+    // ThePornDB: user token from prefs only, no built-in.
+    final String? pornDbApiToken =
+        _prefs.getString(SettingsKeys.pornDbApiToken);
 
     // Podcast Index: user pair from prefs; the built-in pair stays invisible
     // here so the credentials screen shows only what the user entered.
@@ -712,6 +729,7 @@ class SettingsNotifier extends Notifier<SettingsState> {
       tvdbApiKey: tvdbApiKey,
       comicVineApiKey: comicVineApiKey,
       superHeroApiToken: superHeroApiToken,
+      pornDbApiToken: pornDbApiToken,
       podcastIndexApiKey: podcastIndexApiKey,
       podcastIndexApiSecret: podcastIndexApiSecret,
       googleBooksApiKey: googleBooksApiKey,
@@ -805,6 +823,9 @@ class SettingsNotifier extends Notifier<SettingsState> {
     if (state.superHeroApiToken != null &&
         state.superHeroApiToken!.isNotEmpty) {
       _superHeroApi.setToken(state.superHeroApiToken!);
+    }
+    if (state.pornDbApiToken != null && state.pornDbApiToken!.isNotEmpty) {
+      _pornDbApi.setToken(state.pornDbApiToken!);
     }
     if (state.hasPodcastIndexKeys) {
       _podcastIndexApi.setCredentials(
@@ -1011,6 +1032,18 @@ class SettingsNotifier extends Notifier<SettingsState> {
     }
 
     state = state.copyWith(superHeroApiToken: token);
+  }
+
+  Future<void> setPornDbApiToken(String token) async {
+    if (token.isNotEmpty) {
+      await _writeCredential(SettingsKeys.pornDbApiToken, token);
+      _pornDbApi.setToken(token);
+    } else {
+      await _writeCredential(SettingsKeys.pornDbApiToken, '');
+      _pornDbApi.clearToken();
+    }
+
+    state = state.copyWith(pornDbApiToken: token);
   }
 
   /// Key and secret land together — a signature needs both, so a lone half
@@ -1272,6 +1305,11 @@ class SettingsNotifier extends Notifier<SettingsState> {
     return _superHeroApi.validateToken(state.superHeroApiToken!);
   }
 
+  Future<bool> validatePornDbToken() async {
+    if (!state.hasPornDbToken) return false;
+    return _pornDbApi.validateToken(state.pornDbApiToken!);
+  }
+
   /// Validates whatever pair the client currently signs with — the user's
   /// or the built-in one.
   Future<bool> validatePodcastIndexKeys() async {
@@ -1328,6 +1366,7 @@ class SettingsNotifier extends Notifier<SettingsState> {
     await _writeCredential(SettingsKeys.tvdbApiKey, '');
     await _writeCredential(SettingsKeys.comicVineApiKey, '');
     await _writeCredential(SettingsKeys.superHeroApiToken, '');
+    await _writeCredential(SettingsKeys.pornDbApiToken, '');
     await _writeCredential(SettingsKeys.googleBooksApiKey, '');
     await _writeCredential(SettingsKeys.hardcoverApiKey, '');
     await _writeCredential(SettingsKeys.podcastIndexApiKey, '');
@@ -1361,6 +1400,7 @@ class SettingsNotifier extends Notifier<SettingsState> {
     _tvdbApi.clearApiKey();
     _comicVineApi.clearApiKey();
     _superHeroApi.clearToken();
+    _pornDbApi.clearToken();
     _googleBooksApi.clearApiKey();
     _hardcoverApi.clearApiKey();
     _podcastIndexApi.clearCredentials();

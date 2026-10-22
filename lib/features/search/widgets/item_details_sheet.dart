@@ -343,8 +343,7 @@ class ItemDetailsSheet extends StatelessWidget {
       appearsInSection: character.appearsIn == null ||
               character.appearsIn!.isEmpty
           ? null
-          : CharacterAppearsInSection(appearsIn: character.appearsIn!),
-      onAddToCollection: onAddToCollection,
+          : CharacterAppearsInSection(appearsIn: character.appearsIn!),      onAddToCollection: onAddToCollection,
     );
   }
 

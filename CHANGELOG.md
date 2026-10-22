@@ -7,6 +7,98 @@ Entries follow the [GNU Change Log style](https://www.gnu.org/prep/standards/htm
 
 ## [Unreleased]
 
+### Changed
+
+- **Rebrand to Mediabox**
+
+  The app is now called Mediabox. The Dart package is `mediabox`, the
+  Windows binary is `mediabox.exe`, the Android application id is
+  `com.mediabox.app`, and the web manifest, the release artifacts and the
+  docs follow. The on-disk data folder, the database file and the LAN sync
+  tags keep their old names on purpose, so an existing installation finds
+  its library where it left it.
+
+  * pubspec.yaml (name): Renamed to `mediabox`.
+  * windows/CMakeLists.txt (BINARY_NAME), windows/runner/Runner.rc,
+    windows/runner/main.cpp: Product name, file properties and window title.
+  * android/app/build.gradle.kts (namespace, applicationId),
+    android/app/src/main/AndroidManifest.xml (android:label).
+  * web/index.html, web/manifest.json: Title, description and PWA names.
+  * lib/app.dart (MediaboxApp), lib/main.dart: Root widget renamed.
+  * lib/l10n/: Every locale's strings.
+
+### Added
+
+- **Character collection**
+
+  A new collectible type, next to movies and books. Characters live in
+  collections like any other item: they get a status, a rating, tags, notes
+  and dates, they count in the statistics, and they can go on the visual
+  board and in a mood grid.
+
+  Eight providers, each with its own catalogue:
+
+  | Provider | Characters | Key |
+  |---|---|---|
+  | Jikan | anime characters, with the series they appear in | none |
+  | Disney | 9,820 Disney characters | none |
+  | Fandom | the character pages of any wiki | none |
+  | Wikidata | fictional characters and real people | none |
+  | TMDB | actors and performers | existing TMDB key |
+  | SuperHero API | DC and Marvel | new free token |
+  | IGDB | video-game characters | existing IGDB key |
+  | ThePornDB | performers | new free token |
+
+  A Fandom character keeps the wiki it came from, because a page id repeats
+  across wikis: the same id on two wikis stays two different characters, in
+  the collection, on the board and in the cover cache.
+
+  The character sheet lists the works the character appears in. Jikan hands
+  those out by MyAnimeList id, so one batch lookup maps them onto the app's
+  own catalogue — a title already in the library opens from the list, and
+  the rest link out to the provider.
+
+  The user can attach their own pictures to a character by pasting image
+  links: stills, wallpapers, a "best look" shot. They sit beside the
+  provider portrait, and each opens the link it points at.
+
+  The Fandom wiki is chosen in Settings, from a list of popular wikis or by
+  typing any wiki name.
+
+  * packages/core/lib/models/character.dart (Character): New.
+  * packages/core/lib/models/character_appearance.dart (CharacterAppearance):
+    New.
+  * packages/core/lib/models/character_image.dart (CharacterImage): New.
+  * packages/core/lib/models/media_type.dart (MediaType.character): New.
+  * packages/core/lib/models/data_source.dart (DataSource.fandom,
+    DataSource.jikan, DataSource.disney, DataSource.wikidata,
+    DataSource.superHero, DataSource.pornDb): New.
+  * packages/core/lib/database/dao/character_dao.dart (CharacterDao): New.
+  * packages/core/lib/database/migrations/migration_v67.dart: New.
+  * packages/core/lib/database/migrations/migration_v68.dart: New.
+  * packages/core/lib/database/migrations/migration_v70.dart: New.
+  * packages/core/lib/models/collection_item.dart (character,
+    sourceVariant): New.
+  * packages/core/lib/models/collected_item_info.dart (sourceVariant): New.
+  * packages/core/lib/models/mood_grid_cell.dart (sourceVariant): New.
+  * lib/core/api/jikan_api.dart, lib/core/api/disney_api.dart,
+    lib/core/api/fandom_api.dart, lib/core/api/wikidata_api.dart,
+    lib/core/api/superhero_api.dart, lib/core/api/porndb_api.dart,
+    lib/core/api/igdb/igdb_characters_api.dart: New.
+  * lib/features/search/sources/jikan_characters_source.dart,
+    lib/features/search/sources/disney_characters_source.dart,
+    lib/features/search/sources/fandom_characters_source.dart,
+    lib/features/search/sources/wikidata_characters_source.dart,
+    lib/features/search/sources/tmdb_people_source.dart,
+    lib/features/search/sources/superhero_characters_source.dart,
+    lib/features/search/sources/porndb_characters_source.dart,
+    lib/features/search/sources/igdb_characters_source.dart: New.
+  * lib/features/collections/widgets/character_pictures_section.dart: New.
+  * lib/features/collections/widgets/dialogs/add_character_image_dialog.dart:
+    New.
+  * lib/features/search/widgets/character_appears_in_section.dart: New.
+  * lib/features/settings/providers/fandom_wiki_provider.dart: New.
+
 ## [0.45.0] - 2026-10-03
 
 ### Added

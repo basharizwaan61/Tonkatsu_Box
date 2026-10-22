@@ -18,6 +18,7 @@ class ApiKeys {
     this.raApiKey,
     this.comicVineApiKey,
     this.superHeroApiToken,
+    this.pornDbApiToken,
     this.googleBooksApiKey,
     this.hardcoverApiKey,
     this.podcastIndexApiKey,
@@ -71,6 +72,9 @@ class ApiKeys {
     final String? superHeroApiToken =
         prefs.getString(SettingsKeys.superHeroApiToken);
 
+    // ThePornDB: user token from prefs only, no built-in.
+    final String? pornDbApiToken = prefs.getString(SettingsKeys.pornDbApiToken);
+
     // Google Books: optional user key from prefs only, no built-in. Search
     // works without it; a key only raises the quota.
     final String? googleBooksApiKey =
@@ -122,6 +126,10 @@ class ApiKeys {
           (superHeroApiToken != null && superHeroApiToken.isNotEmpty)
               ? superHeroApiToken
               : null,
+      pornDbApiToken:
+          (pornDbApiToken != null && pornDbApiToken.isNotEmpty)
+              ? pornDbApiToken
+              : null,
       googleBooksApiKey:
           (googleBooksApiKey != null && googleBooksApiKey.isNotEmpty)
               ? googleBooksApiKey
@@ -160,6 +168,8 @@ class ApiKeys {
   final String? comicVineApiKey;
 
   final String? superHeroApiToken;
+
+  final String? pornDbApiToken;
 
   final String? googleBooksApiKey;
 

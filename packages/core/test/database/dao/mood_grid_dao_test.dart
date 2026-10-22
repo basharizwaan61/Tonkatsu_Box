@@ -42,6 +42,7 @@ void main() {
         external_id INTEGER,
         platform_id INTEGER,
         source TEXT,
+        source_variant TEXT,
         FOREIGN KEY (grid_id) REFERENCES mood_grids(id) ON DELETE CASCADE
       )
     ''');

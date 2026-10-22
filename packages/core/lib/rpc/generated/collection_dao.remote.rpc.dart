@@ -8,6 +8,7 @@ import 'package:core/models/audio_kind.dart';
 import 'package:core/models/book.dart';
 import 'package:core/models/book_kind.dart';
 import 'package:core/models/character.dart';
+import 'package:core/models/character_appearance.dart';
 import 'package:core/models/character_image.dart';
 import 'package:core/models/collected_item_info.dart';
 import 'package:core/models/collection.dart';
@@ -568,6 +569,7 @@ class RemoteCollectionDao implements CollectionDao {
                 ),
                 name: asObject(v)['name'] as String,
                 variant: asObject(v)['variant'] as String?,
+                nativeId: asObject(v)['nativeId'] as String?,
                 nameNative: asObject(v)['nameNative'] as String?,
                 description: asObject(v)['description'] as String?,
                 imageUrl: asObject(v)['imageUrl'] as String?,
@@ -587,8 +589,18 @@ class RemoteCollectionDao implements CollectionDao {
                 appearsIn: asObject(v)['appearsIn'] == null
                     ? null
                     : asObject(asObject(v)['appearsIn']).map(
-                        (String k, Object? v) =>
-                            MapEntry<String, String>(k, v as String),
+                        (
+                          String k,
+                          Object? v,
+                        ) => MapEntry<String, CharacterAppearance>(
+                          k,
+                          CharacterAppearance(
+                            title: asObject(v)['title'] as String,
+                            url: asObject(v)['url'] as String?,
+                            sourceId: decodeIntOrNull(asObject(v)['sourceId']),
+                            mediaId: decodeIntOrNull(asObject(v)['mediaId']),
+                          ),
+                        ),
                       ),
                 externalUrl: asObject(v)['externalUrl'] as String?,
                 popularity: decodeIntOrNull(asObject(v)['popularity']),
@@ -1030,6 +1042,7 @@ class RemoteCollectionDao implements CollectionDao {
             ),
             name: asObject(v)['name'] as String,
             variant: asObject(v)['variant'] as String?,
+            nativeId: asObject(v)['nativeId'] as String?,
             nameNative: asObject(v)['nameNative'] as String?,
             description: asObject(v)['description'] as String?,
             imageUrl: asObject(v)['imageUrl'] as String?,
@@ -1050,7 +1063,15 @@ class RemoteCollectionDao implements CollectionDao {
                 ? null
                 : asObject(asObject(v)['appearsIn']).map(
                     (String k, Object? v) =>
-                        MapEntry<String, String>(k, v as String),
+                        MapEntry<String, CharacterAppearance>(
+                          k,
+                          CharacterAppearance(
+                            title: asObject(v)['title'] as String,
+                            url: asObject(v)['url'] as String?,
+                            sourceId: decodeIntOrNull(asObject(v)['sourceId']),
+                            mediaId: decodeIntOrNull(asObject(v)['mediaId']),
+                          ),
+                        ),
                   ),
             externalUrl: asObject(v)['externalUrl'] as String?,
             popularity: decodeIntOrNull(asObject(v)['popularity']),
@@ -1463,6 +1484,7 @@ class RemoteCollectionDao implements CollectionDao {
             ),
             name: asObject(v)['name'] as String,
             variant: asObject(v)['variant'] as String?,
+            nativeId: asObject(v)['nativeId'] as String?,
             nameNative: asObject(v)['nameNative'] as String?,
             description: asObject(v)['description'] as String?,
             imageUrl: asObject(v)['imageUrl'] as String?,
@@ -1483,7 +1505,15 @@ class RemoteCollectionDao implements CollectionDao {
                 ? null
                 : asObject(asObject(v)['appearsIn']).map(
                     (String k, Object? v) =>
-                        MapEntry<String, String>(k, v as String),
+                        MapEntry<String, CharacterAppearance>(
+                          k,
+                          CharacterAppearance(
+                            title: asObject(v)['title'] as String,
+                            url: asObject(v)['url'] as String?,
+                            sourceId: decodeIntOrNull(asObject(v)['sourceId']),
+                            mediaId: decodeIntOrNull(asObject(v)['mediaId']),
+                          ),
+                        ),
                   ),
             externalUrl: asObject(v)['externalUrl'] as String?,
             popularity: decodeIntOrNull(asObject(v)['popularity']),
@@ -1895,6 +1925,7 @@ class RemoteCollectionDao implements CollectionDao {
                 ),
                 name: asObject(v)['name'] as String,
                 variant: asObject(v)['variant'] as String?,
+                nativeId: asObject(v)['nativeId'] as String?,
                 nameNative: asObject(v)['nameNative'] as String?,
                 description: asObject(v)['description'] as String?,
                 imageUrl: asObject(v)['imageUrl'] as String?,
@@ -1914,8 +1945,18 @@ class RemoteCollectionDao implements CollectionDao {
                 appearsIn: asObject(v)['appearsIn'] == null
                     ? null
                     : asObject(asObject(v)['appearsIn']).map(
-                        (String k, Object? v) =>
-                            MapEntry<String, String>(k, v as String),
+                        (
+                          String k,
+                          Object? v,
+                        ) => MapEntry<String, CharacterAppearance>(
+                          k,
+                          CharacterAppearance(
+                            title: asObject(v)['title'] as String,
+                            url: asObject(v)['url'] as String?,
+                            sourceId: decodeIntOrNull(asObject(v)['sourceId']),
+                            mediaId: decodeIntOrNull(asObject(v)['mediaId']),
+                          ),
+                        ),
                       ),
                 externalUrl: asObject(v)['externalUrl'] as String?,
                 popularity: decodeIntOrNull(asObject(v)['popularity']),
@@ -2328,6 +2369,7 @@ class RemoteCollectionDao implements CollectionDao {
                 ),
                 name: asObject(v)['name'] as String,
                 variant: asObject(v)['variant'] as String?,
+                nativeId: asObject(v)['nativeId'] as String?,
                 nameNative: asObject(v)['nameNative'] as String?,
                 description: asObject(v)['description'] as String?,
                 imageUrl: asObject(v)['imageUrl'] as String?,
@@ -2347,8 +2389,18 @@ class RemoteCollectionDao implements CollectionDao {
                 appearsIn: asObject(v)['appearsIn'] == null
                     ? null
                     : asObject(asObject(v)['appearsIn']).map(
-                        (String k, Object? v) =>
-                            MapEntry<String, String>(k, v as String),
+                        (
+                          String k,
+                          Object? v,
+                        ) => MapEntry<String, CharacterAppearance>(
+                          k,
+                          CharacterAppearance(
+                            title: asObject(v)['title'] as String,
+                            url: asObject(v)['url'] as String?,
+                            sourceId: decodeIntOrNull(asObject(v)['sourceId']),
+                            mediaId: decodeIntOrNull(asObject(v)['mediaId']),
+                          ),
+                        ),
                       ),
                 externalUrl: asObject(v)['externalUrl'] as String?,
                 popularity: decodeIntOrNull(asObject(v)['popularity']),
@@ -2898,6 +2950,7 @@ class RemoteCollectionDao implements CollectionDao {
             ),
             name: asObject(v)['name'] as String,
             variant: asObject(v)['variant'] as String?,
+            nativeId: asObject(v)['nativeId'] as String?,
             nameNative: asObject(v)['nameNative'] as String?,
             description: asObject(v)['description'] as String?,
             imageUrl: asObject(v)['imageUrl'] as String?,
@@ -2918,7 +2971,15 @@ class RemoteCollectionDao implements CollectionDao {
                 ? null
                 : asObject(asObject(v)['appearsIn']).map(
                     (String k, Object? v) =>
-                        MapEntry<String, String>(k, v as String),
+                        MapEntry<String, CharacterAppearance>(
+                          k,
+                          CharacterAppearance(
+                            title: asObject(v)['title'] as String,
+                            url: asObject(v)['url'] as String?,
+                            sourceId: decodeIntOrNull(asObject(v)['sourceId']),
+                            mediaId: decodeIntOrNull(asObject(v)['mediaId']),
+                          ),
+                        ),
                   ),
             externalUrl: asObject(v)['externalUrl'] as String?,
             popularity: decodeIntOrNull(asObject(v)['popularity']),
@@ -3362,6 +3423,7 @@ class RemoteCollectionDao implements CollectionDao {
                 ),
                 name: asObject(v)['name'] as String,
                 variant: asObject(v)['variant'] as String?,
+                nativeId: asObject(v)['nativeId'] as String?,
                 nameNative: asObject(v)['nameNative'] as String?,
                 description: asObject(v)['description'] as String?,
                 imageUrl: asObject(v)['imageUrl'] as String?,
@@ -3381,8 +3443,18 @@ class RemoteCollectionDao implements CollectionDao {
                 appearsIn: asObject(v)['appearsIn'] == null
                     ? null
                     : asObject(asObject(v)['appearsIn']).map(
-                        (String k, Object? v) =>
-                            MapEntry<String, String>(k, v as String),
+                        (
+                          String k,
+                          Object? v,
+                        ) => MapEntry<String, CharacterAppearance>(
+                          k,
+                          CharacterAppearance(
+                            title: asObject(v)['title'] as String,
+                            url: asObject(v)['url'] as String?,
+                            sourceId: decodeIntOrNull(asObject(v)['sourceId']),
+                            mediaId: decodeIntOrNull(asObject(v)['mediaId']),
+                          ),
+                        ),
                       ),
                 externalUrl: asObject(v)['externalUrl'] as String?,
                 popularity: decodeIntOrNull(asObject(v)['popularity']),
@@ -3799,6 +3871,7 @@ class RemoteCollectionDao implements CollectionDao {
                 ),
                 name: asObject(v)['name'] as String,
                 variant: asObject(v)['variant'] as String?,
+                nativeId: asObject(v)['nativeId'] as String?,
                 nameNative: asObject(v)['nameNative'] as String?,
                 description: asObject(v)['description'] as String?,
                 imageUrl: asObject(v)['imageUrl'] as String?,
@@ -3818,8 +3891,18 @@ class RemoteCollectionDao implements CollectionDao {
                 appearsIn: asObject(v)['appearsIn'] == null
                     ? null
                     : asObject(asObject(v)['appearsIn']).map(
-                        (String k, Object? v) =>
-                            MapEntry<String, String>(k, v as String),
+                        (
+                          String k,
+                          Object? v,
+                        ) => MapEntry<String, CharacterAppearance>(
+                          k,
+                          CharacterAppearance(
+                            title: asObject(v)['title'] as String,
+                            url: asObject(v)['url'] as String?,
+                            sourceId: decodeIntOrNull(asObject(v)['sourceId']),
+                            mediaId: decodeIntOrNull(asObject(v)['mediaId']),
+                          ),
+                        ),
                       ),
                 externalUrl: asObject(v)['externalUrl'] as String?,
                 popularity: decodeIntOrNull(asObject(v)['popularity']),
@@ -4285,6 +4368,7 @@ class RemoteCollectionDao implements CollectionDao {
                 ),
                 name: asObject(v)['name'] as String,
                 variant: asObject(v)['variant'] as String?,
+                nativeId: asObject(v)['nativeId'] as String?,
                 nameNative: asObject(v)['nameNative'] as String?,
                 description: asObject(v)['description'] as String?,
                 imageUrl: asObject(v)['imageUrl'] as String?,
@@ -4304,8 +4388,18 @@ class RemoteCollectionDao implements CollectionDao {
                 appearsIn: asObject(v)['appearsIn'] == null
                     ? null
                     : asObject(asObject(v)['appearsIn']).map(
-                        (String k, Object? v) =>
-                            MapEntry<String, String>(k, v as String),
+                        (
+                          String k,
+                          Object? v,
+                        ) => MapEntry<String, CharacterAppearance>(
+                          k,
+                          CharacterAppearance(
+                            title: asObject(v)['title'] as String,
+                            url: asObject(v)['url'] as String?,
+                            sourceId: decodeIntOrNull(asObject(v)['sourceId']),
+                            mediaId: decodeIntOrNull(asObject(v)['mediaId']),
+                          ),
+                        ),
                       ),
                 externalUrl: asObject(v)['externalUrl'] as String?,
                 popularity: decodeIntOrNull(asObject(v)['popularity']),
@@ -4784,6 +4878,7 @@ class RemoteCollectionDao implements CollectionDao {
                 ),
                 name: asObject(v)['name'] as String,
                 variant: asObject(v)['variant'] as String?,
+                nativeId: asObject(v)['nativeId'] as String?,
                 nameNative: asObject(v)['nameNative'] as String?,
                 description: asObject(v)['description'] as String?,
                 imageUrl: asObject(v)['imageUrl'] as String?,
@@ -4803,8 +4898,18 @@ class RemoteCollectionDao implements CollectionDao {
                 appearsIn: asObject(v)['appearsIn'] == null
                     ? null
                     : asObject(asObject(v)['appearsIn']).map(
-                        (String k, Object? v) =>
-                            MapEntry<String, String>(k, v as String),
+                        (
+                          String k,
+                          Object? v,
+                        ) => MapEntry<String, CharacterAppearance>(
+                          k,
+                          CharacterAppearance(
+                            title: asObject(v)['title'] as String,
+                            url: asObject(v)['url'] as String?,
+                            sourceId: decodeIntOrNull(asObject(v)['sourceId']),
+                            mediaId: decodeIntOrNull(asObject(v)['mediaId']),
+                          ),
+                        ),
                       ),
                 externalUrl: asObject(v)['externalUrl'] as String?,
                 popularity: decodeIntOrNull(asObject(v)['popularity']),

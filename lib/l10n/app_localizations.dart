@@ -441,6 +441,12 @@ abstract class S {
   /// **'Appears in'**
   String get characterAppearsIn;
 
+  /// No description provided for @characterInLibrary.
+  ///
+  /// In en, this message translates to:
+  /// **'In your library'**
+  String get characterInLibrary;
+
   /// No description provided for @characterPictures.
   ///
   /// In en, this message translates to:

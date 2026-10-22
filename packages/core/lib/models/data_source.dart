@@ -77,6 +77,10 @@ enum DataSource {
   /// Wikidata — open entity database; a character is an entity.
   wikidata('Wikidata', 0xFF339966),
 
+  /// ThePornDB — performer catalog. Needs a free user token, which travels
+  /// in the Authorization header.
+  pornDb('PornDB', 0xFFE0567F),
+
   /// Local source (custom items).
   local('Custom', 0xFF26A69A);
 

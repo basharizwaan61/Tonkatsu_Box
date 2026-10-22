@@ -1,4 +1,5 @@
 import 'package:core/models/character.dart';
+import 'package:core/models/character_appearance.dart';
 import 'package:core/models/data_source.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -141,14 +142,20 @@ class JikanApi {
     if (name == null) return null;
     final List<Map<String, dynamic>> anime = _works(json['anime']);
     final List<Map<String, dynamic>> manga = _works(json['manga']);
-    final Map<String, String> appearsIn = <String, String>{};
+    final Map<String, CharacterAppearance> appearsIn =
+        <String, CharacterAppearance>{};
     for (final Map<String, dynamic> work in <Map<String, dynamic>>[
       ...anime,
       ...manga,
     ]) {
       final String? title = _text(work['title']);
       if (title == null) continue;
-      appearsIn[title] = _text(work['mal_url']) ?? _text(work['url']) ?? '';
+      appearsIn[title] = CharacterAppearance(
+        title: title,
+        url: _text(work['mal_url']) ?? _text(work['url']),
+        // The MyAnimeList id is what the app's own catalogue is keyed by.
+        sourceId: (work['mal_id'] as num?)?.toInt(),
+      );
     }
     final String? firstWork =
         anime.isEmpty ? null : _text(anime.first['title']);

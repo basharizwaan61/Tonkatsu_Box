@@ -71,6 +71,7 @@
   "mediaTypeCustom": "Personalizado",
   "mediaTypeCharacter": "Character",
   "characterAppearsIn": "Appears in",
+  "characterInLibrary": "In your library",
   "characterPictures": "Pictures",
   "characterAddPicture": "Add picture",
   "characterPictureUrl": "Image URL",

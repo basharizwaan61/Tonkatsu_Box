@@ -34,6 +34,7 @@ extension DataSourceUi on DataSource {
         DataSource.fandom => null,
         DataSource.superHero => null,
         DataSource.wikidata => null,
+        DataSource.pornDb => null,
         DataSource.local => null,
       };
 }

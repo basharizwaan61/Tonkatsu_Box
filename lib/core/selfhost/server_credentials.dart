@@ -22,6 +22,7 @@ const Map<String, String> kConfigKeyToCredential = <String, String>{
   'comicvine_api_key': CredentialNames.comicVine,
   'google_books_api_key': CredentialNames.googleBooks,
   'hardcover_api_key': CredentialNames.hardcover,
+  'porn_db_api_token': CredentialNames.pornDb,
   'simkl_client_id': CredentialNames.simklClientId,
   'podcastindex_api_key': CredentialNames.podcastIndexKey,
   'podcastindex_api_secret': CredentialNames.podcastIndexSecret,

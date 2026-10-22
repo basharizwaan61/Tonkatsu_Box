@@ -410,11 +410,15 @@ $body    default:
         if (!_isStringableKey(k)) {
           // A record or model key has no JSON-object form, so the map goes
           // over as a list of {k, v} pairs.
+          _addImport(v);
           return '$expr${nullable ? '?' : ''}.entries'
               '.map((MapEntry<${_typeName(k)}, ${_typeName(v)}> e) => '
               "<String, Object?>{'k': ${_encode(k, 'e.key', where)}, "
               "'v': ${_encode(v, 'e.value', where)}}).toList()";
         }
+        // The value type may be a model the file has to import — a plain
+        // value class is encoded inline, so nothing else pulls it in.
+        _addImport(v);
         return '$expr${nullable ? '?' : ''}'
             '.map((${_typeName(k)} k, ${_typeName(v)} v) => '
             'MapEntry<String, Object?>(${_keyToString(k, 'k')}, '

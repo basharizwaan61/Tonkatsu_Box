@@ -1,4 +1,5 @@
 import 'package:core/models/character.dart';
+import 'package:core/models/character_appearance.dart';
 import 'package:core/models/data_source.dart';
 import 'package:dio/dio.dart';
 
@@ -189,13 +190,14 @@ class IgdbCharactersApi {
   }
 
   /// The games carry no url here, so the value is empty.
-  Map<String, String>? _appearsIn(Object? value) {
+  Map<String, CharacterAppearance>? _appearsIn(Object? value) {
     if (value is! List<dynamic>) return null;
-    final Map<String, String> games = <String, String>{};
+    final Map<String, CharacterAppearance> games =
+        <String, CharacterAppearance>{};
     for (final Object? item in value) {
       if (item is! Map<String, dynamic>) continue;
       final String? title = _text(item['name']);
-      if (title != null) games[title] = '';
+      if (title != null) games[title] = CharacterAppearance(title: title);
     }
     return games.isEmpty ? null : games;
   }

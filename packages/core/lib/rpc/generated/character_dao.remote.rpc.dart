@@ -3,6 +3,7 @@
 
 import 'package:core/database/dao/character_dao.dart';
 import 'package:core/models/character.dart';
+import 'package:core/models/character_appearance.dart';
 import 'package:core/models/data_source.dart';
 import 'package:core/rpc/rpc_codec.dart';
 import 'package:core/rpc/rpc_transport.dart';
@@ -48,6 +49,7 @@ class RemoteCharacterDao implements CharacterDao {
         ),
         name: asObject(v)['name'] as String,
         variant: asObject(v)['variant'] as String?,
+        nativeId: asObject(v)['nativeId'] as String?,
         nameNative: asObject(v)['nameNative'] as String?,
         description: asObject(v)['description'] as String?,
         imageUrl: asObject(v)['imageUrl'] as String?,
@@ -67,8 +69,15 @@ class RemoteCharacterDao implements CharacterDao {
         appearsIn: asObject(v)['appearsIn'] == null
             ? null
             : asObject(asObject(v)['appearsIn']).map(
-                (String k, Object? v) =>
-                    MapEntry<String, String>(k, v as String),
+                (String k, Object? v) => MapEntry<String, CharacterAppearance>(
+                  k,
+                  CharacterAppearance(
+                    title: asObject(v)['title'] as String,
+                    url: asObject(v)['url'] as String?,
+                    sourceId: decodeIntOrNull(asObject(v)['sourceId']),
+                    mediaId: decodeIntOrNull(asObject(v)['mediaId']),
+                  ),
+                ),
               ),
         externalUrl: asObject(v)['externalUrl'] as String?,
         popularity: decodeIntOrNull(asObject(v)['popularity']),
@@ -94,6 +103,7 @@ class RemoteCharacterDao implements CharacterDao {
             ),
             name: asObject(e)['name'] as String,
             variant: asObject(e)['variant'] as String?,
+            nativeId: asObject(e)['nativeId'] as String?,
             nameNative: asObject(e)['nameNative'] as String?,
             description: asObject(e)['description'] as String?,
             imageUrl: asObject(e)['imageUrl'] as String?,
@@ -114,7 +124,15 @@ class RemoteCharacterDao implements CharacterDao {
                 ? null
                 : asObject(asObject(e)['appearsIn']).map(
                     (String k, Object? v) =>
-                        MapEntry<String, String>(k, v as String),
+                        MapEntry<String, CharacterAppearance>(
+                          k,
+                          CharacterAppearance(
+                            title: asObject(v)['title'] as String,
+                            url: asObject(v)['url'] as String?,
+                            sourceId: decodeIntOrNull(asObject(v)['sourceId']),
+                            mediaId: decodeIntOrNull(asObject(v)['mediaId']),
+                          ),
+                        ),
                   ),
             externalUrl: asObject(e)['externalUrl'] as String?,
             popularity: decodeIntOrNull(asObject(e)['popularity']),
@@ -132,6 +150,7 @@ class RemoteCharacterDao implements CharacterDao {
         'source': encodeEnum(character.source),
         'name': character.name,
         'variant': character.variant,
+        'nativeId': character.nativeId,
         'nameNative': character.nameNative,
         'description': character.description,
         'imageUrl': character.imageUrl,
@@ -145,7 +164,13 @@ class RemoteCharacterDao implements CharacterDao {
         'publisher': character.publisher,
         'alignment': character.alignment,
         'appearsIn': character.appearsIn?.map(
-          (String k, String v) => MapEntry<String, Object?>(k, v),
+          (String k, CharacterAppearance v) =>
+              MapEntry<String, Object?>(k, <String, Object?>{
+                'title': v.title,
+                'url': v.url,
+                'sourceId': encodeIntOrNull(v.sourceId),
+                'mediaId': encodeIntOrNull(v.mediaId),
+              }),
         ),
         'externalUrl': character.externalUrl,
         'popularity': encodeIntOrNull(character.popularity),
@@ -165,6 +190,7 @@ class RemoteCharacterDao implements CharacterDao {
               'source': encodeEnum(e.source),
               'name': e.name,
               'variant': e.variant,
+              'nativeId': e.nativeId,
               'nameNative': e.nameNative,
               'description': e.description,
               'imageUrl': e.imageUrl,
@@ -178,7 +204,13 @@ class RemoteCharacterDao implements CharacterDao {
               'publisher': e.publisher,
               'alignment': e.alignment,
               'appearsIn': e.appearsIn?.map(
-                (String k, String v) => MapEntry<String, Object?>(k, v),
+                (String k, CharacterAppearance v) =>
+                    MapEntry<String, Object?>(k, <String, Object?>{
+                      'title': v.title,
+                      'url': v.url,
+                      'sourceId': encodeIntOrNull(v.sourceId),
+                      'mediaId': encodeIntOrNull(v.mediaId),
+                    }),
               ),
               'externalUrl': e.externalUrl,
               'popularity': encodeIntOrNull(e.popularity),

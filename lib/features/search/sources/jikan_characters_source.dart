@@ -1,9 +1,12 @@
+import 'package:core/models/anime.dart';
 import 'package:core/models/character.dart';
+import 'package:core/models/character_appearance.dart';
 import 'package:core/models/data_source.dart';
 import 'package:core/models/media_type.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../core/api/anilist_api.dart';
 import '../../../core/api/jikan_api.dart';
 import '../../../l10n/app_localizations.dart';
 import '../models/search_source.dart';
@@ -80,13 +83,59 @@ class JikanCharactersSource extends SearchSource {
       sort: sort,
     );
 
+    final List<Character> characters =
+        await _resolveAnimeIds(ref, result.results);
+
     return BrowseResult(
-      items: result.results,
+      items: characters,
       mediaType: MediaType.character,
       hasMore: result.hasMore,
       currentPage: result.page,
       totalPages: result.totalPages,
     );
+  }
+
+  /// Jikan lists the series by MyAnimeList id; the app's own catalogue is
+  /// keyed by AniList id. One batch lookup bridges the two, so a character's
+  /// "appears in" list can point at a title already in the library.
+  Future<List<Character>> _resolveAnimeIds(
+    Ref ref,
+    List<Character> characters,
+  ) async {
+    final Set<int> malIds = <int>{
+      for (final Character c in characters)
+        for (final CharacterAppearance a in c.appearsIn?.values ?? const <CharacterAppearance>[])
+          if (a.sourceId != null) a.sourceId!,
+    };
+    if (malIds.isEmpty) return characters;
+
+    Map<int, Anime> resolved;
+    try {
+      final AniListMalLookupResult<Anime> lookup = await ref
+          .read(aniListApiProvider)
+          .getAnimeByMalIdsTolerant(malIds.toList());
+      resolved = lookup.resolved;
+    } on Exception {
+      // The links still work without the local id, so a failed lookup only
+      // costs the in-library shortcut.
+      return characters;
+    }
+    if (resolved.isEmpty) return characters;
+
+    return <Character>[
+      for (final Character c in characters)
+        c.copyWith(
+          appearsIn: c.appearsIn == null
+              ? null
+              : <String, CharacterAppearance>{
+                  for (final MapEntry<String, CharacterAppearance> e
+                      in c.appearsIn!.entries)
+                    e.key: e.value.copyWith(
+                      mediaId: resolved[e.value.sourceId]?.id,
+                    ),
+                },
+        ),
+    ];
   }
 }
 

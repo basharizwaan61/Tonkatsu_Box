@@ -1,4 +1,7 @@
+import 'package:core/models/character_appearance.dart';
+import 'package:core/models/collected_item_info.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../l10n/app_localizations.dart';
 import '../../../shared/theme/app_colors.dart';
@@ -6,47 +9,95 @@ import '../../../shared/theme/app_spacing.dart';
 import '../../../shared/theme/app_typography.dart';
 import '../../../shared/utils/url_launch.dart';
 import '../../../shared/widgets/section_header.dart';
+import '../../collections/providers/collections_provider.dart';
+import '../../collections/screens/item_detail_screen.dart';
 
-/// The works a character shows up in, as tappable rows.
+/// The works a character shows up in.
 ///
-/// The source gives a link for some of them (Jikan's MyAnimeList pages) and
-/// none for others (Disney lists titles only), so a row without a link is
-/// plain text.
-class CharacterAppearsInSection extends StatelessWidget {
+/// A row opens the work in the user's own library when they already have it,
+/// and the provider's page otherwise.
+class CharacterAppearsInSection extends ConsumerWidget {
   const CharacterAppearsInSection({
     required this.appearsIn,
     super.key,
   });
 
-  /// Work title -> link, empty when the source gave none.
-  final Map<String, String> appearsIn;
+  /// The works, keyed by title.
+  final Map<String, CharacterAppearance> appearsIn;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     if (appearsIn.isEmpty) return const SizedBox.shrink();
     final S l = S.of(context);
+    final Map<int, List<CollectedItemInfo>> owned = ref
+        .watch(collectedAnimeIdsProvider)
+        .valueOrNull ??
+        const <int, List<CollectedItemInfo>>{};
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         SectionHeader(title: l.characterAppearsIn),
-        for (final MapEntry<String, String> entry in appearsIn.entries)
-          _AppearsInRow(title: entry.key, url: entry.value),
+        for (final CharacterAppearance appearance in appearsIn.values)
+          _AppearsInRow(
+            appearance: appearance,
+            owned: appearance.mediaId == null
+                ? const <CollectedItemInfo>[]
+                : (owned[appearance.mediaId] ?? const <CollectedItemInfo>[]),
+            onOpenOwned: (CollectedItemInfo info) => _openOwnedItem(
+              context,
+              ref,
+              info,
+            ),
+          ),
       ],
+    );
+  }
+
+  Future<void> _openOwnedItem(
+    BuildContext context,
+    WidgetRef ref,
+    CollectedItemInfo info,
+  ) async {
+    await Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (BuildContext _) => ItemDetailScreen(
+          collectionId: info.collectionId,
+          itemId: info.recordId,
+          isEditable: info.collectionId != null,
+        ),
+      ),
     );
   }
 }
 
 class _AppearsInRow extends StatelessWidget {
-  const _AppearsInRow({required this.title, required this.url});
+  const _AppearsInRow({
+    required this.appearance,
+    required this.owned,
+    required this.onOpenOwned,
+  });
 
-  final String title;
-  final String url;
+  final CharacterAppearance appearance;
+
+  /// The user's own copies of this work.
+  final List<CollectedItemInfo> owned;
+
+  final void Function(CollectedItemInfo info) onOpenOwned;
 
   @override
   Widget build(BuildContext context) {
-    final bool linked = url.isNotEmpty;
+    final S l = S.of(context);
+    final bool inLibrary = owned.isNotEmpty;
+    final String? url = appearance.url;
     return InkWell(
-      onTap: linked ? () => launchExternalUrl(url) : null,
+      onTap: () {
+        if (inLibrary) {
+          onOpenOwned(owned.first);
+          return;
+        }
+        if (url != null && url.isNotEmpty) launchExternalUrl(url);
+      },
       child: Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: AppSpacing.lg,
@@ -62,15 +113,28 @@ class _AppearsInRow extends StatelessWidget {
             const SizedBox(width: AppSpacing.sm),
             Expanded(
               child: Text(
-                title,
+                appearance.title,
                 style: AppTypography.bodySmall.copyWith(
-                  color: linked ? AppColors.brand : AppColors.textSecondary,
+                  color: inLibrary ? AppColors.brand : AppColors.textSecondary,
                 ),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),
             ),
-            if (linked)
+            if (inLibrary) ...<Widget>[
+              Icon(
+                Icons.library_add_check_outlined,
+                size: 15,
+                color: AppColors.brand,
+              ),
+              const SizedBox(width: AppSpacing.xs),
+              Text(
+                l.characterInLibrary,
+                style: AppTypography.caption.copyWith(
+                  color: AppColors.brand,
+                ),
+              ),
+            ] else if (url != null && url.isNotEmpty)
               Icon(
                 Icons.open_in_new,
                 size: 14,

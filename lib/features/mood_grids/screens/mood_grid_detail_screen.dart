@@ -375,6 +375,7 @@ class _MoodGridDetailScreenState extends ConsumerState<MoodGridDetailScreen> {
           externalId: item.externalId,
           platformId: item.platformId,
           source: item.source,
+          sourceVariant: item.sourceVariant,
         );
   }
 

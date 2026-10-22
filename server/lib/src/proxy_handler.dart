@@ -178,6 +178,11 @@ class ApiProxy {
       case ProxyTarget.hardcover:
         headers[HttpHeaders.authorizationHeader] =
             'Bearer ${_require(CredentialNames.hardcover, target)}';
+      // ThePornDB token rides in the Authorization header, which the browser
+      // cannot set — the server has to attach it.
+      case ProxyTarget.pornDb:
+        headers[HttpHeaders.authorizationHeader] =
+            'Bearer ${_require(CredentialNames.pornDb, target)}';
       case ProxyTarget.comicvine:
         query['api_key'] = <String>[
           _require(CredentialNames.comicVine, target),

@@ -13,6 +13,7 @@ class MoodGridCell {
     this.externalId,
     this.platformId,
     this.source,
+    this.sourceVariant,
   });
 
   factory MoodGridCell.fromDb(Map<String, dynamic> row) {
@@ -28,6 +29,7 @@ class MoodGridCell {
       source: row['source'] != null
           ? DataSource.fromName(row['source'] as String?)
           : null,
+      sourceVariant: _variantOf(row['source_variant'] as String?),
     );
   }
 
@@ -44,7 +46,14 @@ class MoodGridCell {
       source: json['source'] != null
           ? DataSource.fromName(json['source'] as String?)
           : null,
+      sourceVariant: _variantOf(json['source_variant'] as String?),
     );
+  }
+
+  /// An empty variant means "the provider's default scope".
+  static String? _variantOf(String? raw) {
+    if (raw == null || raw.isEmpty) return null;
+    return raw;
   }
 
   final int id;
@@ -70,6 +79,11 @@ class MoodGridCell {
   /// `null` for other media types. Disambiguates a shared manga `externalId`.
   final DataSource? source;
 
+  /// Narrows [source] to one of its sub-scopes — the wiki a Fandom character
+  /// came from. A page id repeats across wikis, so the cell needs it to show
+  /// the right one.
+  final String? sourceVariant;
+
   bool get isEmpty => mediaType == null || externalId == null;
 
   Map<String, dynamic> toDb() {
@@ -82,6 +96,7 @@ class MoodGridCell {
       'external_id': externalId,
       'platform_id': platformId,
       'source': source?.name,
+      'source_variant': sourceVariant,
     };
   }
 
@@ -94,6 +109,7 @@ class MoodGridCell {
       'external_id': externalId,
       'platform_id': platformId,
       if (source != null) 'source': source!.name,
+      if (sourceVariant != null) 'source_variant': sourceVariant,
     };
   }
 
@@ -107,6 +123,7 @@ class MoodGridCell {
     int? externalId,
     int? platformId,
     DataSource? source,
+    String? sourceVariant,
     bool clearItem = false,
   }) {
     return MoodGridCell(
@@ -118,6 +135,7 @@ class MoodGridCell {
       externalId: clearItem ? null : (externalId ?? this.externalId),
       platformId: clearItem ? null : (platformId ?? this.platformId),
       source: clearItem ? null : (source ?? this.source),
+      sourceVariant: clearItem ? null : (sourceVariant ?? this.sourceVariant),
     );
   }
 

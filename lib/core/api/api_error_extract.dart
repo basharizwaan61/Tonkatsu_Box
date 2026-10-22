@@ -10,6 +10,7 @@ import 'jikan_api.dart';
 import 'kodi_api.dart';
 import 'mangabaka_api.dart';
 import 'openlibrary_api.dart';
+import 'porndb_api.dart';
 import 'ra_api.dart';
 import 'screenscraper_api.dart';
 import 'simkl_api.dart';
@@ -67,6 +68,8 @@ ApiError extractApiError(Exception e) {
     WikidataApiException(:final String message, :final String? detail) =>
       (message: message, detail: detail),
     SuperHeroApiException(:final String message, :final String? detail) =>
+      (message: message, detail: detail),
+    PornDbApiException(:final String message, :final String? detail) =>
       (message: message, detail: detail),
     _ => (message: e.toString(), detail: null),
   };

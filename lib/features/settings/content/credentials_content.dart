@@ -47,6 +47,7 @@ class _CredentialsContentState extends ConsumerState<CredentialsContent> {
   String _tvdbApiKey = '';
   String _comicVineApiKey = '';
   String _superHeroToken = '';
+  String _pornDbToken = '';
   String _podcastIndexApiKey = '';
   String _podcastIndexApiSecret = '';
   String _googleBooksApiKey = '';
@@ -65,6 +66,7 @@ class _CredentialsContentState extends ConsumerState<CredentialsContent> {
   StatusType? _tvdbValidated;
   StatusType? _comicVineValidated;
   StatusType? _superHeroValidated;
+  StatusType? _pornDbValidated;
   StatusType? _podcastIndexValidated;
   StatusType? _googleBooksValidated;
   StatusType? _hardcoverValidated;
@@ -74,6 +76,7 @@ class _CredentialsContentState extends ConsumerState<CredentialsContent> {
   bool _tvdbValidating = false;
   bool _comicVineValidating = false;
   bool _superHeroValidating = false;
+  bool _pornDbValidating = false;
   bool _podcastIndexValidating = false;
   bool _googleBooksValidating = false;
   bool _hardcoverValidating = false;
@@ -93,6 +96,7 @@ class _CredentialsContentState extends ConsumerState<CredentialsContent> {
         settings.isTvdbKeyBuiltIn ? '' : (settings.tvdbApiKey ?? '');
     _comicVineApiKey = settings.comicVineApiKey ?? '';
     _superHeroToken = settings.superHeroApiToken ?? '';
+    _pornDbToken = settings.pornDbApiToken ?? '';
     _podcastIndexApiKey = settings.podcastIndexApiKey ?? '';
     _podcastIndexApiSecret = settings.podcastIndexApiSecret ?? '';
     _googleBooksApiKey = settings.googleBooksApiKey ?? '';
@@ -132,6 +136,8 @@ class _CredentialsContentState extends ConsumerState<CredentialsContent> {
         _buildComicVineSection(settings, compact),
         const SizedBox(height: AppSpacing.md),
         _buildSuperHeroSection(settings, compact),
+        const SizedBox(height: AppSpacing.md),
+        _buildPornDbSection(settings, compact),
         const SizedBox(height: AppSpacing.md),
         _buildGoogleBooksSection(settings, compact),
         const SizedBox(height: AppSpacing.md),
@@ -592,6 +598,80 @@ class _CredentialsContentState extends ConsumerState<CredentialsContent> {
     setState(() {
       _superHeroValidating = false;
       _superHeroValidated = valid ? StatusType.success : StatusType.error;
+    });
+    context.showSnack(
+      valid
+          ? S.of(context).credentialsConnected
+          : S.of(context).credentialsConnectionError,
+      type: valid ? SnackType.success : SnackType.error,
+    );
+  }
+
+  Widget _buildPornDbSection(SettingsState settings, bool compact) {
+    final S l = S.of(context);
+    return SettingsGroup(
+      title: '${DataSource.pornDb.label} API',
+      children: <Widget>[
+        _buildSourceHeader(
+          description: l.welcomeApiFreeHint,
+          sourceName: DataSource.pornDb.label,
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: AppSpacing.md,
+            vertical: AppSpacing.sm,
+          ),
+          child: Column(
+            children: <Widget>[
+              InlineTextField(
+                label: l.credentialsApiKey,
+                value: _pornDbToken,
+                placeholder: l.credentialsNoApiKey,
+                obscureText: true,
+                compact: compact,
+                onChanged: (String value) {
+                  setState(() {
+                    _pornDbToken = value;
+                    _pornDbValidated = null;
+                  });
+                  ref
+                      .read(settingsNotifierProvider.notifier)
+                      .setPornDbApiToken(value.trim());
+                },
+              ),
+              const SizedBox(height: AppSpacing.sm),
+              _buildCredentialStatus(
+                compact: compact,
+                statusType: _keyStatusType(
+                  hasKey: settings.hasPornDbToken,
+                  isBuiltIn: false,
+                  validated: _pornDbValidated,
+                ),
+                statusLabel: _keyStatusLabel(
+                  hasKey: settings.hasPornDbToken,
+                  isBuiltIn: false,
+                  validated: _pornDbValidated,
+                ),
+                actionTooltip: l.test,
+                isLoading: _pornDbValidating,
+                onAction: settings.hasPornDbToken ? _validatePornDbToken : null,
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  Future<void> _validatePornDbToken() async {
+    setState(() => _pornDbValidating = true);
+    final SettingsNotifier notifier =
+        ref.read(settingsNotifierProvider.notifier);
+    final bool valid = await notifier.validatePornDbToken();
+    if (!mounted) return;
+    setState(() {
+      _pornDbValidating = false;
+      _pornDbValidated = valid ? StatusType.success : StatusType.error;
     });
     context.showSnack(
       valid

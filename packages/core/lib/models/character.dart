@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'data_source.dart';
+import 'character_appearance.dart';
 
 /// Character metadata — a person, creature or android a fan collects.
 ///
@@ -13,6 +14,7 @@ class Character {
     required this.source,
     required this.name,
     this.variant,
+    this.nativeId,
     this.nameNative,
     this.description,
     this.imageUrl,
@@ -43,14 +45,22 @@ class Character {
       }
     }
 
-    Map<String, String>? appearsIn;
+    Map<String, CharacterAppearance>? appearsIn;
     if (row['appears_in'] != null &&
         (row['appears_in'] as String).isNotEmpty) {
       try {
         final Map<String, dynamic> decoded =
             jsonDecode(row['appears_in'] as String) as Map<String, dynamic>;
         appearsIn = decoded.map(
-          (String key, dynamic value) => MapEntry<String, String>(key, '$value'),
+          (String key, dynamic value) => MapEntry<String, CharacterAppearance>(
+            key,
+            value is Map<String, dynamic>
+                ? CharacterAppearance.fromJson(value)
+                : CharacterAppearance(
+                    title: key,
+                    url: value is String && value.isNotEmpty ? value : null,
+                  ),
+          ),
         );
       } on FormatException {
         appearsIn = null;
@@ -62,6 +72,7 @@ class Character {
       source: DataSource.fromNameOr(row['source'] as String?, DataSource.fandom),
       variant: _variantOf(row['variant'] as String?),
       name: row['name'] as String,
+      nativeId: row['native_id'] as String?,
       nameNative: row['name_native'] as String?,
       description: row['description'] as String?,
       imageUrl: row['image_url'] as String?,
@@ -89,6 +100,10 @@ class Character {
 
   /// Fandom wiki slug; `null` for every other provider.
   final String? variant;
+
+  /// The provider's own id, when it is not a number — ThePornDB performer
+  /// ids are opaque strings, so the numeric [id] is derived from this.
+  final String? nativeId;
 
   /// Display name.
   final String name;
@@ -124,9 +139,9 @@ class Character {
   /// Hero / villain / neutral, where the source states it.
   final String? alignment;
 
-  /// Works the character appears in, keyed by title. The value is a link to
-  /// that work when the source gives one, otherwise empty.
-  final Map<String, String>? appearsIn;
+  /// Works the character appears in, keyed by title. The value carries the
+  /// provider's link and, once resolved, the app's own id for the work.
+  final Map<String, CharacterAppearance>? appearsIn;
 
   final String? externalUrl;
 
@@ -152,7 +167,8 @@ class Character {
   }
 
   /// Titles of the works the character appears in.
-  List<String> get appearsInTitles => appearsIn?.keys.toList() ?? const <String>[];
+  List<String> get appearsInTitles =>
+      appearsIn?.keys.toList() ?? const <String>[];
 
   @override
   bool operator ==(Object other) {
@@ -172,6 +188,7 @@ class Character {
       'source': source.name,
       'variant': variant ?? '',
       'name': name,
+      'native_id': nativeId,
       'name_native': nameNative,
       'description': description,
       'image_url': imageUrl,
@@ -202,6 +219,7 @@ class Character {
     int? id,
     DataSource? source,
     String? variant,
+    String? nativeId,
     String? name,
     String? nameNative,
     String? description,
@@ -215,7 +233,7 @@ class Character {
     String? abilities,
     String? publisher,
     String? alignment,
-    Map<String, String>? appearsIn,
+    Map<String, CharacterAppearance>? appearsIn,
     String? externalUrl,
     int? popularity,
     int? updatedAt,
@@ -224,6 +242,7 @@ class Character {
       id: id ?? this.id,
       source: source ?? this.source,
       variant: variant ?? this.variant,
+      nativeId: nativeId ?? this.nativeId,
       name: name ?? this.name,
       nameNative: nameNative ?? this.nameNative,
       description: description ?? this.description,

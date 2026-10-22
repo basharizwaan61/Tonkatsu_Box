@@ -52,6 +52,7 @@ void main() {
         'tmdb_people',
         'superhero_characters',
         'igdb_characters',
+        'porndb_characters',
       ]);
     });
   });

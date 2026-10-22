@@ -1,4 +1,5 @@
 import 'package:core/models/character.dart';
+import 'package:core/models/character_appearance.dart';
 import 'package:core/models/data_source.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -149,14 +150,15 @@ class DisneyApi {
       ...videoGames,
       ...shortFilms,
     ]).take(5).toList();
-    final Map<String, String> appearsIn = <String, String>{};
+    final Map<String, CharacterAppearance> appearsIn =
+        <String, CharacterAppearance>{};
     for (final String title in _dedupe(<String>[
       ...films,
       ...shortFilms,
       ...tvShows,
       ...videoGames,
     ])) {
-      appearsIn[title] = '';
+      appearsIn[title] = CharacterAppearance(title: title);
     }
     final List<String> allies = _titles(json['allies']);
     return Character(

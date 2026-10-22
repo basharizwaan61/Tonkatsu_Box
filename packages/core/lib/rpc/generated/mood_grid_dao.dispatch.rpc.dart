@@ -81,6 +81,7 @@ Future<Object?> dispatchMoodGridDao(
               'externalId': encodeIntOrNull(e.externalId),
               'platformId': encodeIntOrNull(e.platformId),
               'source': e.source?.name,
+              'sourceVariant': e.sourceVariant,
             },
           )
           .toList();
@@ -127,6 +128,7 @@ Future<Object?> dispatchMoodGridDao(
         externalId: decodeInt(args['externalId']),
         platformId: decodeIntOrNull(args['platformId']),
         source: decodeEnumOrNull<DataSource>(args['source'], DataSource.values),
+        sourceVariant: args['sourceVariant'] as String?,
       );
       return null;
 

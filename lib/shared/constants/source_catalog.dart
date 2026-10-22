@@ -148,4 +148,10 @@ const List<SourceInfo> kDataSourceCatalog = <SourceInfo>[
     url: 'https://superheroapi.com/',
     keyRequirement: SourceKeyRequirement.mandatory,
   ),
+  SourceInfo(
+    source: DataSource.pornDb,
+    mediaTypes: <MediaType>[MediaType.character],
+    url: 'https://www.theporndb.com/',
+    keyRequirement: SourceKeyRequirement.mandatory,
+  ),
 ];

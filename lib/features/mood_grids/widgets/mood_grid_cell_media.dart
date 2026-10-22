@@ -1,6 +1,7 @@
 import 'package:core/models/audio_item.dart';
 import 'package:core/models/anime.dart';
 import 'package:core/models/book.dart';
+import 'package:core/models/character.dart';
 import 'package:core/models/custom_media.dart';
 import 'package:core/models/data_source.dart';
 import 'package:core/models/game.dart';
@@ -73,6 +74,7 @@ Future<Map<int, MoodGridCellMedia>> resolveMoodGridCellMediaBatch(
   final List<int> bookIds = _idsOf(filled, MediaType.book);
   final List<int> albumIds = _idsOf(filled, MediaType.audio);
   final List<int> customIds = _idsOf(filled, MediaType.custom);
+  final List<int> characterIds = _idsOf(filled, MediaType.character);
 
   // Animation cells resolve against movies or tv shows depending on their
   // AnimationSource; fold them into the matching batch.
@@ -113,6 +115,8 @@ Future<Map<int, MoodGridCellMedia>> resolveMoodGridCellMediaBatch(
       _fetch(albumIds, (List<int> ids) => db.audioDao.getAudioItemsByIds(ids));
   final Future<List<CustomMedia>> customsF =
       _fetch(customIds, (List<int> ids) => db.customMediaDao.getByIds(ids));
+  final Future<List<Character>> charactersF = _fetch(
+    characterIds, (List<int> ids) => db.characterDao.getCharactersByIds(ids));
 
   final Map<int, Game> games = <int, Game>{
     for (final Game g in await gamesF) g.id: g,
@@ -141,6 +145,11 @@ Future<Map<int, MoodGridCellMedia>> resolveMoodGridCellMediaBatch(
   };
   final Map<int, CustomMedia> customs = <int, CustomMedia>{
     for (final CustomMedia c in await customsF) c.id: c,
+  };
+  // A character id repeats across Fandom wikis, so the key carries the
+  // provider and the wiki.
+  final Map<(String, int), Character> characters = <(String, int), Character>{
+    for (final Character c in await charactersF) (c.sourceKey, c.id): c,
   };
 
   MoodGridCellMedia resolve(MoodGridCell cell) {
@@ -182,13 +191,14 @@ Future<Map<int, MoodGridCellMedia>> resolveMoodGridCellMediaBatch(
       case MediaType.custom:
         return _customMedia(customs[id]);
       case MediaType.character:
-        // No character preview yet: a cell carries no wiki variant, so a
-        // fetched row could belong to another wiki with the same page id.
-        return const MoodGridCellMedia(
-          title: null,
-          coverUrl: null,
-          imageType: ImageType.characterCover,
-          placeholderIcon: Icons.face_outlined,
+        return _characterMedia(
+          characters[(
+            DataSource.sourceKey(
+              cell.source ?? MediaType.character.defaultSource,
+              cell.sourceVariant,
+            ),
+            id,
+          )],
         );
     }
   }
@@ -325,6 +335,16 @@ MoodGridCellMedia _customMedia(CustomMedia? custom) {
     placeholderIcon: Icons.bookmark_outline,
     year: custom?.year,
     genre: _normaliseCustomGenres(custom?.genres),
+  );
+}
+
+MoodGridCellMedia _characterMedia(Character? character) {
+  return MoodGridCellMedia(
+    title: character?.name,
+    coverUrl: character?.imageUrl,
+    imageType: ImageType.characterCover,
+    placeholderIcon: Icons.face_outlined,
+    genre: character?.aliasesString,
   );
 }
 

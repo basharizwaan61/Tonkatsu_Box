@@ -6,6 +6,7 @@ import 'package:core/models/anime.dart';
 import 'package:core/models/audio_item.dart';
 import 'package:core/models/book.dart';
 import 'package:core/models/character.dart';
+import 'package:core/models/character_appearance.dart';
 import 'package:core/models/character_image.dart';
 import 'package:core/models/collected_item_info.dart';
 import 'package:core/models/collection.dart';
@@ -396,6 +397,7 @@ Future<Object?> dispatchCollectionDao(
                   'source': encodeEnum(v.source),
                   'name': v.name,
                   'variant': v.variant,
+                  'nativeId': v.nativeId,
                   'nameNative': v.nameNative,
                   'description': v.description,
                   'imageUrl': v.imageUrl,
@@ -409,7 +411,13 @@ Future<Object?> dispatchCollectionDao(
                   'publisher': v.publisher,
                   'alignment': v.alignment,
                   'appearsIn': v.appearsIn?.map(
-                    (String k, String v) => MapEntry<String, Object?>(k, v),
+                    (String k, CharacterAppearance v) =>
+                        MapEntry<String, Object?>(k, <String, Object?>{
+                          'title': v.title,
+                          'url': v.url,
+                          'sourceId': encodeIntOrNull(v.sourceId),
+                          'mediaId': encodeIntOrNull(v.mediaId),
+                        }),
                   ),
                   'externalUrl': v.externalUrl,
                   'popularity': encodeIntOrNull(v.popularity),
@@ -730,6 +738,7 @@ Future<Object?> dispatchCollectionDao(
               'source': encodeEnum(v.source),
               'name': v.name,
               'variant': v.variant,
+              'nativeId': v.nativeId,
               'nameNative': v.nameNative,
               'description': v.description,
               'imageUrl': v.imageUrl,
@@ -743,7 +752,13 @@ Future<Object?> dispatchCollectionDao(
               'publisher': v.publisher,
               'alignment': v.alignment,
               'appearsIn': v.appearsIn?.map(
-                (String k, String v) => MapEntry<String, Object?>(k, v),
+                (String k, CharacterAppearance v) =>
+                    MapEntry<String, Object?>(k, <String, Object?>{
+                      'title': v.title,
+                      'url': v.url,
+                      'sourceId': encodeIntOrNull(v.sourceId),
+                      'mediaId': encodeIntOrNull(v.mediaId),
+                    }),
               ),
               'externalUrl': v.externalUrl,
               'popularity': encodeIntOrNull(v.popularity),
@@ -1042,6 +1057,7 @@ Future<Object?> dispatchCollectionDao(
               'source': encodeEnum(v.source),
               'name': v.name,
               'variant': v.variant,
+              'nativeId': v.nativeId,
               'nameNative': v.nameNative,
               'description': v.description,
               'imageUrl': v.imageUrl,
@@ -1055,7 +1071,13 @@ Future<Object?> dispatchCollectionDao(
               'publisher': v.publisher,
               'alignment': v.alignment,
               'appearsIn': v.appearsIn?.map(
-                (String k, String v) => MapEntry<String, Object?>(k, v),
+                (String k, CharacterAppearance v) =>
+                    MapEntry<String, Object?>(k, <String, Object?>{
+                      'title': v.title,
+                      'url': v.url,
+                      'sourceId': encodeIntOrNull(v.sourceId),
+                      'mediaId': encodeIntOrNull(v.mediaId),
+                    }),
               ),
               'externalUrl': v.externalUrl,
               'popularity': encodeIntOrNull(v.popularity),
@@ -1355,6 +1377,7 @@ Future<Object?> dispatchCollectionDao(
                   'source': encodeEnum(v.source),
                   'name': v.name,
                   'variant': v.variant,
+                  'nativeId': v.nativeId,
                   'nameNative': v.nameNative,
                   'description': v.description,
                   'imageUrl': v.imageUrl,
@@ -1368,7 +1391,13 @@ Future<Object?> dispatchCollectionDao(
                   'publisher': v.publisher,
                   'alignment': v.alignment,
                   'appearsIn': v.appearsIn?.map(
-                    (String k, String v) => MapEntry<String, Object?>(k, v),
+                    (String k, CharacterAppearance v) =>
+                        MapEntry<String, Object?>(k, <String, Object?>{
+                          'title': v.title,
+                          'url': v.url,
+                          'sourceId': encodeIntOrNull(v.sourceId),
+                          'mediaId': encodeIntOrNull(v.mediaId),
+                        }),
                   ),
                   'externalUrl': v.externalUrl,
                   'popularity': encodeIntOrNull(v.popularity),
@@ -1670,6 +1699,7 @@ Future<Object?> dispatchCollectionDao(
                   'source': encodeEnum(v.source),
                   'name': v.name,
                   'variant': v.variant,
+                  'nativeId': v.nativeId,
                   'nameNative': v.nameNative,
                   'description': v.description,
                   'imageUrl': v.imageUrl,
@@ -1683,7 +1713,13 @@ Future<Object?> dispatchCollectionDao(
                   'publisher': v.publisher,
                   'alignment': v.alignment,
                   'appearsIn': v.appearsIn?.map(
-                    (String k, String v) => MapEntry<String, Object?>(k, v),
+                    (String k, CharacterAppearance v) =>
+                        MapEntry<String, Object?>(k, <String, Object?>{
+                          'title': v.title,
+                          'url': v.url,
+                          'sourceId': encodeIntOrNull(v.sourceId),
+                          'mediaId': encodeIntOrNull(v.mediaId),
+                        }),
                   ),
                   'externalUrl': v.externalUrl,
                   'popularity': encodeIntOrNull(v.popularity),
@@ -2073,6 +2109,7 @@ Future<Object?> dispatchCollectionDao(
               'source': encodeEnum(v.source),
               'name': v.name,
               'variant': v.variant,
+              'nativeId': v.nativeId,
               'nameNative': v.nameNative,
               'description': v.description,
               'imageUrl': v.imageUrl,
@@ -2086,7 +2123,13 @@ Future<Object?> dispatchCollectionDao(
               'publisher': v.publisher,
               'alignment': v.alignment,
               'appearsIn': v.appearsIn?.map(
-                (String k, String v) => MapEntry<String, Object?>(k, v),
+                (String k, CharacterAppearance v) =>
+                    MapEntry<String, Object?>(k, <String, Object?>{
+                      'title': v.title,
+                      'url': v.url,
+                      'sourceId': encodeIntOrNull(v.sourceId),
+                      'mediaId': encodeIntOrNull(v.mediaId),
+                    }),
               ),
               'externalUrl': v.externalUrl,
               'popularity': encodeIntOrNull(v.popularity),
@@ -2405,6 +2448,7 @@ Future<Object?> dispatchCollectionDao(
                   'source': encodeEnum(v.source),
                   'name': v.name,
                   'variant': v.variant,
+                  'nativeId': v.nativeId,
                   'nameNative': v.nameNative,
                   'description': v.description,
                   'imageUrl': v.imageUrl,
@@ -2418,7 +2462,13 @@ Future<Object?> dispatchCollectionDao(
                   'publisher': v.publisher,
                   'alignment': v.alignment,
                   'appearsIn': v.appearsIn?.map(
-                    (String k, String v) => MapEntry<String, Object?>(k, v),
+                    (String k, CharacterAppearance v) =>
+                        MapEntry<String, Object?>(k, <String, Object?>{
+                          'title': v.title,
+                          'url': v.url,
+                          'sourceId': encodeIntOrNull(v.sourceId),
+                          'mediaId': encodeIntOrNull(v.mediaId),
+                        }),
                   ),
                   'externalUrl': v.externalUrl,
                   'popularity': encodeIntOrNull(v.popularity),
@@ -2720,6 +2770,7 @@ Future<Object?> dispatchCollectionDao(
                   'source': encodeEnum(v.source),
                   'name': v.name,
                   'variant': v.variant,
+                  'nativeId': v.nativeId,
                   'nameNative': v.nameNative,
                   'description': v.description,
                   'imageUrl': v.imageUrl,
@@ -2733,7 +2784,13 @@ Future<Object?> dispatchCollectionDao(
                   'publisher': v.publisher,
                   'alignment': v.alignment,
                   'appearsIn': v.appearsIn?.map(
-                    (String k, String v) => MapEntry<String, Object?>(k, v),
+                    (String k, CharacterAppearance v) =>
+                        MapEntry<String, Object?>(k, <String, Object?>{
+                          'title': v.title,
+                          'url': v.url,
+                          'sourceId': encodeIntOrNull(v.sourceId),
+                          'mediaId': encodeIntOrNull(v.mediaId),
+                        }),
                   ),
                   'externalUrl': v.externalUrl,
                   'popularity': encodeIntOrNull(v.popularity),
@@ -3074,6 +3131,7 @@ Future<Object?> dispatchCollectionDao(
                   'source': encodeEnum(v.source),
                   'name': v.name,
                   'variant': v.variant,
+                  'nativeId': v.nativeId,
                   'nameNative': v.nameNative,
                   'description': v.description,
                   'imageUrl': v.imageUrl,
@@ -3087,7 +3145,13 @@ Future<Object?> dispatchCollectionDao(
                   'publisher': v.publisher,
                   'alignment': v.alignment,
                   'appearsIn': v.appearsIn?.map(
-                    (String k, String v) => MapEntry<String, Object?>(k, v),
+                    (String k, CharacterAppearance v) =>
+                        MapEntry<String, Object?>(k, <String, Object?>{
+                          'title': v.title,
+                          'url': v.url,
+                          'sourceId': encodeIntOrNull(v.sourceId),
+                          'mediaId': encodeIntOrNull(v.mediaId),
+                        }),
                   ),
                   'externalUrl': v.externalUrl,
                   'popularity': encodeIntOrNull(v.popularity),
@@ -3422,6 +3486,7 @@ Future<Object?> dispatchCollectionDao(
                   'source': encodeEnum(v.source),
                   'name': v.name,
                   'variant': v.variant,
+                  'nativeId': v.nativeId,
                   'nameNative': v.nameNative,
                   'description': v.description,
                   'imageUrl': v.imageUrl,
@@ -3435,7 +3500,13 @@ Future<Object?> dispatchCollectionDao(
                   'publisher': v.publisher,
                   'alignment': v.alignment,
                   'appearsIn': v.appearsIn?.map(
-                    (String k, String v) => MapEntry<String, Object?>(k, v),
+                    (String k, CharacterAppearance v) =>
+                        MapEntry<String, Object?>(k, <String, Object?>{
+                          'title': v.title,
+                          'url': v.url,
+                          'sourceId': encodeIntOrNull(v.sourceId),
+                          'mediaId': encodeIntOrNull(v.mediaId),
+                        }),
                   ),
                   'externalUrl': v.externalUrl,
                   'popularity': encodeIntOrNull(v.popularity),

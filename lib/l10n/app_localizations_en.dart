@@ -182,6 +182,9 @@ class SEn extends S {
   String get characterAppearsIn => 'Appears in';
 
   @override
+  String get characterInLibrary => 'In your library';
+
+  @override
   String get characterPictures => 'Pictures';
 
   @override
